@@ -6,3 +6,8 @@ export const focusWithinClasses =
 
 export const peerFocusClasses =
   "peer-focus-visible:border-gray-500 peer-focus-visible:outline-none peer-focus-visible:ring-[3px] peer-focus-visible:ring-gray-300 peer-focus-visible:z-10"
+
+export const disabledClasses =
+  "disabled:opacity-60 disabled:pointer-events-none disabled:cursor-not-allowed"
+
+export const activeClasses = "active:translate-y-px active:scale-[99%] active:opacity-90"

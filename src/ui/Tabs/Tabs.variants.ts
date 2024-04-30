@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva, disabledClasses } from "../../shared"
 
 export const tabsListVariants = cva({
   base: [
@@ -10,10 +10,8 @@ export const tabsListVariants = cva({
 export const tabsTriggerVariants = cva({
   base: [
     "relative z-10 inline-flex items-center justify-center py-2.5 border-b-2 border-transparent text-sm text-gray-500 font-medium whitespace-nowrap snap-start hover:border-gray-300 hover:text-gray-700 focus:outline-primary",
-    // Disabled
-    "disabled:pointer-events-none disabled:opacity-60",
-    // Active
     "data-[state=active]:border-current data-[state=active]:text-primary",
+    disabledClasses,
   ],
 })
 

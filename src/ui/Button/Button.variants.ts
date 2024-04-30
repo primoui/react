@@ -1,9 +1,10 @@
-import { cva, focusClasses } from "../../shared"
+import { activeClasses, cva, disabledClasses, focusClasses } from "../../shared"
 
 export const buttonVariants = cva({
   base: [
     "relative inline-flex items-center justify-center border border-transparent font-medium leading-icon rounded-md shadow-sm transition hover:z-10",
-    "disabled:opacity-60 disabled:pointer-events-none",
+    disabledClasses,
+    activeClasses,
     focusClasses,
   ],
 

@@ -1,10 +1,10 @@
-import { cva, focusClasses } from "../../../shared"
+import { cva, disabledClasses, focusClasses } from "../../../shared"
 
 export const switchVariants = cva({
   base: [
     "peer relative inline-flex w-7 shrink-0 rounded-full shadow-inner shadow-black/20",
-    "disabled:cursor-not-allowed disabled:opacity-50",
     "data-[state=checked]:bg-primary data-[state=unchecked]:bg-gray-200",
+    disabledClasses,
     focusClasses,
   ],
 

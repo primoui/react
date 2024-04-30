@@ -59,6 +59,7 @@ const colorTheme = {
     dark: "#1F87AD",
     darker: "#164564",
   },
+  gray: colors.neutral,
 } as const
 
 export default {
@@ -72,8 +73,7 @@ export default {
       white: colors.white,
       transparent: colors.transparent,
       current: colors.current,
-      gray: colors.neutral,
-      primary: colorTheme.orange,
+      primary: colorTheme.blue,
       ...colorTheme,
     },
     fontSize: {
@@ -103,8 +103,8 @@ export default {
       typography: {
         DEFAULT: {
           css: {
-            "--tw-prose-body": colors.gray[700],
-            "--tw-prose-headings": colors.gray[900],
+            "--tw-prose-body": colorTheme.gray[700],
+            "--tw-prose-headings": colorTheme.gray[900],
           },
         },
       },
@@ -126,11 +126,11 @@ export default {
       },
 
       boxShadow: {
-        outline: `0 0 0 1px ${colors.gray["200"]}`,
+        outline: `0 0 0 1px ${colorTheme.gray["200"]}`,
       },
 
       backgroundImage: {
-        radial: `radial-gradient(circle, ${colors.gray["200"]} 1px, transparent 1px)`,
+        radial: `radial-gradient(circle, ${colorTheme.gray["200"]} 1px, transparent 1px)`,
       },
 
       gridColumns: {

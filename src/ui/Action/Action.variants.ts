@@ -1,15 +1,16 @@
-import { cva, focusClasses } from "../../shared"
+import { activeClasses, cva, disabledClasses, focusClasses } from "../../shared"
 
 export const actionVariants = cva({
   base: [
     "relative inline-flex items-center justify-center gap-[0.5ch] text-2xs text-gray-500 font-medium leading-icon hover:z-10 hover:text-gray-800",
-    "disabled:opacity-60 disabled:pointer-events-none",
+    disabledClasses,
+    activeClasses,
     focusClasses,
   ],
 
   variants: {
     isPending: {
-      true: "[&>*:not(.animate-spin)]:text-transparent",
+      true: "[&>*:not(.animate-spin)]:text-transparent select-none",
     },
   },
 })
