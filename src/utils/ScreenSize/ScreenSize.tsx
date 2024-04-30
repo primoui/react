@@ -12,7 +12,7 @@ export type ScreenSizeProps = Omit<HTMLAttributes<ScreenSizeElement>, "size"> &
   VariantProps<typeof screenSizeVariants>
 
 export const ScreenSize = forwardRef<ScreenSizeElement, ScreenSizeProps>((props, ref) => {
-  const { className, ...rest } = props
+  const { className, position, ...rest } = props
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export const ScreenSize = forwardRef<ScreenSizeElement, ScreenSizeProps>((props,
   const { width, height } = dimensions
 
   return (
-    <div ref={ref} className={cx(screenSizeVariants({ className }))} {...rest}>
+    <div ref={ref} className={cx(screenSizeVariants({ position, className }))} {...rest}>
       <span>
         {width.toLocaleString()} x {height.toLocaleString()}
       </span>

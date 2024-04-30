@@ -7,7 +7,7 @@ export const sidebarVariants = cva({
     size: {
       sm: "w-56",
       md: "w-64",
-      lg: "w-72",
+      lg: "w-64 xl:w-72",
     },
     sticky: {
       true: "sticky inset-y-0 h-screen",
