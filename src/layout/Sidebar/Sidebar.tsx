@@ -1,11 +1,9 @@
 "use client"
 
 import type { HTMLAttributes } from "react"
-
 import { type VariantProps, cx } from "~/shared/cva"
 import type { SubheadingProps } from "../../typography/Subheading"
 import { Subheading } from "../../typography/Subheading"
-
 import {
   sidebarContentVariants,
   sidebarHeadingVariants,

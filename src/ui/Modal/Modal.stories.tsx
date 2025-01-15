@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Modal } from "./Modal"
 
 type Story = StoryObj<typeof Modal>

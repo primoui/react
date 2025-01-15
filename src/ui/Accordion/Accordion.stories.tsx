@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { H5 } from "~/typography/Heading"
 import { Prose } from "~/typography/Prose"
 

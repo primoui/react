@@ -1,9 +1,8 @@
 "use client"
 
-import type { ButtonHTMLAttributes, ReactNode } from "react"
-
 import { Slot } from "@radix-ui/react-slot"
 import { Loader2 } from "lucide-react"
+import type { ButtonHTMLAttributes, ReactNode } from "react"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
 import { isChildrenEmpty, isReactElement, toArrayOrWrap } from "~/shared/helpers"

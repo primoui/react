@@ -1,10 +1,8 @@
 "use client"
 
 import type { HTMLAttributes } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { pingDotOutlineVariants, pingDotVariants, pingVariants } from "./Ping.variants"
 
 export type PingProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &

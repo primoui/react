@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Plan } from "./Plan"
 
 type Story = StoryObj<typeof Plan>

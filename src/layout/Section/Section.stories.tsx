@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Section } from "./Section"
 
 type Story = StoryObj<typeof Section>

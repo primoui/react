@@ -3,10 +3,8 @@
 import * as PopoverPrimitive from "@radix-ui/react-popover"
 import { X } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { popoverArrowVariants, popoverCloseVariants, popoverVariants } from "./Popover.variants"
 
 export type PopoverProps = Omit<ComponentProps<typeof PopoverContent>, "popover"> & {

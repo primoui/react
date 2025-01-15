@@ -6,7 +6,6 @@ import { type VariantProps, cx } from "~/shared/cva"
 import { getElementWidth } from "~/shared/helpers"
 import { createSimpleContext } from "~/shared/providers"
 import { Affixable } from "~/utils/Affixable/Affixable"
-
 import { affixGroupVariants, affixVariants } from "./Affix.variants"
 
 export type AffixContext = {

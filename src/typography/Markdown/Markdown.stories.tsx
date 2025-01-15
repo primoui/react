@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Markdown } from "./Markdown"
 
 type Story = StoryObj<typeof Markdown>

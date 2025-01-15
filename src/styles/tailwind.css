@@ -25,7 +25,6 @@ svg[stroke="currentColor"]:not([class*="size"]) {
   @apply text-white;
 }
 
-
 @supports (mask-image: paint(smooth-corners)) {
   .squircle {
     mask-image: paint(smooth-corners);

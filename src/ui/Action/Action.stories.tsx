@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User } from "lucide-react"
-
 import { Action } from "./Action"
 
 type Story = StoryObj<typeof Action>

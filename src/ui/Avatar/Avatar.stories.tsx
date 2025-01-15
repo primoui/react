@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User } from "lucide-react"
 import { Dot } from "~/ui/Dot"
-
 import { Avatar } from "./Avatar"
 
 type Story = StoryObj<typeof Avatar>

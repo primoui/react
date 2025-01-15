@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Subheading } from "./Subheading"
 
 type Story = StoryObj<typeof Subheading>

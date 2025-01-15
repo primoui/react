@@ -1,10 +1,8 @@
 "use client"
 
 import type { HTMLAttributes, ReactNode } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { Subheading } from "~/typography/Subheading"
-
 import { dividerVariants } from "./Divider.variants"
 
 export type DividerProps = HTMLAttributes<HTMLDivElement> &

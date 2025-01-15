@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User, X } from "lucide-react"
 import { Paragraph } from "~/typography/Paragraph"
-
 import { FeatureCard } from "./FeatureCard"
 
 type Story = StoryObj<typeof FeatureCard>

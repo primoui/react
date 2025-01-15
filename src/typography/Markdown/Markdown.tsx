@@ -2,9 +2,8 @@
 
 import type { MarkdownToJSX } from "markdown-to-jsx"
 import MarkdownParser from "markdown-to-jsx"
-
-import type { ProseProps } from "../Prose"
-import { Prose } from "../Prose"
+import type { ProseProps } from "~/typography/Prose"
+import { Prose } from "~/typography/Prose"
 
 export type MarkdownProps = Omit<ProseProps, "children"> & {
   content: string

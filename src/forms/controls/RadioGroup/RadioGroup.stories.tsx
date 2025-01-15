@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { RadioGroup } from "./RadioGroup"
 
 type Story = StoryObj<typeof RadioGroup>

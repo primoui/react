@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { ChevronRight, User } from "lucide-react"
-
 import { MenuItem } from "./MenuItem"
 
 type Story = StoryObj<typeof MenuItem>

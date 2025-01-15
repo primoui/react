@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Affix } from "./Affix"
 
 type Story = StoryObj<typeof Affix>

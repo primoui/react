@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Button } from "~/ui/Button"
 import { MenuItem } from "~/ui/MenuItem"
-
 import { Dropdown } from "./Dropdown"
 
 type Story = StoryObj<typeof Dropdown>

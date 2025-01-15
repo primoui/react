@@ -3,13 +3,11 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog"
 import { X } from "lucide-react"
 import type { ComponentProps } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
 import { Backdrop } from "~/ui/Backdrop"
 import { Button } from "~/ui/Button"
 import { Card } from "~/ui/Card"
-
 import { Modal } from "~/ui/Modal/Modal"
 import type { modalVariants } from "~/ui/Modal/Modal.variants"
 import { dialogVariants } from "./Dialog.variants"

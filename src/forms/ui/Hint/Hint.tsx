@@ -1,9 +1,8 @@
 "use client"
 
 import { cx } from "~/shared/cva"
-import type { ParagraphProps } from "../../../typography/Paragraph"
-import { Paragraph } from "../../../typography/Paragraph"
-
+import type { ParagraphProps } from "~/typography/Paragraph"
+import { Paragraph } from "~/typography/Paragraph"
 import { hintVariants } from "./Hint.variants"
 
 export type HintProps = ParagraphProps

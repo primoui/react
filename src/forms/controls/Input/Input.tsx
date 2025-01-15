@@ -1,11 +1,9 @@
 "use client"
 
 import type { InputHTMLAttributes } from "react"
-
 import { useAffix } from "~/forms/ui/Affix/Affix"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { inputVariants } from "./Input.variants"
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof inputVariants>

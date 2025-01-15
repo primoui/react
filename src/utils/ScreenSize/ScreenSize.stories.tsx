@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { ScreenSize } from "./ScreenSize"
 
 type Story = StoryObj<typeof ScreenSize>

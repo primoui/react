@@ -1,10 +1,8 @@
 "use client"
 
 import type { HTMLAttributes } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { statusVariants } from "./Status.variants"
 
 export type StatusProps = HTMLAttributes<HTMLSpanElement> &

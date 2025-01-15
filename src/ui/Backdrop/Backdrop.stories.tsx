@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Backdrop } from "./Backdrop"
 
 type Story = StoryObj<typeof Backdrop>

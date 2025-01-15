@@ -1,10 +1,8 @@
 "use client"
 
 import type { HTMLAttributes } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { progressRingVariants } from "./ProgressRing.variants"
 
 export type ProgressRingProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &

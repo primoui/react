@@ -2,10 +2,8 @@
 
 import * as DropdownPrimitive from "@radix-ui/react-dropdown-menu"
 import type { ComponentProps } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import {
   dropdownGroupVariants,
   dropdownLabelVariants,

@@ -5,7 +5,6 @@ import type { ComponentProps } from "react"
 import { type VariantProps, cx } from "~/shared/cva"
 import { proseVariants } from "~/typography/Prose/Prose.variants"
 import { Stack } from "~/ui/Stack"
-
 import { editorContentVariants, editorMenuVariants, editorVariants } from "./Editor.variants"
 
 type EditorProps = ComponentProps<typeof EditorContent> & VariantProps<typeof editorVariants>

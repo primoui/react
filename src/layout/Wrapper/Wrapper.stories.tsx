@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Wrapper } from "./Wrapper"
 
 type Story = StoryObj<typeof Wrapper>

@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Paragraph } from "~/typography/Paragraph"
-
 import { ProgressBar } from "./ProgressBar"
 
 type Story = StoryObj<typeof ProgressBar>

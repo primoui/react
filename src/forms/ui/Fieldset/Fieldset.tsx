@@ -1,10 +1,8 @@
 "use client"
 
 import type { FieldsetHTMLAttributes } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { fieldsetVariants } from "./Fieldset.variants"
 
 export type FieldsetProps = FieldsetHTMLAttributes<HTMLFieldSetElement> &

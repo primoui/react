@@ -8,7 +8,6 @@ import type { ParagraphProps } from "~/typography/Paragraph"
 import { Paragraph } from "~/typography/Paragraph"
 import type { AvatarProps } from "~/ui/Avatar"
 import { Avatar } from "~/ui/Avatar"
-
 import {
   blurbContentVariants,
   blurbDescriptionVariants,

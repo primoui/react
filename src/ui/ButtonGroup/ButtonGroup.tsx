@@ -5,7 +5,6 @@ import { cx } from "~/shared/cva"
 import type { ButtonProps } from "~/ui/Button/Button"
 import { Button } from "~/ui/Button/Button"
 import type { buttonVariants } from "~/ui/Button/Button.variants"
-
 import { buttonGroupVariants } from "./ButtonGroup.variants"
 
 export type ButtonGroupProps = ButtonProps &

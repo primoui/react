@@ -2,7 +2,6 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cx } from "cva"
-
 import { X } from "lucide-react"
 import {
   type ComponentProps,

@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Shimmer } from "./Shimmer"
 
 type Story = StoryObj<typeof Shimmer>

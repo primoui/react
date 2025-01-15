@@ -1,13 +1,11 @@
 "use client"
 
 import type { ComponentProps, HTMLAttributes, ReactNode } from "react"
-
 import { type VariantProps, cx } from "~/shared/cva"
 import { isReactElement } from "~/shared/helpers"
 import type { AvatarProps } from "~/ui/Avatar/Avatar"
 import { Avatar } from "~/ui/Avatar/Avatar"
 import type { avatarVariants } from "~/ui/Avatar/Avatar.variants"
-
 import { avatarGroupItemVariants, avatarGroupVariants } from "./AvatarGroup.variants"
 
 type AvatarGroupAvatarProps = Omit<AvatarProps, "size" | "asChild">

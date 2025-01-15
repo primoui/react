@@ -2,10 +2,8 @@
 
 import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 import type { ComponentProps, ReactNode } from "react"
-
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-
 import { tooltipArrowVariants, tooltipVariants } from "./Tooltip.variants"
 
 export type TooltipProps = ComponentProps<typeof TooltipPrimitive.Root> &

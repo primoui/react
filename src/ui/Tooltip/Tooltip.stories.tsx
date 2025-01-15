@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
 import { Badge } from "~/ui/Badge"
-
 import { Tooltip } from "./Tooltip"
 
 type Story = StoryObj<typeof Tooltip>

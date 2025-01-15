@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { useState } from "react"
-
 import { ColorPicker } from "./ColorPicker"
 
 type Story = StoryObj<typeof ColorPicker>

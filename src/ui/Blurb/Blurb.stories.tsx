@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User } from "lucide-react"
-
 import { Blurb } from "./Blurb"
 
 type Story = StoryObj<typeof Blurb>
