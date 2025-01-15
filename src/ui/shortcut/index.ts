@@ -1,1 +1,1 @@
-export * from "./Shortcut"
+export * from "./shortcut"

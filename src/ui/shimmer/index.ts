@@ -1,1 +1,1 @@
-export * from "./Shimmer"
+export * from "./shimmer"

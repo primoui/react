@@ -2,7 +2,7 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { ComponentProps, HTMLAttributes } from "react"
-import { sectionVariants } from "~/layout/section/Section.variants"
+import { sectionVariants } from "~/layout/section/section.variants"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
 import { isReactElement } from "~/shared/helpers"

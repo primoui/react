@@ -6,7 +6,7 @@ import type { HTMLAttributes } from "react"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
 import { Popover } from "~/ui/popover"
-import { inputVariants } from "../input/Input.variants"
+import { inputVariants } from "../input/input.variants"
 import {
   colorPickerClearVariants,
   colorPickerPreviewVariants,

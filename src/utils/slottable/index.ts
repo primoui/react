@@ -1,1 +1,1 @@
-export * from "./Slottable"
+export * from "./slottable"

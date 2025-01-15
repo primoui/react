@@ -1,1 +1,1 @@
-export * from "./Prose"
+export * from "./prose"

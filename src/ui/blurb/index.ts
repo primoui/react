@@ -1,1 +1,1 @@
-export * from "./Blurb"
+export * from "./blurb"

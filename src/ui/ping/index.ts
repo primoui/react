@@ -1,1 +1,1 @@
-export * from "./Ping"
+export * from "./ping"

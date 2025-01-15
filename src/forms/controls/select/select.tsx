@@ -5,7 +5,7 @@ import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 import { type VariantProps, cx } from "~/shared/cva"
-import { inputVariants } from "../input/Input.variants"
+import { inputVariants } from "../input/input.variants"
 import {
   selectContentVariants,
   selectItemVariants,

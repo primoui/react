@@ -1,1 +1,1 @@
-export * from "./Subheading"
+export * from "./subheading"

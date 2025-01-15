@@ -1,1 +1,1 @@
-export * from "./Affix"
+export * from "./affix"
