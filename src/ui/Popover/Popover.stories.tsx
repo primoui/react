@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Paragraph } from "../../typography/Paragraph"
-import { Badge } from "../Badge"
+import { Paragraph } from "~/typography/Paragraph"
+import { Badge } from "~/ui/Badge"
 
 import { Popover } from "./Popover"
 

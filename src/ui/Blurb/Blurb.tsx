@@ -4,10 +4,10 @@ import { Slot } from "@radix-ui/react-slot"
 import type { ComponentProps, ReactElement } from "react"
 import { type VariantProps, cx } from "~/shared/cva"
 import { isReactElement } from "~/shared/helpers"
-import type { ParagraphProps } from "../../typography/Paragraph"
-import { Paragraph } from "../../typography/Paragraph"
-import type { AvatarProps } from "../Avatar"
-import { Avatar } from "../Avatar"
+import type { ParagraphProps } from "~/typography/Paragraph"
+import { Paragraph } from "~/typography/Paragraph"
+import type { AvatarProps } from "~/ui/Avatar"
+import { Avatar } from "~/ui/Avatar"
 
 import {
   blurbContentVariants,
@@ -47,11 +47,11 @@ export type BlurbProps = BlurbRootProps & {
   size?: "sm" | "md" | "lg"
 }
 
-export const BlurbRoot = ({ className, asChild, ...rest }: BlurbRootProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+export const BlurbRoot = ({ className, asChild, ...props }: BlurbRootProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
-  return <Component className={cx(blurbVariants({ className }))} {...rest} />
+  return <Component className={cx(blurbVariants({ className }))} {...props} />
 }
 
 export const BlurbAvatar = ({ size = "lg", ...props }: AvatarProps) => {
@@ -68,9 +68,9 @@ export const BlurbContent = ({
 export const BlurbTitle = ({
   className,
   size = "sm",
-  ...rest
+  ...props
 }: ParagraphProps & VariantProps<typeof blurbTitleVariants>) => {
-  if (!rest.children) {
+  if (!props.children) {
     return null
   }
 
@@ -79,7 +79,7 @@ export const BlurbTitle = ({
       size={size}
       variant="medium"
       className={cx(blurbTitleVariants({ className }))}
-      {...rest}
+      {...props}
     />
   )
 }
@@ -87,13 +87,15 @@ export const BlurbTitle = ({
 export const BlurbDescription = ({
   className,
   size = "xs",
-  ...rest
+  ...props
 }: ParagraphProps & VariantProps<typeof blurbDescriptionVariants>) => {
-  if (!rest.children) {
+  if (!props.children) {
     return null
   }
 
-  return <Paragraph size={size} className={cx(blurbDescriptionVariants({ className }))} {...rest} />
+  return (
+    <Paragraph size={size} className={cx(blurbDescriptionVariants({ className }))} {...props} />
+  )
 }
 
 const BlurbBase = ({
@@ -102,10 +104,10 @@ const BlurbBase = ({
   title = "",
   description = "",
   size = "sm",
-  ...rest
+  ...props
 }: BlurbProps) => {
   return (
-    <BlurbRoot {...rest}>
+    <BlurbRoot {...props}>
       {isReactElement(avatar)
         ? avatar
         : avatar && <BlurbAvatar size={size === "sm" ? "lg" : "xl"} {...avatar} />}

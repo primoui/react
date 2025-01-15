@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Badge } from "../Badge"
+import { Badge } from "~/ui/Badge"
 
 import { Tooltip } from "./Tooltip"
 

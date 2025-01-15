@@ -13,9 +13,9 @@ import {
   useState,
 } from "react"
 import { isReactElement } from "~/shared/helpers"
+import { Action } from "~/ui/Action"
+import type { Button } from "~/ui/Button"
 import { Affixable } from "~/utils/Affixable/Affixable"
-import { Action } from "../Action"
-import type { Button } from "../Button"
 import {
   alertAffixVariants,
   alertRootVariants,

@@ -20,12 +20,11 @@ export type BoxProps = LabelHTMLAttributes<HTMLLabelElement> & {
   suffix?: ReactNode
 }
 
-const BoxBase = (props: BoxProps) => {
-  const { children, className, htmlFor, label, suffix, ...rest } = props
+const BoxBase = ({ children, className, htmlFor, label, suffix, ...props }: BoxProps) => {
   const cn = cx(inputVariants({ hoverable: true }), boxVariants({ className }))
 
   return (
-    <label htmlFor={htmlFor} className={cn} {...rest}>
+    <label htmlFor={htmlFor} className={cn} {...props}>
       {children}
 
       {label && (

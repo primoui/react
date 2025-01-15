@@ -7,6 +7,6 @@ import { draggableVariants } from "./Draggable.variants"
 
 export type DraggableProps = SVGAttributes<SVGSVGElement> & VariantProps<typeof draggableVariants>
 
-export const Draggable = ({ className, dragging, ...rest }: DraggableProps) => {
-  return <GripVertical className={cx(draggableVariants({ dragging, className }))} {...rest} />
+export const Draggable = ({ className, dragging, ...props }: DraggableProps) => {
+  return <GripVertical className={cx(draggableVariants({ dragging, className }))} {...props} />
 }

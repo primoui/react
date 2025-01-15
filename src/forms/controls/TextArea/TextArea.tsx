@@ -1,10 +1,9 @@
 "use client"
 
 import type { TextareaHTMLAttributes } from "react"
-
+import { useAffix } from "~/forms/ui/Affix/Affix"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-import { useAffix } from "../../ui/Affix/Affix"
 import { inputVariants } from "../Input/Input.variants"
 
 export type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &

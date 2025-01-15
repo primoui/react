@@ -6,12 +6,12 @@ import type { ComponentProps } from "react"
 
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-import { Backdrop } from "../Backdrop"
-import { Button } from "../Button"
-import { Card } from "../Card"
+import { Backdrop } from "~/ui/Backdrop"
+import { Button } from "~/ui/Button"
+import { Card } from "~/ui/Card"
 
-import { Modal } from "../Modal/Modal"
-import type { modalVariants } from "../Modal/Modal.variants"
+import { Modal } from "~/ui/Modal/Modal"
+import type { modalVariants } from "~/ui/Modal/Modal.variants"
 import { dialogVariants } from "./Dialog.variants"
 
 export type DialogProps = ComponentProps<typeof DialogPrimitive.Root>

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Header } from "../../layout/Header"
-import { Paragraph } from "../../typography/Paragraph"
-import { Button } from "../Button"
+import { Header } from "~/layout/Header"
+import { Paragraph } from "~/typography/Paragraph"
+import { Button } from "~/ui/Button"
 
 import { Dialog } from "./Dialog"
 

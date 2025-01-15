@@ -8,8 +8,6 @@ import { hintVariants } from "./Hint.variants"
 
 export type HintProps = ParagraphProps
 
-export const Hint = (props: HintProps) => {
-  const { className, ...rest } = props
-
-  return <Paragraph size="xs" className={cx(hintVariants({ className }))} {...rest} />
+export const Hint = ({ className, ...props }: HintProps) => {
+  return <Paragraph size="xs" className={cx(hintVariants({ className }))} {...props} />
 }

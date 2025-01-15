@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User } from "lucide-react"
-import { Affix } from "../../ui/Affix"
+import { Affix } from "~/forms/ui/Affix"
 import { Input } from "./Input"
 
 type Story = StoryObj<typeof Input>

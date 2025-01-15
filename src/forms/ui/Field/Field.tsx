@@ -37,11 +37,19 @@ export type FieldProps = HTMLAttributes<HTMLDivElement> &
     isRequired?: boolean
   }
 
-export const Field = (props: FieldProps) => {
-  const { children, className, id, label, hint, sideHint, tooltip, isRequired, ...rest } = props
-
+export const Field = ({
+  children,
+  className,
+  id,
+  label,
+  hint,
+  sideHint,
+  tooltip,
+  isRequired,
+  ...props
+}: FieldProps) => {
   return (
-    <div className={cx(fieldVariants({ className }))} {...rest}>
+    <div className={cx(fieldVariants({ className }))} {...props}>
       {label && (
         <div className={cx(fieldLabelVariants())}>
           <Label htmlFor={id} isRequired={isRequired}>

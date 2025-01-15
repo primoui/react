@@ -15,9 +15,9 @@ export type SectionProps = HTMLAttributes<HTMLElement> &
     asChild?: boolean
   }
 
-export const Section = ({ className, asChild = false, ...rest }: SectionProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+export const Section = ({ className, asChild = false, ...props }: SectionProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "section"
 
-  return <Component className={cx(sectionVariants({ className }))} {...rest} />
+  return <Component className={cx(sectionVariants({ className }))} {...props} />
 }

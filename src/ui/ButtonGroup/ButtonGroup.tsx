@@ -2,9 +2,9 @@
 
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-import type { ButtonProps } from "../Button/Button"
-import { Button } from "../Button/Button"
-import type { buttonVariants } from "../Button/Button.variants"
+import type { ButtonProps } from "~/ui/Button/Button"
+import { Button } from "~/ui/Button/Button"
+import type { buttonVariants } from "~/ui/Button/Button.variants"
 
 import { buttonGroupVariants } from "./ButtonGroup.variants"
 

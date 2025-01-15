@@ -6,7 +6,7 @@ import type { ComponentProps } from "react"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
 
-import { Dot } from "../../../ui/Dot"
+import { Dot } from "~/ui/Dot"
 import { radioGroupItemVariants } from "./RadioGroup.variants"
 
 export type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root>

@@ -30,8 +30,7 @@ export type AffixProps = Omit<InputHTMLAttributes<HTMLInputElement>, "prefix"> &
     suffix?: ReactNode
   }
 
-export const Affix = (props: AffixProps) => {
-  const { children, className, prefix, suffix, ...rest } = props
+export const Affix = ({ children, className, prefix, suffix, ...props }: AffixProps) => {
   const [prefixWidth, setPrefixWidth] = useState<number>()
   const [suffixWidth, setSuffixWidth] = useState<number>()
   const prefixRef = useRef<HTMLElement>(null)
@@ -48,7 +47,7 @@ export const Affix = (props: AffixProps) => {
 
   return (
     <AffixContext.Provider value={{ prefixWidth, suffixWidth }}>
-      <div className={cx(affixGroupVariants({ className }))} {...rest}>
+      <div className={cx(affixGroupVariants({ className }))} {...props}>
         <Affixable variants={affixVariants}>{prefix}</Affixable>
 
         {children}

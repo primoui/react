@@ -4,9 +4,9 @@ import type { ComponentProps, HTMLAttributes, ReactNode } from "react"
 
 import { type VariantProps, cx } from "~/shared/cva"
 import { isReactElement } from "~/shared/helpers"
-import type { AvatarProps } from "../Avatar/Avatar"
-import { Avatar } from "../Avatar/Avatar"
-import type { avatarVariants } from "../Avatar/Avatar.variants"
+import type { AvatarProps } from "~/ui/Avatar/Avatar"
+import { Avatar } from "~/ui/Avatar/Avatar"
+import type { avatarVariants } from "~/ui/Avatar/Avatar.variants"
 
 import { avatarGroupItemVariants, avatarGroupVariants } from "./AvatarGroup.variants"
 
@@ -34,9 +34,9 @@ export type AvatarGroupProps = AvatarGroupRootProps &
     previousOnTop?: boolean
   }
 
-export const AvatarGroupRoot = ({ children, className, size, ...rest }: AvatarGroupRootProps) => {
+export const AvatarGroupRoot = ({ children, className, size, ...props }: AvatarGroupRootProps) => {
   return (
-    <div className={cx(avatarGroupVariants({ size, className }))} {...rest}>
+    <div className={cx(avatarGroupVariants({ size, className }))} {...props}>
       {children}
     </div>
   )
@@ -53,13 +53,13 @@ export const AvatarGroupLabel = ({
   children,
   className,
   label,
-  ...rest
+  ...props
 }: AvatarGroupLabelProps) => {
   return (
     <Avatar
       asChild={isReactElement(children)}
       className={cx(avatarGroupItemVariants({ className }))}
-      {...rest}
+      {...props}
     >
       {!children && label}
       {children}
@@ -67,8 +67,8 @@ export const AvatarGroupLabel = ({
   )
 }
 
-export const AvatarGroupItem = ({ className, ...rest }: AvatarProps) => {
-  return <Avatar className={cx(avatarGroupItemVariants({ className }))} {...rest} />
+export const AvatarGroupItem = ({ className, ...props }: AvatarProps) => {
+  return <Avatar className={cx(avatarGroupItemVariants({ className }))} {...props} />
 }
 
 const AvatarGroupBase = ({
@@ -78,12 +78,12 @@ const AvatarGroupBase = ({
   shape,
   previousOnTop,
   label,
-  ...rest
+  ...props
 }: AvatarGroupProps) => {
   const avatarProps = { size, shape }
 
   return (
-    <AvatarGroupRoot size={size} {...rest}>
+    <AvatarGroupRoot size={size} {...props}>
       <>
         {items?.map((item, i) => {
           const style = {

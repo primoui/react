@@ -15,9 +15,14 @@ export type ContainerProps = HTMLAttributes<HTMLDivElement> &
     asChild?: boolean
   }
 
-export const Container = ({ className, asChild = false, size = "md", ...rest }: ContainerProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+export const Container = ({
+  className,
+  asChild = false,
+  size = "md",
+  ...props
+}: ContainerProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "main"
 
-  return <Component className={cx(containerVariants({ size, className }))} {...rest} />
+  return <Component className={cx(containerVariants({ size, className }))} {...props} />
 }

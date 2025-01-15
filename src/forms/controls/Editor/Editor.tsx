@@ -10,14 +10,14 @@ import { editorContentVariants, editorMenuVariants, editorVariants } from "./Edi
 
 type EditorProps = ComponentProps<typeof EditorContent> & VariantProps<typeof editorVariants>
 
-const EditorRoot = ({ className, error, plain, ...rest }: EditorProps) => {
-  return <EditorContent className={cx(editorVariants({ error, plain, className }))} {...rest} />
+const EditorRoot = ({ className, error, plain, ...props }: EditorProps) => {
+  return <EditorContent className={cx(editorVariants({ error, plain, className }))} {...props} />
 }
 
 type EditorMenuProps = ComponentProps<typeof Stack> & VariantProps<typeof editorMenuVariants>
 
-const EditorMenu = ({ className, plain, ...rest }: EditorMenuProps) => {
-  return <Stack size="sm" className={cx(editorMenuVariants({ plain, className }))} {...rest} />
+const EditorMenu = ({ className, plain, ...props }: EditorMenuProps) => {
+  return <Stack size="sm" className={cx(editorMenuVariants({ plain, className }))} {...props} />
 }
 
 const Editor = Object.assign(EditorRoot, {

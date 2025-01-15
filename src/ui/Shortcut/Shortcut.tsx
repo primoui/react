@@ -5,7 +5,7 @@ import type { ComponentProps } from "react"
 
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-import { Subheading } from "../../typography/Subheading"
+import { Subheading } from "~/typography/Subheading"
 
 import { shortcutVariants } from "./Shortcut.variants"
 

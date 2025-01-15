@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 import { User, X } from "lucide-react"
-import { Button } from "../Button"
+import { Button } from "~/ui/Button"
 
 import { Stack } from "./Stack"
 

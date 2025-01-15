@@ -9,8 +9,6 @@ import { labelVariants } from "./Label.variants"
 export type LabelProps = ComponentProps<typeof LabelPrimitive.Root> &
   VariantProps<typeof labelVariants>
 
-export const Label = (props: LabelProps) => {
-  const { className, isRequired, ...rest } = props
-
-  return <LabelPrimitive.Root className={cx(labelVariants({ isRequired, className }))} {...rest} />
+export const Label = ({ className, isRequired, ...props }: LabelProps) => {
+  return <LabelPrimitive.Root className={cx(labelVariants({ isRequired, className }))} {...props} />
 }

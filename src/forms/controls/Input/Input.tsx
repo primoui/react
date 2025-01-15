@@ -2,9 +2,9 @@
 
 import type { InputHTMLAttributes } from "react"
 
+import { useAffix } from "~/forms/ui/Affix/Affix"
 import type { VariantProps } from "~/shared/cva"
 import { cx } from "~/shared/cva"
-import { useAffix } from "../../ui/Affix/Affix"
 
 import { inputVariants } from "./Input.variants"
 

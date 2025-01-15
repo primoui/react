@@ -3,7 +3,7 @@
 import type { HTMLAttributes, ReactNode } from "react"
 
 import type { VariantProps } from "~/shared/cva"
-import { Subheading } from "../../typography/Subheading"
+import { Subheading } from "~/typography/Subheading"
 
 import { dividerVariants } from "./Divider.variants"
 
@@ -16,9 +16,9 @@ export type DividerProps = HTMLAttributes<HTMLDivElement> &
     label?: ReactNode
   }
 
-export const Divider = ({ children, className, label = "or", ...rest }: DividerProps) => {
+export const Divider = ({ children, className, label = "or", ...props }: DividerProps) => {
   return (
-    <div className={dividerVariants({ className })} {...rest}>
+    <div className={dividerVariants({ className })} {...props}>
       {children ?? (
         <Subheading size="xs" className="text-gray-400">
           {label}

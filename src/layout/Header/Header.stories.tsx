@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { default as StackStory } from "../../ui/Stack/Stack.stories"
+import { default as StackStory } from "~/ui/Stack/Stack.stories"
 
 import { Header } from "./Header"
 

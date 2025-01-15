@@ -21,11 +21,17 @@ export type HeadingProps = Omit<HTMLAttributes<HTMLHeadingElement>, "size"> &
     asChild?: boolean
   }
 
-export const Heading = ({ className, as, asChild = false, size = "h3", ...rest }: HeadingProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+export const Heading = ({
+  className,
+  as,
+  asChild = false,
+  size = "h3",
+  ...props
+}: HeadingProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Comp = useAsChild ? Slot : (as ?? size ?? "h2")
 
-  return <Comp className={cx(headingVariants({ size, className }))} {...rest} />
+  return <Comp className={cx(headingVariants({ size, className }))} {...props} />
 }
 
 export const H1 = (props: HeadingProps) => {

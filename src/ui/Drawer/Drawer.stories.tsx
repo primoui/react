@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Header } from "../../layout/Header"
-import { Button } from "../Button"
+import { Header } from "~/layout/Header"
+import { Button } from "~/ui/Button"
 
 import { Drawer } from "./Drawer"
 

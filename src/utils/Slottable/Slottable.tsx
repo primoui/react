@@ -10,7 +10,7 @@ export type SlottableProps = {
   children: (child: ReactNode) => ReactNode
 }
 
-export const Slottable = ({ asChild, child, children, ...rest }: SlottableProps) => {
+export const Slottable = ({ asChild, child, children, ...props }: SlottableProps) => {
   if (!asChild) {
     return children(child)
   }
@@ -20,5 +20,5 @@ export const Slottable = ({ asChild, child, children, ...rest }: SlottableProps)
   }
 
   // @ts-expect-error
-  return cloneElement(child, { ...rest }, children(child.props?.children))
+  return cloneElement(child, { ...props }, children(child.props?.children))
 }

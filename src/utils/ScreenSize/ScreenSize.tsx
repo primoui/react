@@ -2,15 +2,13 @@
 
 import type { HTMLAttributes } from "react"
 import { useEffect, useState } from "react"
-
 import { type VariantProps, cx } from "~/shared/cva"
-
 import { screenSizeSeparatorVariants, screenSizeVariants } from "./ScreenSize.variants"
 
 export type ScreenSizeProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
   VariantProps<typeof screenSizeVariants>
 
-export const ScreenSize = ({ className, position, ...rest }: ScreenSizeProps) => {
+export const ScreenSize = ({ className, position, ...props }: ScreenSizeProps) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -32,7 +30,7 @@ export const ScreenSize = ({ className, position, ...rest }: ScreenSizeProps) =>
   const { width, height } = dimensions
 
   return (
-    <div className={cx(screenSizeVariants({ position, className }))} {...rest}>
+    <div className={cx(screenSizeVariants({ position, className }))} {...props}>
       <span>
         {width.toLocaleString()} x {height.toLocaleString()}
       </span>
