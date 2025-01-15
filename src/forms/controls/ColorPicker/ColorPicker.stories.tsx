@@ -10,9 +10,9 @@ export default {
   title: "Form Control/ColorPicker",
   component: ColorPicker,
   args: {
-    ...ColorPicker.defaultProps,
+    color: "#000000",
   },
-} satisfies Meta
+} satisfies Meta<typeof ColorPicker>
 
 // Stories
 export const Default = {

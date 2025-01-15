@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { forwardRef } from "react"
 import type { HTMLAttributes } from "react"
 
-import { cx, isReactElement, type VariantProps } from "../../shared"
+import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { sectionVariants } from "./Section.variants"
 
@@ -19,17 +19,13 @@ export type SectionProps = HTMLAttributes<SectionElement> &
     asChild?: boolean
   }
 
-export const Section = forwardRef<SectionElement, SectionProps>((props, ref) => {
-  const { className, asChild, ...rest } = props
+export const Section = forwardRef<SectionElement, SectionProps>(
+  ({ className, asChild = false, ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Component = useAsChild ? Slot : "section"
 
-  const useAsChild = asChild && isReactElement(props.children)
-  const Component = useAsChild ? Slot : "section"
-
-  return <Component ref={ref} className={cx(sectionVariants({ className }))} {...rest} />
-})
-
-Section.defaultProps = {
-  asChild: false,
-}
+    return <Component ref={ref} className={cx(sectionVariants({ className }))} {...rest} />
+  },
+)
 
 Section.displayName = "Section"

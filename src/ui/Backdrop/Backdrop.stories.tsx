@@ -8,10 +8,8 @@ type Story = StoryObj<typeof Backdrop>
 export default {
   title: "UI/Backdrop",
   component: Backdrop,
-  args: {
-    ...Backdrop.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof Backdrop>
 
 // Stories
 export const Default = {

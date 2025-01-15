@@ -12,10 +12,10 @@ export default {
     layout: "padded",
   },
   args: {
-    ...Container.defaultProps,
+    size: "lg",
     children: "Container",
   },
-} satisfies Meta
+} satisfies Meta<typeof Container>
 
 // Stories
 export const Default = {

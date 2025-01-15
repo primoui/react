@@ -48,7 +48,16 @@ export const TooltipArrow = forwardRef<
 ))
 
 export const TooltipBase = forwardRef<TooltipElement, TooltipProps>((props, ref) => {
-  const { children, className, delayDuration, tooltip, ...rest } = props
+  const {
+    children,
+    className,
+    align = "center",
+    delayDuration = 0,
+    collisionPadding = 5,
+    sideOffset = 4,
+    tooltip,
+    ...rest
+  } = props
 
   if (!tooltip) {
     return children
@@ -62,7 +71,12 @@ export const TooltipBase = forwardRef<TooltipElement, TooltipProps>((props, ref)
         </TooltipPrimitive.Trigger>
 
         <TooltipPrimitive.Portal>
-          <TooltipContent {...rest}>
+          <TooltipContent
+            align={align}
+            collisionPadding={collisionPadding}
+            sideOffset={sideOffset}
+            {...rest}
+          >
             <p>{tooltip}</p>
           </TooltipContent>
         </TooltipPrimitive.Portal>
@@ -79,10 +93,3 @@ export const Tooltip = Object.assign(TooltipBase, {
   Content: TooltipContent,
   Arrow: TooltipArrow,
 })
-
-Tooltip.defaultProps = {
-  align: "center",
-  delayDuration: 0,
-  collisionPadding: 5,
-  sideOffset: 4,
-}

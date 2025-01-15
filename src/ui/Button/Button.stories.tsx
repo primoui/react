@@ -11,11 +11,15 @@ export default {
   title: "UI/Button",
   component: Button,
   args: {
-    ...Button.defaultProps,
-    children: "Button",
+    type: "button",
+    theme: "primary",
+    variant: "solid",
+    size: "lg",
+    asChild: false,
     disabled: false,
+    children: "Button",
   },
-} satisfies Meta
+} satisfies Meta<typeof Button>
 
 // Stories
 export const Default = {

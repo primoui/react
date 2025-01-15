@@ -10,10 +10,10 @@ export default {
   title: "UI/Divider",
   component: Divider,
   args: {
-    ...Divider.defaultProps,
+    label: "or",
     style: { width: 300 },
   },
-} satisfies Meta
+} satisfies Meta<typeof Divider>
 
 // Stories
 export const Default = {

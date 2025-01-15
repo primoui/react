@@ -7,8 +7,8 @@ import { forwardRef } from "react"
 import type { VariantProps } from "../../../shared"
 import { cx } from "../../../shared"
 
-import { radioGroupItemVariants } from "./RadioGroup.variants"
 import { Dot } from "../../../ui/Dot"
+import { radioGroupItemVariants } from "./RadioGroup.variants"
 
 export type RadioGroupElement = ElementRef<typeof RadioGroupPrimitive.Root>
 export type RadioGroupProps = ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root>
@@ -17,7 +17,7 @@ export const RadioGroupItem = forwardRef<
   ElementRef<typeof RadioGroupPrimitive.Item>,
   ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> &
     VariantProps<typeof radioGroupItemVariants>
->(({ children, className, error, ...props }, ref) => {
+>(({ error = false, children, className, ...props }, ref) => {
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
@@ -35,10 +35,10 @@ export const RadioGroupItem = forwardRef<
 
 RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName
 
-export const RadioGroup = Object.assign(RadioGroupPrimitive.Root, {
+const RadioGroupRoot = ({ disabled = false, ...props }: RadioGroupProps) => (
+  <RadioGroupPrimitive.Root disabled={disabled} {...props} />
+)
+
+export const RadioGroup = Object.assign(RadioGroupRoot, {
   Item: RadioGroupItem,
 })
-
-RadioGroup.defaultProps = {
-  disabled: false,
-}

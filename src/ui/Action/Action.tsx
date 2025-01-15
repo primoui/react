@@ -37,37 +37,46 @@ export type ActionProps = Omit<ButtonHTMLAttributes<ActionElement>, "size" | "pr
     suffix?: ReactNode
   }
 
-export const Action = forwardRef<ActionElement, ActionProps>((props, ref) => {
-  const { children, className, disabled, asChild, isPending, prefix, suffix, ...rest } = props
+export const Action = forwardRef<ActionElement, ActionProps>(
+  (
+    {
+      children,
+      className,
+      disabled,
+      asChild = false,
+      isPending,
+      prefix,
+      suffix,
+      type = "submit",
+      ...rest
+    },
+    ref,
+  ) => {
+    const useAsChild = asChild && isReactElement(children)
+    const Component = useAsChild ? Slot : "button"
 
-  const useAsChild = asChild && isReactElement(children)
-  const Component = useAsChild ? Slot : "button"
+    return (
+      <Component
+        ref={ref}
+        disabled={disabled ?? isPending}
+        className={cx(actionVariants({ isPending, className }))}
+        type={type}
+        {...rest}
+      >
+        <Slottable child={children} asChild={asChild}>
+          {child => (
+            <>
+              <Affixable variants={actionAffixVariants}>{prefix}</Affixable>
+              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
+              <Affixable variants={actionAffixVariants}>{suffix}</Affixable>
 
-  return (
-    <Component
-      ref={ref}
-      disabled={disabled ?? isPending}
-      className={cx(actionVariants({ isPending, className }))}
-      {...rest}
-    >
-      <Slottable child={children} asChild={asChild}>
-        {child => (
-          <>
-            <Affixable variants={actionAffixVariants}>{prefix}</Affixable>
-            {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-            <Affixable variants={actionAffixVariants}>{suffix}</Affixable>
-
-            {!!isPending && <IconSpinner className="absolute" />}
-          </>
-        )}
-      </Slottable>
-    </Component>
-  )
-})
-
-Action.defaultProps = {
-  type: "submit",
-  asChild: false,
-}
+              {!!isPending && <IconSpinner className="absolute" />}
+            </>
+          )}
+        </Slottable>
+      </Component>
+    )
+  },
+)
 
 Action.displayName = "Action"

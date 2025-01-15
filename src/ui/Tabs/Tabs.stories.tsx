@@ -9,7 +9,9 @@ export default {
   title: "UI/Tabs",
   component: Tabs,
   args: {
-    ...Tabs.defaultProps,
+    orientation: "horizontal",
+    activationMode: "automatic",
+    asChild: false,
     style: { width: 400, height: 100 },
   },
   render: props => (
@@ -18,15 +20,6 @@ export default {
         <Tabs.Trigger value="tab1">Tab One</Tabs.Trigger>
         <Tabs.Trigger value="tab2">Tab Two</Tabs.Trigger>
         <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab Three</Tabs.Trigger>
       </Tabs.List>
 
       <Tabs.Content value="tab1">Tab one content</Tabs.Content>
@@ -34,7 +27,7 @@ export default {
       <Tabs.Content value="tab3">Tab three content</Tabs.Content>
     </Tabs>
   ),
-} satisfies Meta
+} satisfies Meta<typeof Tabs>
 
 // Stories
 export const Default = {

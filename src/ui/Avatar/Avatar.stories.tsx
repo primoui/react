@@ -12,9 +12,11 @@ export default {
   title: "UI/Avatar",
   component: Avatar,
   args: {
-    ...Avatar.defaultProps,
+    size: "md",
+    shape: "circle",
+    variant: "soft",
   },
-} satisfies Meta
+} satisfies Meta<typeof Avatar>
 
 // Stories
 export const Default = {

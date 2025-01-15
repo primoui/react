@@ -12,7 +12,8 @@ export default {
   title: "UI/Accordion",
   component: Accordion,
   args: {
-    ...Accordion.defaultProps,
+    type: "single",
+    collapsible: true,
     style: { width: 300 },
     children: (
       <Accordion.Item value="1">
@@ -31,7 +32,7 @@ export default {
       </Accordion.Item>
     ),
   },
-} satisfies Meta
+} satisfies Meta<typeof Accordion>
 
 // Stories
 export const Default = {

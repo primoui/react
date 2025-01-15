@@ -35,10 +35,9 @@ export default {
   title: "Typography/Markdown",
   component: Markdown,
   args: {
-    ...Markdown.defaultProps,
     content,
   },
-} satisfies Meta
+} satisfies Meta<typeof Markdown>
 
 // Stories
 export const Large = {

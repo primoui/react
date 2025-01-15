@@ -11,14 +11,15 @@ export default {
   title: "UI/Blurb",
   component: Blurb,
   args: {
-    ...Blurb.defaultProps,
+    title: "John Doe",
+    description: "Software Engineer",
+    size: "md",
+    asChild: false,
     avatar: {
       src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=250&h=250&auto=format&fit=crop",
     },
-    title: "John Doe",
-    description: "Software Engineer",
   },
-} satisfies Meta
+} satisfies Meta<typeof Blurb>
 
 // Stories
 export const Default = {

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Input } from "./Input"
-import { Affix } from "../../ui/Affix"
 import { IconUser } from "../../../icons/IconUser"
+import { Affix } from "../../ui/Affix"
+import { Input } from "./Input"
 
 type Story = StoryObj<typeof Input>
 
@@ -11,10 +11,14 @@ export default {
   title: "Form Control/Input",
   component: Input,
   args: {
-    ...Input.defaultProps,
+    type: "text",
+    error: false,
+    mono: false,
+    plain: false,
+    hoverable: false,
     placeholder: "Type here...",
   },
-} satisfies Meta
+} satisfies Meta<typeof Input>
 
 // Stories
 export const Default = {

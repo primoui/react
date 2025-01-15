@@ -32,37 +32,35 @@ export type ColorPickerProps = Omit<HTMLAttributes<ColorPickerElement>, "onChang
     onClear?: () => void
   }
 
-export const ColorPicker = forwardRef<ColorPickerElement, ColorPickerProps>((props, ref) => {
-  const { children, className, label, color, onClear, ...rest } = props
-
-  return (
-    <div ref={ref} className={cx(colorPickerVariants({ className }))}>
-      <Popover popover={<Sketch color={color} className="-mx-3 -my-1.5 !shadow-none" {...rest} />}>
-        <button type="button" className={cx(inputVariants({ className: "w-auto" }))}>
-          <div className={cx(colorPickerPreviewVariants())}>
-            <IconCheckerboard className="size-full opacity-25" />
-            {!!color && <div className="absolute inset-0" style={{ backgroundColor: color }} />}
-          </div>
-
-          <div className={cx("grow truncate", color ? "font-mono" : "opacity-50")}>
-            {color || label}
-          </div>
-        </button>
-      </Popover>
-
-      {!!color && (
-        <button
-          type="button"
-          className={colorPickerClearVariants({ light: isLightColor(color) })}
-          onClick={onClear}
+export const ColorPicker = forwardRef<ColorPickerElement, ColorPickerProps>(
+  ({ children, className, label = "Pick color", color, onClear, ...rest }, ref) => {
+    return (
+      <div ref={ref} className={cx(colorPickerVariants({ className }))}>
+        <Popover
+          popover={<Sketch color={color} className="-mx-3 -my-1.5 !shadow-none" {...rest} />}
         >
-          <IconClose className="pointer-events-none size-3.5" />
-        </button>
-      )}
-    </div>
-  )
-})
+          <button type="button" className={cx(inputVariants({ className: "w-auto" }))}>
+            <div className={cx(colorPickerPreviewVariants())}>
+              <IconCheckerboard className="size-full opacity-25" />
+              {!!color && <div className="absolute inset-0" style={{ backgroundColor: color }} />}
+            </div>
 
-ColorPicker.defaultProps = {
-  label: "Pick color",
-}
+            <div className={cx("grow truncate", color ? "font-mono" : "opacity-50")}>
+              {color || label}
+            </div>
+          </button>
+        </Popover>
+
+        {!!color && (
+          <button
+            type="button"
+            className={colorPickerClearVariants({ light: isLightColor(color) })}
+            onClick={onClear}
+          >
+            <IconClose className="pointer-events-none size-3.5" />
+          </button>
+        )}
+      </div>
+    )
+  },
+)

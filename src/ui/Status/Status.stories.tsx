@@ -9,9 +9,10 @@ export default {
   title: "UI/Status",
   component: Status,
   args: {
-    ...Status.defaultProps,
+    theme: "gray",
+    variant: "full",
   },
-} satisfies Meta
+} satisfies Meta<typeof Status>
 
 // Stories
 export const Default = {

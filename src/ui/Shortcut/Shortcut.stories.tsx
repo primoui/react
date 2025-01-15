@@ -9,10 +9,11 @@ export default {
   title: "UI/Shortcut",
   component: Shortcut,
   args: {
-    ...Shortcut.defaultProps,
+    variant: "outline",
+    size: "sm",
     children: "⌘K",
   },
-} satisfies Meta
+} satisfies Meta<typeof Shortcut>
 
 // Stories
 export const Default = {

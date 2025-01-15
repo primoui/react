@@ -8,7 +8,12 @@ import { cx } from "../../shared"
 
 import { accordionVariants } from "./Accordion.variants"
 
-export const AccordionRoot = AccordionPrimitive.Root
+export const AccordionRoot = AccordionPrimitive.Root as typeof AccordionPrimitive.Root & {
+  defaultProps: {
+    collapsible: true
+    type: "single"
+  }
+}
 export const AccordionItem = AccordionPrimitive.Item
 export const AccordionTrigger = AccordionPrimitive.Trigger
 
@@ -30,8 +35,3 @@ export const Accordion = Object.assign(AccordionRoot, {
   Trigger: AccordionTrigger,
   Content: AccordionContent,
 })
-
-Accordion.defaultProps = {
-  collapsible: true,
-  type: "single",
-}

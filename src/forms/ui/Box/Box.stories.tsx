@@ -8,10 +8,8 @@ type Story = StoryObj<typeof Box>
 export default {
   title: "Form UI/Box",
   component: Box,
-  args: {
-    ...Box.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof Box>
 
 // Stories
 export const Default = {

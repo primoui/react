@@ -9,12 +9,12 @@ export default {
   title: "UI/Modal",
   component: Modal,
   args: {
-    ...Modal.defaultProps,
+    size: "md",
+    fixed: true,
     children: "Modal content",
     className: "static",
-    open: true,
   },
-} satisfies Meta
+} satisfies Meta<typeof Modal>
 
 // Stories
 export const Default = {

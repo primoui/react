@@ -9,9 +9,11 @@ export default {
   title: "Form Control/Uploader",
   component: Uploader,
   args: {
-    ...Uploader.defaultProps,
+    accept: undefined,
+    onDrop: () => undefined,
+    onClear: () => undefined,
   },
-} satisfies Meta
+} satisfies Meta<typeof Uploader>
 
 // Stories
 export const Default = {

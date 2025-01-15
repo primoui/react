@@ -6,15 +6,9 @@ import { ButtonGroup } from "./ButtonGroup"
 type Story = StoryObj<typeof ButtonGroup>
 
 const buttons = [
-  {
-    children: "Button 1",
-  },
-  {
-    children: "Button 2",
-  },
-  {
-    children: "Button 2",
-  },
+  { children: "Button 1" },
+  { children: "Button 2" },
+  { children: "Button 2" },
 ] satisfies ButtonGroupProps["buttons"]
 
 // Meta
@@ -22,10 +16,11 @@ export default {
   title: "UI/ButtonGroup",
   component: ButtonGroup,
   args: {
-    ...ButtonGroup.defaultProps,
+    theme: "secondary",
+    variant: "outline",
     buttons,
   },
-} satisfies Meta
+} satisfies Meta<typeof ButtonGroup>
 
 // Stories
 export const Default = {

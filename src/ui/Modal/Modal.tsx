@@ -19,17 +19,13 @@ export type ModalProps = HTMLAttributes<ModalElement> &
     asChild?: boolean
   }
 
-export const Modal = forwardRef<ModalElement, ModalProps>((props, ref) => {
-  const { className, asChild, size, fixed, ...rest } = props
+export const Modal = forwardRef<ModalElement, ModalProps>(
+  ({ className, asChild = false, size = "md", fixed = true, ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Component = useAsChild ? Slot : "div"
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Component = useAsChild ? Slot : "div"
-
-  return <Component ref={ref} className={cx(modalVariants({ size, fixed, className }))} {...rest} />
-})
-
-Modal.defaultProps = {
-  size: "md",
-  fixed: true,
-  asChild: false,
-}
+    return (
+      <Component ref={ref} className={cx(modalVariants({ size, fixed, className }))} {...rest} />
+    )
+  },
+)

@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot"
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
 import { forwardRef } from "react"
 
-import { cx, type VariantProps } from "../../shared"
+import { type VariantProps, cx } from "../../shared"
 import { Subheading } from "../../typography/Subheading"
 
 import { shortcutVariants } from "./Shortcut.variants"
@@ -15,7 +15,7 @@ export type ShortcutProps = ComponentPropsWithoutRef<typeof Subheading> &
   VariantProps<typeof shortcutVariants>
 
 export const Shortcut = forwardRef<ShortcutElement, ShortcutProps>((props, ref) => {
-  const { className, variant, size = "sm", ...rest } = props
+  const { className, variant = "outline", size = "sm", ...rest } = props
 
   return (
     <Slot className={cx(shortcutVariants({ variant, className }))} {...rest}>
@@ -23,11 +23,5 @@ export const Shortcut = forwardRef<ShortcutElement, ShortcutProps>((props, ref) 
     </Slot>
   )
 })
-
-Shortcut.defaultProps = {
-  variant: "outline",
-  size: "sm",
-  asChild: false,
-}
 
 Shortcut.displayName = "Shortcut"

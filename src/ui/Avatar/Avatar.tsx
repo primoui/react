@@ -87,50 +87,63 @@ export const AvatarStatus = forwardRef<
   return <Comp ref={ref} className={cx(avatarStatusVariants({ position, className }))} {...rest} />
 })
 
-const AvatarBase = forwardRef<AvatarElement, AvatarProps>((props, ref) => {
-  const { children, initials, topStatus, bottomStatus, variant, size, shape, src, alt, ...rest } =
-    props
+const AvatarBase = forwardRef<AvatarElement, AvatarProps>(
+  (
+    {
+      children,
+      initials,
+      topStatus,
+      bottomStatus,
+      variant = "soft",
+      size = "md",
+      shape,
+      src,
+      alt,
+      ...rest
+    },
+    ref,
+  ) => {
+    return (
+      <AvatarRoot variant={variant} size={size} shape={shape} {...rest}>
+        {/* Show image if available */}
+        {src && <AvatarImage ref={ref as RefObject<HTMLImageElement>} alt={alt} src={src} />}
 
-  return (
-    <AvatarRoot variant={variant} size={size} shape={shape} {...rest}>
-      {/* Show image if available */}
-      {src && <AvatarImage ref={ref as RefObject<HTMLImageElement>} alt={alt} src={src} />}
+        {/* Allow children to be used as fallback */}
+        {children && (
+          <AvatarFallback ref={ref} aria-label={alt} asChild={isReactElement(children)}>
+            {children}
+          </AvatarFallback>
+        )}
 
-      {/* Allow children to be used as fallback */}
-      {children && (
-        <AvatarFallback ref={ref} aria-label={alt} asChild={isReactElement(children)}>
-          {children}
-        </AvatarFallback>
-      )}
-
-      {/* Show pending icon until image is loaded,
+        {/* Show pending icon until image is loaded,
           only if children fallback is not set */}
-      {!children && src && !initials && (
-        <AvatarFallback aria-label={alt}>
-          <IconSpinner aria-hidden="true" />
-        </AvatarFallback>
-      )}
+        {!children && src && !initials && (
+          <AvatarFallback aria-label={alt}>
+            <IconSpinner aria-hidden="true" />
+          </AvatarFallback>
+        )}
 
-      {/* Initials */}
-      {!children && initials && (
-        <AvatarFallback ref={ref} aria-label={alt}>
-          {getInitials(initials, size === "xs" ? 1 : 2)}
-        </AvatarFallback>
-      )}
+        {/* Initials */}
+        {!children && initials && (
+          <AvatarFallback ref={ref} aria-label={alt}>
+            {getInitials(initials, size === "xs" ? 1 : 2)}
+          </AvatarFallback>
+        )}
 
-      {/* Fallback */}
-      {!children && !src && !initials && (
-        <AvatarFallback ref={ref} aria-label={alt} role="img">
-          <IconUser />
-        </AvatarFallback>
-      )}
+        {/* Fallback */}
+        {!children && !src && !initials && (
+          <AvatarFallback ref={ref} aria-label={alt} role="img">
+            <IconUser />
+          </AvatarFallback>
+        )}
 
-      {/* Statuses */}
-      {topStatus && <AvatarStatus position="top">{topStatus}</AvatarStatus>}
-      {bottomStatus && <AvatarStatus position="bottom">{bottomStatus}</AvatarStatus>}
-    </AvatarRoot>
-  )
-})
+        {/* Statuses */}
+        {topStatus && <AvatarStatus position="top">{topStatus}</AvatarStatus>}
+        {bottomStatus && <AvatarStatus position="bottom">{bottomStatus}</AvatarStatus>}
+      </AvatarRoot>
+    )
+  },
+)
 
 AvatarBase.displayName = "Avatar"
 AvatarRoot.displayName = Primitive.Root.displayName
@@ -144,10 +157,3 @@ export const Avatar = Object.assign(AvatarBase, {
   Status: AvatarStatus,
   Root: AvatarRoot,
 })
-
-Avatar.defaultProps = {
-  variant: "soft",
-  size: "md",
-  shape: "circle",
-  asChild: false,
-}

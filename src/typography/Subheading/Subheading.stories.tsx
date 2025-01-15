@@ -9,10 +9,10 @@ export default {
   title: "Typography/Subheading",
   component: Subheading,
   args: {
-    ...Subheading.defaultProps,
+    size: "md",
     children: "The quick brown fox jumps over the lazy dog.",
   },
-} satisfies Meta
+} satisfies Meta<typeof Subheading>
 
 // Stories
 export const Large = {

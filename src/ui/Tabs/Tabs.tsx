@@ -48,9 +48,3 @@ export const Tabs = Object.assign(TabsRoot, {
   Trigger: TabsTrigger,
   Content: TabsContent,
 })
-
-Tabs.defaultProps = {
-  orientation: "horizontal",
-  activationMode: "automatic",
-  asChild: false,
-}

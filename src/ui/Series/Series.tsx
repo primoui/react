@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
 import { forwardRef } from "react"
 
-import { cx, isReactElement, type VariantProps } from "../../shared"
+import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { seriesVariants } from "./Series.variants"
 
@@ -20,7 +20,7 @@ export type SeriesProps = HTMLAttributes<SeriesElement> &
   }
 
 export const Series = forwardRef<SeriesElement, SeriesProps>((props, ref) => {
-  const { className, asChild, size, direction, ...rest } = props
+  const { className, asChild, size = "md", direction = "row", ...rest } = props
   const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
@@ -28,11 +28,5 @@ export const Series = forwardRef<SeriesElement, SeriesProps>((props, ref) => {
     <Component ref={ref} className={cx(seriesVariants({ size, direction, className }))} {...rest} />
   )
 })
-
-Series.defaultProps = {
-  size: "md",
-  direction: "row",
-  asChild: false,
-}
 
 Series.displayName = "Series"

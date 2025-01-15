@@ -85,7 +85,7 @@ export const AvatarGroupItem = forwardRef<AvatarElement, ComponentPropsWithoutRe
 )
 
 const AvatarGroupBase = forwardRef<AvatarGroupElement, AvatarGroupProps>((props, ref) => {
-  const { children, items, size, shape, previousOnTop, label, ...rest } = props
+  const { children, items, size = "md", shape, previousOnTop, label, ...rest } = props
   const avatarProps = { size, shape }
 
   return (
@@ -113,9 +113,5 @@ export const AvatarGroup = Object.assign(AvatarGroupBase, {
   Item: AvatarGroupItem,
   Label: AvatarGroupLabel,
 })
-
-AvatarGroup.defaultProps = {
-  size: "md",
-}
 
 AvatarGroup.displayName = "AvatarGroup"

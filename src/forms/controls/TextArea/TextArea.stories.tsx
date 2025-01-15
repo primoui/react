@@ -9,10 +9,15 @@ export default {
   title: "Form Control/TextArea",
   component: TextArea,
   args: {
-    ...TextArea.defaultProps,
+    id: "",
+    name: "",
+    value: "",
+    disabled: false,
+    required: false,
+    readOnly: false,
     placeholder: "Type here...",
   },
-} satisfies Meta
+} satisfies Meta<typeof TextArea>
 
 // Stories
 export const Default = {

@@ -4,7 +4,7 @@ import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
 import { forwardRef } from "react"
 
-import { cx, isReactElement, type VariantProps } from "../../shared"
+import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { containerVariants } from "./Container.variants"
 
@@ -19,18 +19,13 @@ export type ContainerProps = HTMLAttributes<ContainerElement> &
     asChild?: boolean
   }
 
-export const Container = forwardRef<ContainerElement, ContainerProps>((props, ref) => {
-  const { className, asChild, size, ...rest } = props
+export const Container = forwardRef<ContainerElement, ContainerProps>(
+  ({ className, asChild = false, size = "md", ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Component = useAsChild ? Slot : "main"
 
-  const useAsChild = asChild && isReactElement(props.children)
-  const Component = useAsChild ? Slot : "main"
-
-  return <Component ref={ref} className={cx(containerVariants({ size, className }))} {...rest} />
-})
-
-Container.defaultProps = {
-  size: "md",
-  asChild: false,
-}
+    return <Component ref={ref} className={cx(containerVariants({ size, className }))} {...rest} />
+  },
+)
 
 Container.displayName = "Container"

@@ -9,7 +9,9 @@ export default {
   title: "Form Control/Select",
   component: Select,
   args: {
-    ...Select.defaultProps,
+    disabled: false,
+    error: false,
+    required: false,
     style: { width: 300 },
     options: [
       { label: "One", value: "1" },
@@ -17,7 +19,7 @@ export default {
       { label: "Three", value: "3" },
     ],
   },
-} satisfies Meta
+} satisfies Meta<typeof Select>
 
 // Stories
 export const Default = {

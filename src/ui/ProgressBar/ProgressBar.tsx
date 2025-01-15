@@ -91,20 +91,21 @@ export const ProgressBarHint = forwardRef<ParagraphElement, ParagraphProps>((pro
   )
 })
 
-export const ProgressBarBase = forwardRef<ProgressBarElement, ProgressBarProps>((props, ref) => {
-  const { children, percent, label, hint, theme, ...rest } = props
-  const Component = isReactElement(children) ? Slot : "div"
+export const ProgressBarBase = forwardRef<ProgressBarElement, ProgressBarProps>(
+  ({ children, percent = 0, label = "", hint = "", theme = "blue", ...rest }, ref) => {
+    const Component = isReactElement(children) ? Slot : "div"
 
-  return (
-    <ProgressBarRoot ref={ref} {...rest}>
-      {label && <ProgressBarLabel>{label}</ProgressBarLabel>}
-      <ProgressBarBar percent={percent} theme={theme} />
-      {hint && <ProgressBarHint>{hint}</ProgressBarHint>}
+    return (
+      <ProgressBarRoot ref={ref} {...rest}>
+        {label && <ProgressBarLabel>{label}</ProgressBarLabel>}
+        <ProgressBarBar percent={percent} theme={theme} />
+        {hint && <ProgressBarHint>{hint}</ProgressBarHint>}
 
-      {children && <Component className="order-last w-full">{children}</Component>}
-    </ProgressBarRoot>
-  )
-})
+        {children && <Component className="order-last w-full">{children}</Component>}
+      </ProgressBarRoot>
+    )
+  },
+)
 
 export const ProgressBar = Object.assign(ProgressBarBase, {
   Root: ProgressBarRoot,
@@ -112,12 +113,5 @@ export const ProgressBar = Object.assign(ProgressBarBase, {
   Label: ProgressBarLabel,
   Hint: ProgressBarHint,
 })
-
-ProgressBar.defaultProps = {
-  theme: "blue",
-  percent: 0,
-  label: "",
-  hint: "",
-}
 
 ProgressBar.displayName = "ProgressBar"

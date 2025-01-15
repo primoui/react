@@ -9,12 +9,13 @@ export default {
   title: "Typography/Paragraph",
   component: Paragraph,
   args: {
-    ...Paragraph.defaultProps,
+    size: "md",
+    variant: "regular",
+    wrap: "wrap",
     children:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    variant: "regular",
   },
-} satisfies Meta
+} satisfies Meta<typeof Paragraph>
 
 // Stories
 export const ExtraLarge = {

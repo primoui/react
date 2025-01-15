@@ -18,18 +18,13 @@ export type DotProps = Omit<HTMLAttributes<DotElement>, "size"> &
     asChild?: boolean
   }
 
-export const Dot = forwardRef<DotElement, DotProps>((props, ref) => {
-  const { className, asChild, variant, ...rest } = props
+export const Dot = forwardRef<DotElement, DotProps>(
+  ({ className, asChild = false, variant = "solid", ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Component = useAsChild ? Slot : "span"
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Component = useAsChild ? Slot : "span"
-
-  return <Component ref={ref} className={cx(dotVariants({ variant, className }))} {...rest} />
-})
-
-Dot.defaultProps = {
-  variant: "solid",
-  asChild: false,
-}
+    return <Component ref={ref} className={cx(dotVariants({ variant, className }))} {...rest} />
+  },
+)
 
 Dot.displayName = "Dot"

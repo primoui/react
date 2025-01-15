@@ -9,10 +9,10 @@ export default {
   title: "Typography/Heading",
   component: Heading,
   args: {
-    ...Heading.defaultProps,
+    size: "h3",
     children: "The five boxing wizards jump quickly.",
   },
-} satisfies Meta
+} satisfies Meta<typeof Heading>
 
 // Stories
 export const Heading1 = {

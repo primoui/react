@@ -9,9 +9,9 @@ export default {
   title: "UI/Ping",
   component: Ping,
   args: {
-    ...Ping.defaultProps,
+    theme: "gray",
   },
-} satisfies Meta
+} satisfies Meta<typeof Ping>
 
 // Stories
 export const Default = {

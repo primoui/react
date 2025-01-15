@@ -8,10 +8,8 @@ type Story = StoryObj<typeof Plan>
 export default {
   title: "UI/Plan",
   component: Plan,
-  args: {
-    ...Plan.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof Plan>
 
 // Stories
 export const Default = {

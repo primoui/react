@@ -8,10 +8,8 @@ type Story = StoryObj<typeof ScreenSize>
 export default {
   title: "Utils/ScreenSize",
   component: ScreenSize,
-  args: {
-    ...ScreenSize.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof ScreenSize>
 
 // Stories
 export const Default = {

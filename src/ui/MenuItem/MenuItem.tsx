@@ -42,67 +42,62 @@ export type MenuItemProps = Omit<ButtonHTMLAttributes<MenuItemElement>, "prefix"
     isPending?: boolean
   }
 
-export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>((props, ref) => {
-  const {
-    children,
-    className,
-    asChild,
-    prefix: propPrefix,
-    suffix: propSuffix,
-    isPending,
-    isActive,
-    theme,
-    size,
-    linkable,
-    ...rest
-  } = props
+export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>(
+  (
+    {
+      children,
+      className,
+      asChild = false,
+      prefix: propPrefix,
+      suffix: propSuffix,
+      isPending = false,
+      isActive = false,
+      theme = "secondary",
+      size = "md",
+      linkable = false,
+      ...rest
+    },
+    ref,
+  ) => {
+    const useAsChild = asChild && isReactElement(children)
+    const Component = useAsChild ? Slot : "button"
 
-  const useAsChild = asChild && isReactElement(children)
-  const Component = useAsChild ? Slot : "button"
+    const prefix = toArrayOrWrap(propPrefix)
+    const suffix = toArrayOrWrap(propSuffix)
 
-  const prefix = toArrayOrWrap(propPrefix)
-  const suffix = toArrayOrWrap(propSuffix)
+    if (isPending) {
+      suffix.push(<IconSpinner className="text-xs" />)
+    }
 
-  if (isPending) {
-    suffix.push(<IconSpinner className="text-xs" />)
-  }
+    return (
+      <Component
+        ref={ref}
+        aria-current={isActive ? "page" : undefined}
+        className={cx(menuItemVariants({ theme, size, linkable, className }))}
+        {...rest}
+      >
+        <Slottable child={children} asChild={asChild}>
+          {child => (
+            <>
+              {prefix?.map((p, i) => (
+                <Affixable key={i} variants={menuItemAffixVariants}>
+                  {p}
+                </Affixable>
+              ))}
 
-  return (
-    <Component
-      ref={ref}
-      aria-current={isActive ? "page" : undefined}
-      className={cx(menuItemVariants({ theme, size, linkable, className }))}
-      {...rest}
-    >
-      <Slottable child={children} asChild={asChild}>
-        {child => (
-          <>
-            {prefix?.map((p, i) => (
-              <Affixable key={i} variants={menuItemAffixVariants}>
-                {p}
-              </Affixable>
-            ))}
+              {!isChildrenEmpty(child) && <span className="flex-1 truncate">{child}</span>}
 
-            {!isChildrenEmpty(child) && <span className="flex-1 truncate">{child}</span>}
-
-            {suffix?.map((s, i) => (
-              <Affixable key={i} variants={menuItemAffixVariants}>
-                {s}
-              </Affixable>
-            ))}
-          </>
-        )}
-      </Slottable>
-    </Component>
-  )
-})
-
-MenuItem.defaultProps = {
-  disabled: false,
-  isActive: false,
-  isPending: false,
-  theme: "secondary",
-  size: "md",
-}
+              {suffix?.map((s, i) => (
+                <Affixable key={i} variants={menuItemAffixVariants}>
+                  {s}
+                </Affixable>
+              ))}
+            </>
+          )}
+        </Slottable>
+      </Component>
+    )
+  },
+)
 
 MenuItem.displayName = "MenuItem"

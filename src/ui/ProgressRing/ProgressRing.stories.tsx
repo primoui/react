@@ -9,10 +9,11 @@ export default {
   title: "UI/ProgressRing",
   component: ProgressRing,
   args: {
-    ...ProgressRing.defaultProps,
+    theme: "blue",
+    size: "md",
     percent: 50,
   },
-} satisfies Meta
+} satisfies Meta<typeof ProgressRing>
 
 // Stories
 export const Default = {

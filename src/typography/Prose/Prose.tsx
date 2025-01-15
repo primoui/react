@@ -19,18 +19,13 @@ export type ProseProps = Omit<HTMLAttributes<ProseElement>, "size"> &
     asChild?: boolean
   }
 
-export const Prose = forwardRef<ProseElement, ProseProps>((props, ref) => {
-  const { className, asChild, size, ...rest } = props
+export const Prose = forwardRef<ProseElement, ProseProps>(
+  ({ className, asChild = false, size = "md", ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Comp = useAsChild ? Slot : "div"
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Comp = useAsChild ? Slot : "div"
-
-  return <Comp ref={ref} className={cx(proseVariants({ size, className }))} {...rest} />
-})
-
-Prose.defaultProps = {
-  size: "md",
-  asChild: false,
-}
+    return <Comp ref={ref} className={cx(proseVariants({ size, className }))} {...rest} />
+  },
+)
 
 Prose.displayName = "Prose"

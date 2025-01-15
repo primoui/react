@@ -37,55 +37,52 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<ButtonElement>, "size" | "pr
     suffix?: ReactNode
   }
 
-export const Button = forwardRef<ButtonElement, ButtonProps>((props, ref) => {
-  const {
-    children,
-    className,
-    disabled,
-    asChild,
-    isPending,
-    prefix,
-    suffix,
-    theme,
-    variant,
-    size,
-    ...rest
-  } = props
+export const Button = forwardRef<ButtonElement, ButtonProps>(
+  (
+    {
+      children,
+      className,
+      disabled,
+      asChild = false,
+      isPending,
+      prefix,
+      suffix,
+      theme = "primary",
+      variant = "solid",
+      size = "lg",
+      type = "button",
+      ...rest
+    },
+    ref,
+  ) => {
+    const useAsChild = asChild && isReactElement(children)
+    const Component = useAsChild ? Slot : "button"
 
-  const useAsChild = asChild && isReactElement(children)
-  const Component = useAsChild ? Slot : "button"
+    // Determine if the button has affix only.
+    const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
 
-  // Determine if the button has affix only.
-  const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
+    return (
+      <Component
+        ref={ref}
+        disabled={disabled ?? isPending}
+        className={cx(buttonVariants({ theme, variant, size, isAffixOnly, isPending, className }))}
+        type={type}
+        {...rest}
+      >
+        <Slottable child={children} asChild={asChild}>
+          {child => (
+            <>
+              <Affixable variants={buttonAffixVariants}>{prefix}</Affixable>
+              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
+              <Affixable variants={buttonAffixVariants}>{suffix}</Affixable>
 
-  return (
-    <Component
-      ref={ref}
-      disabled={disabled ?? isPending}
-      className={cx(buttonVariants({ theme, variant, size, isAffixOnly, isPending, className }))}
-      {...rest}
-    >
-      <Slottable child={children} asChild={asChild}>
-        {child => (
-          <>
-            <Affixable variants={buttonAffixVariants}>{prefix}</Affixable>
-            {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-            <Affixable variants={buttonAffixVariants}>{suffix}</Affixable>
-
-            {!!isPending && <IconSpinner className="absolute" />}
-          </>
-        )}
-      </Slottable>
-    </Component>
-  )
-})
-
-Button.defaultProps = {
-  type: "button",
-  theme: "primary",
-  variant: "solid",
-  size: "lg",
-  asChild: false,
-}
+              {!!isPending && <IconSpinner className="absolute" />}
+            </>
+          )}
+        </Slottable>
+      </Component>
+    )
+  },
+)
 
 Button.displayName = "Button"

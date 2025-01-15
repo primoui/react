@@ -11,14 +11,18 @@ export default {
   title: "UI/Tooltip",
   component: Tooltip,
   args: {
-    ...Tooltip.defaultProps,
+    align: "center",
+    delayDuration: 0,
+    collisionPadding: 5,
+    sideOffset: 4,
+    tooltip: "Copy to clipboard",
   },
   render: props => (
-    <Tooltip tooltip="Copy to clipboard" {...props}>
+    <Tooltip {...props}>
       <Badge>Hover me</Badge>
     </Tooltip>
   ),
-} satisfies Meta
+} satisfies Meta<typeof Tooltip>
 
 // Stories
 export const Default = {

@@ -13,10 +13,9 @@ export default {
   title: "UI/Card",
   component: Card,
   args: {
-    ...Card.defaultProps,
     children: "Card content",
   },
-} satisfies Meta
+} satisfies Meta<typeof Card>
 
 // Stories
 export const Default = {

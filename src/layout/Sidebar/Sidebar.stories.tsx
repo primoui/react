@@ -70,7 +70,6 @@ export default {
     layout: "fullscreen",
   },
   args: {
-    ...Sidebar.defaultProps,
     children: (
       <>
         <Blurb
@@ -117,7 +116,7 @@ export default {
       </>
     ),
   },
-} satisfies Meta
+} satisfies Meta<typeof Sidebar>
 
 // Stories
 export const Default = {

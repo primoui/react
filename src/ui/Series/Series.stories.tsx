@@ -13,7 +13,8 @@ export default {
   title: "UI/Series",
   component: Series,
   args: {
-    ...Series.defaultProps,
+    size: "md",
+    direction: "row",
     children: (
       <>
         <Button theme="secondary" variant="ghost" prefix={<IconUser />} />
@@ -25,7 +26,7 @@ export default {
       </>
     ),
   },
-} satisfies Meta
+} satisfies Meta<typeof Series>
 
 // Stories
 export const Default = {

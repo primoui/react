@@ -21,21 +21,16 @@ export type ButtonGroupProps = ButtonProps &
   }
 
 export const ButtonGroup = forwardRef<ButtonGroupElement, ButtonGroupProps>((props, ref) => {
-  const { children, className, buttons, ...rest } = props
+  const { children, className, buttons, theme = "secondary", variant = "outline", ...rest } = props
 
   return (
     <div ref={ref} className={cx(buttonGroupVariants({ className }))}>
       {buttons?.map((button, i) => (
-        <Button key={`button-${i}`} {...button} {...rest} />
+        <Button key={`button-${i}`} theme={theme} variant={variant} {...button} {...rest} />
       ))}
       {children}
     </div>
   )
 })
-
-ButtonGroup.defaultProps = {
-  theme: "secondary",
-  variant: "outline",
-}
 
 ButtonGroup.displayName = "ButtonGroup"

@@ -37,62 +37,69 @@ export type UploaderProps = Omit<SeriesProps, "onChange"> & {
   onClear?: () => void
 }
 
-export const Uploader = forwardRef<UploaderElement, UploaderProps>((props, ref) => {
-  const { children, className, label, accept, isPending, onChange, onClear, ...rest } = props
-  const uploadRef = useRef<HTMLInputElement | null>(null)
+export const Uploader = forwardRef<UploaderElement, UploaderProps>(
+  (
+    {
+      children,
+      className,
+      label = "Upload",
+      accept = ["image/*"],
+      isPending = false,
+      onChange,
+      onClear,
+      ...rest
+    },
+    ref,
+  ) => {
+    const uploadRef = useRef<HTMLInputElement | null>(null)
 
-  const onClick: MouseEventHandler<HTMLButtonElement> = () => {
-    uploadRef.current?.click()
-  }
-
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      onChange(e.target.files[0])
+    const onClick: MouseEventHandler<HTMLButtonElement> = () => {
+      uploadRef.current?.click()
     }
 
-    // Reset input value
-    e.target.value = ""
-  }
+    const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files?.[0]) {
+        onChange(e.target.files[0])
+      }
 
-  return (
-    <Series ref={ref} {...rest}>
-      {children}
+      // Reset input value
+      e.target.value = ""
+    }
 
-      <input
-        type="file"
-        ref={uploadRef}
-        onChange={onInputChange}
-        accept={accept?.join(",")}
-        className="hidden"
-      />
+    return (
+      <Series ref={ref} {...rest}>
+        {children}
 
-      <ButtonGroup className="shrink-0">
-        <Button
-          type="button"
-          theme="secondary"
-          variant="outline"
-          onClick={onClick}
-          isPending={isPending}
-        >
-          {label}
-        </Button>
+        <input
+          type="file"
+          ref={uploadRef}
+          onChange={onInputChange}
+          accept={accept?.join(",")}
+          className="hidden"
+        />
 
-        {onClear && (
+        <ButtonGroup className="shrink-0">
           <Button
             type="button"
-            theme="negative"
+            theme="secondary"
             variant="outline"
-            prefix={<IconTrash />}
-            onClick={onClear}
-          />
-        )}
-      </ButtonGroup>
-    </Series>
-  )
-})
+            onClick={onClick}
+            isPending={isPending}
+          >
+            {label}
+          </Button>
 
-Uploader.defaultProps = {
-  label: "Upload",
-  accept: ["image/*"],
-  isPending: false,
-}
+          {onClear && (
+            <Button
+              type="button"
+              theme="negative"
+              variant="outline"
+              prefix={<IconTrash />}
+              onClick={onClear}
+            />
+          )}
+        </ButtonGroup>
+      </Series>
+    )
+  },
+)

@@ -70,62 +70,69 @@ export type PlanProps = Omit<HTMLAttributes<PlanElement>, "size"> &
     }[]
   }
 
-export const Plan = forwardRef<PlanElement, PlanProps>((props, ref) => {
-  const { children, className, asChild, price, name, description, features, isFeatured, ...rest } =
-    props
+export const Plan = forwardRef<PlanElement, PlanProps>(
+  (
+    {
+      children,
+      className,
+      asChild = false,
+      price,
+      name,
+      description,
+      features,
+      isFeatured = false,
+      ...rest
+    },
+    ref,
+  ) => {
+    const useAsChild = asChild && isReactElement(children)
+    const Component = useAsChild ? Slot : "div"
 
-  const useAsChild = asChild && isReactElement(children)
-  const Component = useAsChild ? Slot : "div"
+    return (
+      <Card asChild>
+        <Component ref={ref} className={cx(planVariants({ isFeatured, className }))} {...rest}>
+          <div className="space-y-3">
+            <H3>{name}</H3>
 
-  return (
-    <Card asChild>
-      <Component ref={ref} className={cx(planVariants({ isFeatured, className }))} {...rest}>
-        <div className="space-y-3">
-          <H3>{name}</H3>
-
-          {description && (
-            <Paragraph size="sm" wrap="pretty" className="text-gray-600">
-              {description}
-            </Paragraph>
-          )}
-        </div>
-
-        <div className="relative flex flex-wrap items-end gap-1 font-medium">
-          <span className="text-xl/none text-gray-400">$</span>
-
-          <span className="text-black text-4xl font-bold !leading-[0.85em]">
-            {formatIntervalAmount(price.amount, price.interval)}
-          </span>
-
-          <div className="text-xs text-gray-500">
-            /mo
-            {price.interval === "year" && <div>billed annually</div>}
+            {description && (
+              <Paragraph size="sm" wrap="pretty" className="text-gray-600">
+                {description}
+              </Paragraph>
+            )}
           </div>
-        </div>
 
-        {!!features?.length && (
-          <Series direction="column" className="mb-auto">
-            {features.map(({ type, text }) => (
-              <div key={text} className={cx(planFeatureVariants())}>
-                <Slot className={cx(planFeatureCheckVariants({ type }))}>
-                  {type === "negative" ? <IconClose /> : <IconCheck />}
-                </Slot>
+          <div className="relative flex flex-wrap items-end gap-1 font-medium">
+            <span className="text-xl/none text-gray-400">$</span>
 
-                <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>
-              </div>
-            ))}
-          </Series>
-        )}
+            <span className="text-black text-4xl font-bold !leading-[0.85em]">
+              {formatIntervalAmount(price.amount, price.interval)}
+            </span>
 
-        {children}
-      </Component>
-    </Card>
-  )
-})
+            <div className="text-xs text-gray-500">
+              /mo
+              {price.interval === "year" && <div>billed annually</div>}
+            </div>
+          </div>
 
-Plan.defaultProps = {
-  asChild: false,
-  isFeatured: false,
-}
+          {!!features?.length && (
+            <Series direction="column" className="mb-auto">
+              {features.map(({ type, text }) => (
+                <div key={text} className={cx(planFeatureVariants())}>
+                  <Slot className={cx(planFeatureCheckVariants({ type }))}>
+                    {type === "negative" ? <IconClose /> : <IconCheck />}
+                  </Slot>
+
+                  <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>
+                </div>
+              ))}
+            </Series>
+          )}
+
+          {children}
+        </Component>
+      </Card>
+    )
+  },
+)
 
 Plan.displayName = "Plan"

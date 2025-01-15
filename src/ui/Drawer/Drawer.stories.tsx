@@ -12,8 +12,7 @@ export default {
   title: "UI/Drawer",
   component: Drawer,
   args: {
-    ...Drawer.defaultProps,
-    open: true,
+    onOpenChange: () => {},
   },
   render: props => (
     <Drawer {...props}>
@@ -36,7 +35,7 @@ export default {
       </Drawer.ContentCard>
     </Drawer>
   ),
-} satisfies Meta
+} satisfies Meta<typeof Drawer>
 
 // Stories
 export const Default = {

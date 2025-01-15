@@ -14,25 +14,21 @@ export type CheckboxElement = ElementRef<typeof CheckboxPrimitive.Root>
 export type CheckboxProps = ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root> &
   VariantProps<typeof checkboxVariants>
 
-export const Checkbox = forwardRef<CheckboxElement, CheckboxProps>((props, ref) => {
-  const { className, error, ...rest } = props
-
-  return (
-    <CheckboxPrimitive.Root
-      ref={ref}
-      className={cx(checkboxVariants({ error, className }))}
-      {...rest}
-    >
-      <CheckboxPrimitive.Indicator asChild>
-        <IconCheck className="size-3.5 !stroke-2" />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
-  )
-})
+export const Checkbox = forwardRef<CheckboxElement, CheckboxProps>(
+  ({ className, error = false, disabled = false, ...rest }, ref) => {
+    return (
+      <CheckboxPrimitive.Root
+        ref={ref}
+        className={cx(checkboxVariants({ error, className }))}
+        disabled={disabled}
+        {...rest}
+      >
+        <CheckboxPrimitive.Indicator asChild>
+          <IconCheck className="size-3.5 !stroke-2" />
+        </CheckboxPrimitive.Indicator>
+      </CheckboxPrimitive.Root>
+    )
+  },
+)
 
 Checkbox.displayName = CheckboxPrimitive.Root.displayName
-
-Checkbox.defaultProps = {
-  error: false,
-  disabled: false,
-}

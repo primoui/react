@@ -12,10 +12,9 @@ export default {
     layout: "padded",
   },
   args: {
-    ...Wrapper.defaultProps,
     children: "Wrapper",
   },
-} satisfies Meta
+} satisfies Meta<typeof Wrapper>
 
 // Stories
 export const Default = {

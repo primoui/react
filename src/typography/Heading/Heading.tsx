@@ -19,14 +19,14 @@ export type HeadingProps = Omit<HTMLAttributes<HeadingElement>, "size"> &
     asChild?: boolean
   }
 
-export const Heading = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  const { className, asChild, size, ...rest } = props
+export const Heading = forwardRef<HeadingElement, HeadingProps>(
+  ({ className, asChild = false, size = "h3", ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Comp = useAsChild ? Slot : (size ?? "h2")
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Comp = useAsChild ? Slot : size ?? "h2"
-
-  return <Comp ref={ref} className={cx(headingVariants({ size, className }))} {...rest} />
-})
+    return <Comp ref={ref} className={cx(headingVariants({ size, className }))} {...rest} />
+  },
+)
 
 export const H1 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
   return <Heading ref={ref} size="h1" {...props} />
@@ -51,10 +51,5 @@ export const H5 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
 export const H6 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
   return <Heading ref={ref} size="h6" {...props} />
 })
-
-Heading.defaultProps = {
-  size: "h3",
-  asChild: false,
-}
 
 Heading.displayName = "Heading"

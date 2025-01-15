@@ -8,10 +8,8 @@ type Story = StoryObj<typeof Alert>
 export default {
   title: "UI/Alert",
   component: Alert,
-  args: {
-    ...Alert.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof Alert>
 
 // Stories
 export const Default = {

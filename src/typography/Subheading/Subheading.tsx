@@ -19,18 +19,13 @@ export type SubheadingProps = Omit<HTMLAttributes<SubheadingElement>, "size"> &
     asChild?: boolean
   }
 
-export const Subheading = forwardRef<SubheadingElement, SubheadingProps>((props, ref) => {
-  const { className, asChild, size, ...rest } = props
+export const Subheading = forwardRef<SubheadingElement, SubheadingProps>(
+  ({ className, asChild = false, size = "md", ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Comp = useAsChild ? Slot : "p"
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Comp = useAsChild ? Slot : "p"
-
-  return <Comp ref={ref} className={cx(subheadingVariants({ size, className }))} {...rest} />
-})
-
-Subheading.defaultProps = {
-  size: "md",
-  asChild: false,
-}
+    return <Comp ref={ref} className={cx(subheadingVariants({ size, className }))} {...rest} />
+  },
+)
 
 Subheading.displayName = "Subheading"

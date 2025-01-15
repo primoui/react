@@ -12,13 +12,15 @@ export default {
   title: "UI/MenuItem",
   component: MenuItem,
   args: {
-    ...MenuItem.defaultProps,
+    theme: "secondary",
+    size: "md",
+    linkable: false,
     style: { width: 200 },
     children: "Dashboard",
     prefix: <IconUser />,
     suffix: <IconChevronRight />,
   },
-} satisfies Meta
+} satisfies Meta<typeof MenuItem>
 
 // Stories
 export const Default = {

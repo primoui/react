@@ -14,12 +14,11 @@ export default {
     layout: "padded",
   },
   args: {
-    ...Header.defaultProps,
     title: "Page title here",
     description: "Insert page description here",
     children: SeriesStory.args.children,
   },
-} satisfies Meta
+} satisfies Meta<typeof Header>
 
 // Stories
 export const Default = {

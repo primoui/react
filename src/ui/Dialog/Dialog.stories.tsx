@@ -13,12 +13,11 @@ export default {
   title: "UI/Dialog",
   component: Dialog,
   args: {
-    ...Dialog.defaultProps,
-    children: "Dialog content",
-    className: "static",
     open: true,
+    onOpenChange: () => {},
+    children: "Dialog content",
   },
-} satisfies Meta
+} satisfies Meta<typeof Dialog>
 
 // Stories
 export const Default = {

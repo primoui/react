@@ -9,7 +9,8 @@ export default {
   title: "Form Control/RadioGroup",
   component: RadioGroup,
   args: {
-    ...RadioGroup.defaultProps,
+    orientation: "horizontal",
+    disabled: false,
     name: "radio",
     defaultValue: "1",
     className: "flex gap-2",
@@ -21,7 +22,7 @@ export default {
       </>
     ),
   },
-} satisfies Meta
+} satisfies Meta<typeof RadioGroup>
 
 // Stories
 export const Default = {

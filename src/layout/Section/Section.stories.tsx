@@ -12,10 +12,9 @@ export default {
     layout: "padded",
   },
   args: {
-    ...Section.defaultProps,
     children: "Section",
   },
-} satisfies Meta
+} satisfies Meta<typeof Section>
 
 // Stories
 export const Default = {

@@ -12,14 +12,14 @@ export default {
   title: "UI/Popover",
   component: Popover,
   args: {
-    ...Popover.defaultProps,
+    popover: "Fugiat esse reprehenderit aliqua ea ad est.",
   },
   render: props => (
-    <Popover popover="Fugiat esse reprehenderit aliqua ea ad est." {...props}>
+    <Popover {...props}>
       <Badge>Click me</Badge>
     </Popover>
   ),
-} satisfies Meta
+} satisfies Meta<typeof Popover>
 
 // Stories
 export const Default = {
@@ -30,20 +30,18 @@ export const WithCustomMarkup = {
   args: {
     align: "start",
     side: "right",
+    popover: (
+      <div className="flex">
+        <Paragraph size="sm">
+          Consequat aute labore est labore enim ut ullamco irure sint ea tempor consectetur.
+        </Paragraph>
+
+        <Popover.Close />
+      </div>
+    ),
   },
   render: props => (
-    <Popover
-      {...props}
-      popover={
-        <div className="flex">
-          <Paragraph size="sm">
-            Consequat aute labore est labore enim ut ullamco irure sint ea tempor consectetur.
-          </Paragraph>
-
-          <Popover.Close />
-        </div>
-      }
-    >
+    <Popover {...props}>
       <Badge>Click me</Badge>
     </Popover>
   ),

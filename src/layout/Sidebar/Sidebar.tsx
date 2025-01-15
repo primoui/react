@@ -19,11 +19,13 @@ export type SidebarElement = HTMLElement
 
 export type SidebarProps = HTMLAttributes<SidebarElement> & VariantProps<typeof sidebarVariants>
 
-export const SidebarBase = forwardRef<SidebarElement, SidebarProps>((props, ref) => {
-  const { className, size, sticky, ...rest } = props
-
-  return <aside ref={ref} className={cx(sidebarVariants({ size, sticky, className }))} {...rest} />
-})
+export const SidebarBase = forwardRef<SidebarElement, SidebarProps>(
+  ({ className, size = "md", sticky = true, ...rest }, ref) => {
+    return (
+      <aside ref={ref} className={cx(sidebarVariants({ size, sticky, className }))} {...rest} />
+    )
+  },
+)
 
 export const SidebarContent = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>((props, ref) => {
   const { className, ...rest } = props
@@ -39,18 +41,18 @@ export const SidebarMenu = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElem
   },
 )
 
-export const SidebarHeading = forwardRef<SubheadingElement, SubheadingProps>((props, ref) => {
-  const { className, size = "xs", ...rest } = props
-
-  return (
-    <Subheading
-      ref={ref}
-      size={size}
-      className={cx(sidebarHeadingVariants({ className }))}
-      {...rest}
-    />
-  )
-})
+export const SidebarHeading = forwardRef<SubheadingElement, SubheadingProps>(
+  ({ className, size = "xs", ...rest }, ref) => {
+    return (
+      <Subheading
+        ref={ref}
+        size={size}
+        className={cx(sidebarHeadingVariants({ className }))}
+        {...rest}
+      />
+    )
+  },
+)
 
 export const SidebarSeparator = forwardRef<
   HTMLHRElement,
@@ -69,10 +71,5 @@ export const Sidebar = Object.assign(SidebarBase, {
   Heading: SidebarHeading,
   Separator: SidebarSeparator,
 })
-
-Sidebar.defaultProps = {
-  size: "md",
-  sticky: true,
-}
 
 Sidebar.displayName = "Sidebar"

@@ -11,11 +11,13 @@ export default {
   title: "UI/ProgressBar",
   component: ProgressBar,
   args: {
-    ...ProgressBar.defaultProps,
     style: { width: 240 },
     percent: 50,
+    label: "",
+    hint: "",
+    theme: "blue",
   },
-} satisfies Meta
+} satisfies Meta<typeof ProgressBar>
 
 // Stories
 export const Default = {

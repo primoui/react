@@ -11,17 +11,17 @@ export type WrapperElement = HTMLDivElement
 
 export type WrapperProps = HTMLAttributes<WrapperElement> & VariantProps<typeof wrapperVariants>
 
-export const WrapperBase = forwardRef<WrapperElement, WrapperProps>((props, ref) => {
-  const { className, ...rest } = props
+export const WrapperBase = forwardRef<WrapperElement, WrapperProps>(
+  ({ className, ...rest }, ref) => {
+    return <div ref={ref} className={cx(wrapperVariants({ className }))} {...rest} />
+  },
+)
 
-  return <div ref={ref} className={cx(wrapperVariants({ className }))} {...rest} />
-})
-
-export const WrapperContent = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>((props, ref) => {
-  const { className, ...rest } = props
-
-  return <main ref={ref} className={cx(wrapperContentVariants({ className }))} {...rest} />
-})
+export const WrapperContent = forwardRef<HTMLElement, HTMLAttributes<HTMLElement>>(
+  ({ className, ...rest }, ref) => {
+    return <main ref={ref} className={cx(wrapperContentVariants({ className }))} {...rest} />
+  },
+)
 
 export const Wrapper = Object.assign(WrapperBase, {
   Content: WrapperContent,

@@ -52,25 +52,36 @@ export const PopoverClose = forwardRef<
   </PopoverPrimitive.Close>
 ))
 
-export const PopoverBase = forwardRef<PopoverElement, PopoverProps>((props, ref) => {
-  const { children, popover, ...rest } = props
+export const PopoverBase = forwardRef<PopoverElement, PopoverProps>(
+  (
+    {
+      children,
+      popover,
+      align = "center",
+      side = "bottom",
+      collisionPadding = 5,
+      sideOffset = 4,
+      ...rest
+    },
+    ref,
+  ) => {
+    if (!popover) {
+      return children
+    }
 
-  if (!popover) {
-    return children
-  }
+    return (
+      <PopoverPrimitive.Root>
+        <PopoverPrimitive.Trigger ref={ref} asChild>
+          {children}
+        </PopoverPrimitive.Trigger>
 
-  return (
-    <PopoverPrimitive.Root>
-      <PopoverPrimitive.Trigger ref={ref} asChild>
-        {children}
-      </PopoverPrimitive.Trigger>
-
-      <PopoverPrimitive.Portal>
-        <PopoverContent {...rest}>{popover}</PopoverContent>
-      </PopoverPrimitive.Portal>
-    </PopoverPrimitive.Root>
-  )
-})
+        <PopoverPrimitive.Portal>
+          <PopoverContent {...rest}>{popover}</PopoverContent>
+        </PopoverPrimitive.Portal>
+      </PopoverPrimitive.Root>
+    )
+  },
+)
 
 export const Popover = Object.assign(PopoverBase, {
   Root: PopoverRoot,
@@ -81,10 +92,3 @@ export const Popover = Object.assign(PopoverBase, {
   Arrow: PopoverArrow,
   Close: PopoverClose,
 })
-
-Popover.defaultProps = {
-  align: "center",
-  side: "bottom",
-  collisionPadding: 5,
-  sideOffset: 4,
-}

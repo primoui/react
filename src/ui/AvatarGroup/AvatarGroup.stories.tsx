@@ -18,7 +18,7 @@ const items = [
   },
   {
     src: "https://images.unsplash.com/photo-1488161628813-04466f872be2?q=80&w=250&h=250&auto=format&fit=crop",
-    alt: "Avatar 2",
+    alt: "Avatar 3",
   },
 ] satisfies AvatarGroupProps["items"]
 
@@ -27,10 +27,10 @@ export default {
   title: "UI/AvatarGroup",
   component: AvatarGroup,
   args: {
-    ...AvatarGroup.defaultProps,
-    items,
+    variant: "soft",
+    size: "md",
   },
-} satisfies Meta
+} satisfies Meta<typeof AvatarGroup>
 
 // Stories
 export const Default = {

@@ -31,41 +31,46 @@ export type BadgeProps = Omit<HTMLAttributes<BadgeElement>, "size" | "prefix"> &
     suffix?: ReactNode
   }
 
-export const Badge = forwardRef<BadgeElement, BadgeProps>((props, ref) => {
-  const { children, className, asChild, prefix, suffix, theme, variant, size, shape, ...rest } =
-    props
+export const Badge = forwardRef<BadgeElement, BadgeProps>(
+  (
+    {
+      children,
+      className,
+      asChild = false,
+      prefix,
+      suffix,
+      theme = "blue",
+      variant = "solid",
+      size = "md",
+      shape = "rounded",
+      ...rest
+    },
+    ref,
+  ) => {
+    const useAsChild = asChild && isReactElement(children)
+    const Component = useAsChild ? Slot : "span"
 
-  const useAsChild = asChild && isReactElement(children)
-  const Component = useAsChild ? Slot : "span"
+    // Determine if the button has affix only.
+    const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
 
-  // Determine if the button has affix only.
-  const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
-
-  return (
-    <Component
-      ref={ref}
-      className={cx(badgeVariants({ theme, size, variant, shape, isAffixOnly, className }))}
-      {...rest}
-    >
-      <Slottable child={children} asChild={asChild}>
-        {child => (
-          <>
-            <Affixable variants={badgeAffixVariants}>{prefix}</Affixable>
-            {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-            <Affixable variants={badgeAffixVariants}>{suffix}</Affixable>
-          </>
-        )}
-      </Slottable>
-    </Component>
-  )
-})
+    return (
+      <Component
+        ref={ref}
+        className={cx(badgeVariants({ theme, size, variant, shape, isAffixOnly, className }))}
+        {...rest}
+      >
+        <Slottable child={children} asChild={asChild}>
+          {child => (
+            <>
+              <Affixable variants={badgeAffixVariants}>{prefix}</Affixable>
+              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
+              <Affixable variants={badgeAffixVariants}>{suffix}</Affixable>
+            </>
+          )}
+        </Slottable>
+      </Component>
+    )
+  },
+)
 
 Badge.displayName = "Badge"
-
-Badge.defaultProps = {
-  theme: "blue",
-  variant: "solid",
-  size: "md",
-  shape: "rounded",
-  asChild: false,
-}

@@ -11,9 +11,7 @@ type Story = StoryObj<typeof Dropdown>
 export default {
   title: "UI/Dropdown",
   component: Dropdown,
-  args: {
-    ...Dropdown.defaultProps,
-  },
+  args: {},
   render: props => (
     <Dropdown>
       <Dropdown.Trigger asChild>
@@ -44,7 +42,7 @@ export default {
       </Dropdown.Content>
     </Dropdown>
   ),
-} satisfies Meta
+} satisfies Meta<typeof Dropdown>
 
 // Stories
 export const Default = {

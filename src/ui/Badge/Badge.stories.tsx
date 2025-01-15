@@ -12,10 +12,13 @@ export default {
   title: "UI/Badge",
   component: Badge,
   args: {
-    ...Badge.defaultProps,
+    theme: "blue",
+    variant: "solid",
+    size: "md",
+    shape: "rounded",
     children: "Badge",
   },
-} satisfies Meta
+} satisfies Meta<typeof Badge>
 
 // Stories
 export const Default = {

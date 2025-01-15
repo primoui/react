@@ -9,9 +9,11 @@ export default {
   title: "Form Control/Switch",
   component: Switch,
   args: {
-    ...Switch.defaultProps,
+    disabled: false,
+    error: false,
+    required: false,
   },
-} satisfies Meta
+} satisfies Meta<typeof Switch>
 
 // Stories
 export const Default = {

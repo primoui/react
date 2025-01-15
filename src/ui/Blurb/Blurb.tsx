@@ -113,7 +113,7 @@ export const BlurbDescription = forwardRef<
 })
 
 const BlurbBase = forwardRef<BlurbElement, BlurbProps>((props, ref) => {
-  const { children, avatar, title, description, size, ...rest } = props
+  const { children, avatar, title = "", description = "", size = "sm", ...rest } = props
 
   return (
     <BlurbRoot ref={ref} {...rest}>
@@ -147,10 +147,3 @@ export const Blurb = Object.assign(BlurbBase, {
   Title: BlurbTitle,
   Description: BlurbDescription,
 })
-
-Blurb.defaultProps = {
-  title: "",
-  description: "",
-  size: "sm",
-  asChild: false,
-}

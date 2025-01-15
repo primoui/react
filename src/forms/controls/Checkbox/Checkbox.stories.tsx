@@ -9,9 +9,10 @@ export default {
   title: "Form Control/Checkbox",
   component: Checkbox,
   args: {
-    ...Checkbox.defaultProps,
+    error: false,
+    disabled: false,
   },
-} satisfies Meta
+} satisfies Meta<typeof Checkbox>
 
 // Stories
 export const Default = {

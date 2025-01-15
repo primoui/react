@@ -8,10 +8,8 @@ type Story = StoryObj<typeof Shimmer>
 export default {
   title: "UI/Shimmer",
   component: Shimmer,
-  args: {
-    ...Shimmer.defaultProps,
-  },
-} satisfies Meta
+  args: {},
+} satisfies Meta<typeof Shimmer>
 
 // Stories
 export const Default = {

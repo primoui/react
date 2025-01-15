@@ -64,20 +64,6 @@ export * from "./forms/controls/Switch"
 export * from "./forms/controls/TextArea"
 export * from "./forms/controls/Uploader"
 
-// Icons
-export * from "./icons/IconBullet"
-export * from "./icons/IconCheck"
-export * from "./icons/IconCheckerboard"
-export * from "./icons/IconChevronDown"
-export * from "./icons/IconChevronLeft"
-export * from "./icons/IconChevronRight"
-export * from "./icons/IconChevronUp"
-export * from "./icons/IconClose"
-export * from "./icons/IconSpinner"
-export * from "./icons/IconStar"
-export * from "./icons/IconTrash"
-export * from "./icons/IconUser"
-
 // Utils
 export * from "./utils/Affixable"
 export * from "./utils/Draggable"

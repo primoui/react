@@ -9,9 +9,9 @@ export default {
   title: "UI/Dot",
   component: Dot,
   args: {
-    ...Dot.defaultProps,
+    variant: "solid",
   },
-} satisfies Meta
+} satisfies Meta<typeof Dot>
 
 // Stories
 export const Default = {

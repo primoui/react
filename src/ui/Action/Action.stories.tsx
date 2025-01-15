@@ -11,11 +11,10 @@ export default {
   title: "UI/Action",
   component: Action,
   args: {
-    ...Action.defaultProps,
     children: "Action",
     disabled: false,
   },
-} satisfies Meta
+} satisfies Meta<typeof Action>
 
 // Stories
 export const Default = {

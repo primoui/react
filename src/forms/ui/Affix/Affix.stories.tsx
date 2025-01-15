@@ -9,9 +9,9 @@ export default {
   title: "Form UI/Affix",
   component: Affix,
   args: {
-    ...Affix.defaultProps,
+    disabled: false,
   },
-} satisfies Meta
+} satisfies Meta<typeof Affix>
 
 // Stories
 export const Default = {

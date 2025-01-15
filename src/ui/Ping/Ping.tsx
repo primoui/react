@@ -12,7 +12,7 @@ export type PingProps = Omit<HTMLAttributes<PingElement>, "size"> &
   VariantProps<typeof pingVariants>
 
 export const Ping = forwardRef<PingElement, PingProps>((props, ref) => {
-  const { className, theme, ...rest } = props
+  const { className, theme = "gray", ...rest } = props
 
   return (
     <div ref={ref} className={cx(pingVariants({ theme, className }))} {...rest}>
@@ -22,9 +22,5 @@ export const Ping = forwardRef<PingElement, PingProps>((props, ref) => {
     </div>
   )
 })
-
-Ping.defaultProps = {
-  theme: "gray",
-}
 
 Ping.displayName = "Ping"

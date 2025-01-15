@@ -119,9 +119,7 @@ export type SelectProps = ComponentPropsWithoutRef<typeof SelectPrimitive.Root> 
   }
 
 const SelectBase = forwardRef<ElementRef<typeof SelectPrimitive.Trigger>, SelectProps>(
-  (props, ref) => {
-    const { options, error, placeholder, ...rest } = props
-
+  ({ options, error, placeholder = "Select an option...", ...rest }, ref) => {
     return (
       <SelectPrimitive.Root {...rest}>
         <SelectTrigger ref={ref} error={error}>
@@ -151,8 +149,3 @@ export const Select = Object.assign(SelectBase, {
   Item: SelectItem,
   Separator: SelectSeparator,
 })
-
-Select.defaultProps = {
-  // options: false,
-  placeholder: "Select an option...",
-}

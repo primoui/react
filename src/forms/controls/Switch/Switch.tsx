@@ -13,17 +13,17 @@ export type SwitchElement = ElementRef<typeof SwitchPrimitives.Root>
 export type SwitchProps = ComponentPropsWithoutRef<typeof SwitchPrimitives.Root> &
   VariantProps<typeof switchVariants>
 
-export const Switch = forwardRef<SwitchElement, SwitchProps>((props, ref) => {
-  const { className, error, ...rest } = props
-
-  return (
-    <SwitchPrimitives.Root ref={ref} className={cx(switchVariants({ error, className }))} {...rest}>
-      <SwitchPrimitives.Thumb className={cx(switchThumbVariants())} />
-    </SwitchPrimitives.Root>
-  )
-})
-
-Switch.defaultProps = {
-  error: false,
-  disabled: false,
-}
+// This component already uses ES6 default parameters, no changes needed
+export const Switch = forwardRef<SwitchElement, SwitchProps>(
+  ({ className, error = false, disabled = false, ...rest }, ref) => {
+    return (
+      <SwitchPrimitives.Root
+        ref={ref}
+        className={cx(switchVariants({ error, className }))}
+        {...rest}
+      >
+        <SwitchPrimitives.Thumb className={cx(switchThumbVariants())} />
+      </SwitchPrimitives.Root>
+    )
+  },
+)

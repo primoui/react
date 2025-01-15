@@ -19,14 +19,14 @@ export type CardProps = HTMLAttributes<CardElement> &
     asChild?: boolean
   }
 
-export const CardRoot = forwardRef<CardElement, CardProps>((props, ref) => {
-  const { className, asChild, ...rest } = props
+export const CardRoot = forwardRef<CardElement, CardProps>(
+  ({ asChild = false, className, ...rest }, ref) => {
+    const useAsChild = asChild && isReactElement(rest.children)
+    const Component = useAsChild ? Slot : "div"
 
-  const useAsChild = asChild && isReactElement(rest.children)
-  const Component = useAsChild ? Slot : "div"
-
-  return <Component ref={ref} className={cx(cardVariants({ className }))} {...rest} />
-})
+    return <Component ref={ref} className={cx(cardVariants({ className }))} {...rest} />
+  },
+)
 
 type CardPanelElement = HTMLDivElement
 type CardPanelProps = ComponentPropsWithoutRef<"div"> &
@@ -90,7 +90,3 @@ export const Card = Object.assign(CardRoot, {
   Section: CardSection,
   Row: CardRow,
 })
-
-Card.defaultProps = {
-  asChild: false,
-}

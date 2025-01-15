@@ -39,7 +39,7 @@ type FeatureCardCloserProps = ButtonHTMLAttributes<HTMLButtonElement> &
 
 export const FeatureCardRoot = forwardRef<FeatureCardElement, FeatureCardRootProps>(
   (props, ref) => {
-    const { className, asChild, theme, variant, ...rest } = props
+    const { className, asChild, theme = "primary", variant = "soft", ...rest } = props
 
     const useAsChild = asChild && isReactElement(rest.children)
     const Component = useAsChild ? Slot : "div"
@@ -70,7 +70,7 @@ export const FeatureCardCloser = forwardRef<HTMLButtonElement, FeatureCardCloser
 )
 
 export const FeatureCardBase = forwardRef<FeatureCardElement, FeatureCardProps>((props, ref) => {
-  const { children, asChild, isCloseable, ...rest } = props
+  const { children, asChild, isCloseable = false, ...rest } = props
 
   return (
     <FeatureCardRoot ref={ref} asChild={asChild} {...rest}>
@@ -90,12 +90,5 @@ export const FeatureCard = Object.assign(FeatureCardBase, {
   Root: FeatureCardRoot,
   Closer: FeatureCardCloser,
 })
-
-FeatureCard.defaultProps = {
-  theme: "secondary",
-  variant: "soft",
-  asChild: false,
-  isCloseable: false,
-}
 
 FeatureCard.displayName = "FeatureCard"

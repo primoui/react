@@ -24,12 +24,14 @@ export default {
   title: "UI/FeatureCard",
   component: FeatureCard,
   args: {
-    ...FeatureCard.defaultProps,
+    theme: "primary",
+    variant: "soft",
+    asChild: false,
     children: Card,
     style: { width: 240 },
     isCloseable: true,
   },
-} satisfies Meta
+} satisfies Meta<typeof FeatureCard>
 
 // Stories
 export const Default = {
