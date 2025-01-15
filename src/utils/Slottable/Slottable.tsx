@@ -1,7 +1,7 @@
 "use client"
 
 import type { ReactNode } from "react"
-import { cloneElement, forwardRef } from "react"
+import { cloneElement } from "react"
 
 import { isReactElement } from "../../shared"
 
@@ -11,9 +11,7 @@ export type SlottableProps = {
   children: (child: ReactNode) => ReactNode
 }
 
-export const Slottable = forwardRef<HTMLElement, SlottableProps>((props, ref) => {
-  const { asChild, child, children, ...rest } = props
-
+export const Slottable = ({ asChild, child, children, ...rest }: SlottableProps) => {
   if (!asChild) {
     return children(child)
   }
@@ -23,5 +21,5 @@ export const Slottable = forwardRef<HTMLElement, SlottableProps>((props, ref) =>
   }
 
   // @ts-expect-error
-  return cloneElement(child, { ref, ...rest }, children(child.props?.children))
-})
+  return cloneElement(child, { ...rest }, children(child.props?.children))
+}

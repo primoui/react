@@ -1,18 +1,16 @@
 "use client"
 
-import { type HTMLAttributes, forwardRef, useEffect, useState } from "react"
+import type { HTMLAttributes } from "react"
+import { useEffect, useState } from "react"
 
 import { type VariantProps, cx } from "../../shared"
 
 import { screenSizeSeparatorVariants, screenSizeVariants } from "./ScreenSize.variants"
 
-export type ScreenSizeElement = HTMLDivElement
-
-export type ScreenSizeProps = Omit<HTMLAttributes<ScreenSizeElement>, "size"> &
+export type ScreenSizeProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
   VariantProps<typeof screenSizeVariants>
 
-export const ScreenSize = forwardRef<ScreenSizeElement, ScreenSizeProps>((props, ref) => {
-  const { className, position, ...rest } = props
+export const ScreenSize = ({ className, position, ...rest }: ScreenSizeProps) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -34,7 +32,7 @@ export const ScreenSize = forwardRef<ScreenSizeElement, ScreenSizeProps>((props,
   const { width, height } = dimensions
 
   return (
-    <div ref={ref} className={cx(screenSizeVariants({ position, className }))} {...rest}>
+    <div className={cx(screenSizeVariants({ position, className }))} {...rest}>
       <span>
         {width.toLocaleString()} x {height.toLocaleString()}
       </span>
@@ -48,6 +46,4 @@ export const ScreenSize = forwardRef<ScreenSizeElement, ScreenSizeProps>((props,
       <span className="max-2xl:hidden">2XL</span>
     </div>
   )
-})
-
-ScreenSize.displayName = "ScreenSize"
+}

@@ -1,19 +1,17 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import { forwardRef } from "react"
 import type { HTMLAttributes, ReactNode } from "react"
 
-import { type VariantProps, cx, isChildrenEmpty, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx, isReactElement } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Slottable } from "../../utils/Slottable"
 
 import { badgeAffixVariants, badgeVariants } from "./Badge.variants"
 
-export type BadgeElement = HTMLSpanElement
-
-export type BadgeProps = Omit<HTMLAttributes<BadgeElement>, "size" | "prefix"> &
-  Omit<VariantProps<typeof badgeVariants>, "isAffixOnly"> & {
+export type BadgeProps = Omit<HTMLAttributes<HTMLSpanElement>, "size" | "prefix"> &
+  VariantProps<typeof badgeVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
      * This child component must be a valid React component.
@@ -23,54 +21,52 @@ export type BadgeProps = Omit<HTMLAttributes<BadgeElement>, "size" | "prefix"> &
     /**
      * The slot to be rendered before the label.
      */
-    prefix?: ReactNode
+    prefix?: ReactNode | ReactNode[]
 
     /**
      * The slot to be rendered after the label.
      */
-    suffix?: ReactNode
+    suffix?: ReactNode | ReactNode[]
   }
 
-export const Badge = forwardRef<BadgeElement, BadgeProps>(
-  (
-    {
-      children,
-      className,
-      asChild = false,
-      prefix,
-      suffix,
-      theme = "blue",
-      variant = "solid",
-      size = "md",
-      shape = "rounded",
-      ...rest
-    },
-    ref,
-  ) => {
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "span"
+export const Badge = ({
+  children,
+  className,
+  asChild = false,
+  prefix: propPrefix,
+  suffix: propSuffix,
+  theme = "gray",
+  variant = "solid",
+  size = "md",
+  ...rest
+}: BadgeProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "span"
 
-    // Determine if the button has affix only.
-    const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
+  const prefix = propPrefix ? [propPrefix].flat() : []
+  const suffix = propSuffix ? [propSuffix].flat() : []
 
-    return (
-      <Component
-        ref={ref}
-        className={cx(badgeVariants({ theme, size, variant, shape, isAffixOnly, className }))}
-        {...rest}
-      >
-        <Slottable child={children} asChild={asChild}>
-          {child => (
-            <>
-              <Affixable variants={badgeAffixVariants}>{prefix}</Affixable>
-              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-              <Affixable variants={badgeAffixVariants}>{suffix}</Affixable>
-            </>
-          )}
-        </Slottable>
-      </Component>
-    )
-  },
-)
+  return (
+    <Component className={cx(badgeVariants({ theme, variant, size, className }))} {...rest}>
+      <Slottable child={children} asChild={asChild}>
+        {child => (
+          <>
+            {prefix?.map((p, i) => (
+              <Affixable key={i} variants={badgeAffixVariants}>
+                {p}
+              </Affixable>
+            ))}
 
-Badge.displayName = "Badge"
+            {child}
+
+            {suffix?.map((s, i) => (
+              <Affixable key={i} variants={badgeAffixVariants}>
+                {s}
+              </Affixable>
+            ))}
+          </>
+        )}
+      </Slottable>
+    </Component>
+  )
+}

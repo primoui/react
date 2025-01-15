@@ -2,8 +2,7 @@
 
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react"
-import { forwardRef } from "react"
+import type { ComponentProps, ReactNode } from "react"
 
 import type { VariantProps } from "../../../shared"
 import { cx, isTruthy } from "../../../shared"
@@ -21,12 +20,14 @@ export const SelectGroup = SelectPrimitive.Group
 export const SelectValue = SelectPrimitive.Value
 export const SelectIcon = SelectPrimitive.Icon
 
-export const SelectTrigger = forwardRef<
-  ElementRef<typeof SelectPrimitive.Trigger>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger> & VariantProps<typeof inputVariants>
->(({ className, mono, error, children, ...props }, ref) => (
+export const SelectTrigger = ({
+  className,
+  mono,
+  error,
+  children,
+  ...props
+}: ComponentProps<typeof SelectPrimitive.Trigger> & VariantProps<typeof inputVariants>) => (
   <SelectPrimitive.Trigger
-    ref={ref}
     className={cx(inputVariants({ mono, error, hoverable: true, className }))}
     {...props}
   >
@@ -36,15 +37,16 @@ export const SelectTrigger = forwardRef<
       <ChevronDown className="shrink-0 opacity-70" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
-))
+)
 
-export const SelectContent = forwardRef<
-  ElementRef<typeof SelectPrimitive.Content>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Content>
->(({ className, children, position = "popper", ...props }, ref) => (
+export const SelectContent = ({
+  className,
+  children,
+  position = "popper",
+  ...props
+}: ComponentProps<typeof SelectPrimitive.Content>) => (
   <SelectPrimitive.Portal>
     <SelectPrimitive.Content
-      ref={ref}
       className={cx(selectContentVariants({ popper: position === "popper", className }))}
       position={position}
       {...props}
@@ -66,47 +68,42 @@ export const SelectContent = forwardRef<
       </SelectPrimitive.ScrollDownButton>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
-))
+)
 
-export const SelectLabel = forwardRef<
-  ElementRef<typeof SelectPrimitive.Label>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
+export const SelectLabel = ({
+  className,
+  ...props
+}: ComponentProps<typeof SelectPrimitive.Label>) => (
   <SelectPrimitive.Label
-    ref={ref}
     className={cx("py-1.5 pl-2 pr-8 text-xs font-medium lg:text-sm", className)}
     {...props}
   />
-))
+)
 
-export const SelectItem = forwardRef<
-  ElementRef<typeof SelectPrimitive.Item>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item ref={ref} className={cx(selectItemVariants({ className }))} {...props}>
+export const SelectItem = ({
+  className,
+  children,
+  ...props
+}: ComponentProps<typeof SelectPrimitive.Item>) => (
+  <SelectPrimitive.Item className={cx(selectItemVariants({ className }))} {...props}>
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
 
     <SelectPrimitive.ItemIndicator asChild>
       <Check className="absolute right-1.5 top-1/2 -translate-y-1/2 stroke-2 text-sm opacity-70" />
     </SelectPrimitive.ItemIndicator>
   </SelectPrimitive.Item>
-))
+)
 
-export const SelectSeparator = forwardRef<
-  ElementRef<typeof SelectPrimitive.Separator>,
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Separator>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Separator
-    ref={ref}
-    className={cx("-mx-1 my-1 h-px bg-gray-200", className)}
-    {...props}
-  />
-))
+export const SelectSeparator = ({
+  className,
+  ...props
+}: ComponentProps<typeof SelectPrimitive.Separator>) => (
+  <SelectPrimitive.Separator className={cx("-mx-1 my-1 h-px bg-gray-200", className)} {...props} />
+)
 
-export type SelectElement = ElementRef<typeof SelectPrimitive.Root>
-export type SelectProps = ComponentPropsWithoutRef<typeof SelectPrimitive.Root> &
-  ComponentPropsWithoutRef<typeof SelectPrimitive.Value> &
-  ComponentPropsWithoutRef<typeof SelectTrigger> & {
+export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> &
+  ComponentProps<typeof SelectPrimitive.Value> &
+  ComponentProps<typeof SelectTrigger> & {
     options?: (
       | false
       | {
@@ -116,30 +113,25 @@ export type SelectProps = ComponentPropsWithoutRef<typeof SelectPrimitive.Root> 
     )[]
   }
 
-const SelectBase = forwardRef<ElementRef<typeof SelectPrimitive.Trigger>, SelectProps>(
-  ({ options, error, placeholder = "Select an option...", ...rest }, ref) => {
-    return (
-      <SelectPrimitive.Root {...rest}>
-        <SelectTrigger ref={ref} error={error}>
-          <SelectPrimitive.Value placeholder={placeholder} />
-        </SelectTrigger>
+export const Select = ({
+  options,
+  error,
+  placeholder = "Select an option...",
+  ...rest
+}: SelectProps) => {
+  return (
+    <SelectPrimitive.Root {...rest}>
+      <SelectTrigger error={error}>
+        <SelectPrimitive.Value placeholder={placeholder} />
+      </SelectTrigger>
 
-        <SelectContent>
-          {options?.filter(isTruthy).map(({ label, value }, index) => (
-            <SelectItem key={index} value={value}>
-              {label ?? value}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </SelectPrimitive.Root>
-    )
-  },
-)
-
-export const Select = forwardRef<ElementRef<typeof SelectPrimitive.Root>, SelectProps>(
-  ({ children, className, ...props }, ref) => (
-    <SelectPrimitive.Root ref={ref} className={cx(className)} {...props}>
-      {children}
+      <SelectContent>
+        {options?.filter(isTruthy).map(({ label, value }, index) => (
+          <SelectItem key={index} value={value}>
+            {label ?? value}
+          </SelectItem>
+        ))}
+      </SelectContent>
     </SelectPrimitive.Root>
-  ),
-)
+  )
+}

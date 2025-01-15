@@ -1,7 +1,6 @@
 "use client"
 
 import type { HTMLAttributes, ReactNode } from "react"
-import { forwardRef } from "react"
 
 import type { VariantProps } from "../../../shared"
 import { cx } from "../../../shared"
@@ -10,9 +9,7 @@ import { Label } from "../Label/Label"
 
 import { fieldContentVariants, fieldLabelVariants, fieldVariants } from "./Field.variants"
 
-export type FieldElement = HTMLDivElement
-
-export type FieldProps = HTMLAttributes<FieldElement> &
+export type FieldProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof fieldVariants> & {
     /**
      * The label for the field.
@@ -40,11 +37,11 @@ export type FieldProps = HTMLAttributes<FieldElement> &
     isRequired?: boolean
   }
 
-export const Field = forwardRef<FieldElement, FieldProps>((props, ref) => {
+export const Field = (props: FieldProps) => {
   const { children, className, id, label, hint, sideHint, tooltip, isRequired, ...rest } = props
 
   return (
-    <div ref={ref} className={cx(fieldVariants({ className }))} {...rest}>
+    <div className={cx(fieldVariants({ className }))} {...rest}>
       {label && (
         <div className={cx(fieldLabelVariants())}>
           <Label htmlFor={id} isRequired={isRequired}>
@@ -61,4 +58,4 @@ export const Field = forwardRef<FieldElement, FieldProps>((props, ref) => {
       </div>
     </div>
   )
-})
+}

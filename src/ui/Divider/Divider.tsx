@@ -1,14 +1,13 @@
 "use client"
 
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react"
+import type { HTMLAttributes, ReactNode } from "react"
 
 import type { VariantProps } from "../../shared"
-
 import { Subheading } from "../../typography/Subheading"
+
 import { dividerVariants } from "./Divider.variants"
 
-export type DividerElement = HTMLDivElement
-export type DividerProps = HTMLAttributes<DividerElement> &
+export type DividerProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof dividerVariants> & {
     /**
      * The label to display in the divider.
@@ -17,11 +16,9 @@ export type DividerProps = HTMLAttributes<DividerElement> &
     label?: ReactNode
   }
 
-export const Divider = forwardRef<DividerElement, DividerProps>((props, ref) => {
-  const { children, className, label = "or", ...rest } = props
-
+export const Divider = ({ children, className, label = "or", ...rest }: DividerProps) => {
   return (
-    <div ref={ref} className={dividerVariants({ className })} {...rest}>
+    <div className={dividerVariants({ className })} {...rest}>
       {children ?? (
         <Subheading size="xs" className="text-gray-400">
           {label}
@@ -29,6 +26,4 @@ export const Divider = forwardRef<DividerElement, DividerProps>((props, ref) => 
       )}
     </div>
   )
-})
-
-Divider.displayName = "Divider"
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import type { InputHTMLAttributes, ReactNode } from "react"
-import { forwardRef, useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import type { VariantProps } from "../../../shared"
 import { createSimpleContext, cx, getElementWidth } from "../../../shared"
@@ -15,8 +15,6 @@ export type AffixContext = {
 }
 
 const AffixContext = createSimpleContext<AffixContext>("Affix")
-
-export type AffixElement = HTMLDivElement
 
 export type AffixProps = Omit<InputHTMLAttributes<HTMLInputElement>, "prefix"> &
   VariantProps<typeof affixGroupVariants> &
@@ -32,7 +30,7 @@ export type AffixProps = Omit<InputHTMLAttributes<HTMLInputElement>, "prefix"> &
     suffix?: ReactNode
   }
 
-export const Affix = forwardRef<AffixElement, AffixProps>((props, ref) => {
+export const Affix = (props: AffixProps) => {
   const { children, className, prefix, suffix, ...rest } = props
   const [prefixWidth, setPrefixWidth] = useState<number>()
   const [suffixWidth, setSuffixWidth] = useState<number>()
@@ -50,7 +48,7 @@ export const Affix = forwardRef<AffixElement, AffixProps>((props, ref) => {
 
   return (
     <AffixContext.Provider value={{ prefixWidth, suffixWidth }}>
-      <div ref={ref} className={cx(affixGroupVariants({ className }))} {...rest}>
+      <div className={cx(affixGroupVariants({ className }))} {...rest}>
         <Affixable ref={prefixRef} variants={affixVariants}>
           {prefix}
         </Affixable>
@@ -63,8 +61,6 @@ export const Affix = forwardRef<AffixElement, AffixProps>((props, ref) => {
       </div>
     </AffixContext.Provider>
   )
-})
+}
 
 export const useAffix = AffixContext.useValue
-
-Affix.displayName = "Affix"

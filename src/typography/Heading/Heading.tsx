@@ -1,17 +1,20 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import type { HTMLAttributes } from "react"
-import { forwardRef } from "react"
+import type { ElementType, HTMLAttributes } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { headingVariants } from "./Heading.variants"
 
-export type HeadingElement = HTMLHeadingElement
-
-export type HeadingProps = Omit<HTMLAttributes<HeadingElement>, "size"> &
+export type HeadingProps = Omit<HTMLAttributes<HTMLHeadingElement>, "size"> &
   VariantProps<typeof headingVariants> & {
+    /**
+     * If set to `true`, the button will be rendered as a child within the component.
+     * This child component must be a valid React component.
+     */
+    as?: ElementType
+
     /**
      * If set to `true`, the button will be rendered as a child within the component.
      * This child component must be a valid React component.
@@ -19,37 +22,33 @@ export type HeadingProps = Omit<HTMLAttributes<HeadingElement>, "size"> &
     asChild?: boolean
   }
 
-export const Heading = forwardRef<HeadingElement, HeadingProps>(
-  ({ className, asChild = false, size = "h3", ...rest }, ref) => {
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Comp = useAsChild ? Slot : (size ?? "h2")
+export const Heading = ({ className, as, asChild = false, size = "h3", ...rest }: HeadingProps) => {
+  const useAsChild = asChild && isReactElement(rest.children)
+  const Comp = useAsChild ? Slot : (as ?? size ?? "h2")
 
-    return <Comp ref={ref} className={cx(headingVariants({ size, className }))} {...rest} />
-  },
-)
+  return <Comp className={cx(headingVariants({ size, className }))} {...rest} />
+}
 
-export const H1 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h1" {...props} />
-})
+export const H1 = (props: HeadingProps) => {
+  return <Heading size="h1" {...props} />
+}
 
-export const H2 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h2" {...props} />
-})
+export const H2 = (props: HeadingProps) => {
+  return <Heading size="h2" {...props} />
+}
 
-export const H3 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h3" {...props} />
-})
+export const H3 = (props: HeadingProps) => {
+  return <Heading size="h3" {...props} />
+}
 
-export const H4 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h4" {...props} />
-})
+export const H4 = (props: HeadingProps) => {
+  return <Heading size="h4" {...props} />
+}
 
-export const H5 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h5" {...props} />
-})
+export const H5 = (props: HeadingProps) => {
+  return <Heading size="h5" {...props} />
+}
 
-export const H6 = forwardRef<HeadingElement, HeadingProps>((props, ref) => {
-  return <Heading ref={ref} size="h6" {...props} />
-})
-
-Heading.displayName = "Heading"
+export const H6 = (props: HeadingProps) => {
+  return <Heading size="h6" {...props} />
+}

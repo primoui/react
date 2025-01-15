@@ -13,7 +13,6 @@ import { createContext, useContext } from "react"
  */
 export const createSimpleContext = <ContextType>(name: string) => {
   const Context = createContext<ContextType>({} as ContextType)
-  Context.displayName = name
 
   /**
    * A hook that returns the context value.

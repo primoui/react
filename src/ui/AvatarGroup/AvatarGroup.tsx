@@ -1,20 +1,17 @@
 "use client"
 
-import type { ComponentPropsWithoutRef, HTMLAttributes, ReactNode } from "react"
-import { forwardRef } from "react"
+import type { ComponentProps, HTMLAttributes, ReactNode } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
-import type { AvatarElement, AvatarProps } from "../Avatar/Avatar"
+import type { AvatarProps } from "../Avatar/Avatar"
 import { Avatar } from "../Avatar/Avatar"
 import type { avatarVariants } from "../Avatar/Avatar.variants"
 
 import { avatarGroupItemVariants, avatarGroupVariants } from "./AvatarGroup.variants"
 
-export type AvatarGroupElement = HTMLDivElement
-
 type AvatarGroupAvatarProps = Omit<AvatarProps, "size" | "asChild">
 
-export type AvatarGroupRootProps = HTMLAttributes<AvatarGroupElement> &
+export type AvatarGroupRootProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof avatarGroupVariants>
 
 export type AvatarGroupProps = AvatarGroupRootProps &
@@ -36,60 +33,56 @@ export type AvatarGroupProps = AvatarGroupRootProps &
     previousOnTop?: boolean
   }
 
-export const AvatarGroupRoot = forwardRef<AvatarGroupElement, AvatarGroupRootProps>(
-  (props, ref) => {
-    const { children, className, size, ...rest } = props
+export const AvatarGroupRoot = ({ children, className, size, ...rest }: AvatarGroupRootProps) => {
+  return (
+    <div className={cx(avatarGroupVariants({ size, className }))} {...rest}>
+      {children}
+    </div>
+  )
+}
 
-    return (
-      <div ref={ref} className={cx(avatarGroupVariants({ size, className }))} {...rest}>
-        {children}
-      </div>
-    )
-  },
-)
-
-type AvatarGroupLabelProps = ComponentPropsWithoutRef<typeof Avatar> & {
+type AvatarGroupLabelProps = ComponentProps<typeof Avatar> & {
   /**
    * The label to display.
    */
   label?: ReactNode
 }
 
-export const AvatarGroupLabel = forwardRef<AvatarElement, AvatarGroupLabelProps>(
-  ({ children, className, label, ...rest }, ref) => {
-    return (
-      <Avatar
-        ref={ref}
-        asChild={isReactElement(children)}
-        className={cx(avatarGroupItemVariants({ className }))}
-        {...rest}
-      >
-        {!children && label}
-        {children}
-      </Avatar>
-    )
-  },
-)
+export const AvatarGroupLabel = ({
+  children,
+  className,
+  label,
+  ...rest
+}: AvatarGroupLabelProps) => {
+  return (
+    <Avatar
+      asChild={isReactElement(children)}
+      className={cx(avatarGroupItemVariants({ className }))}
+      {...rest}
+    >
+      {!children && label}
+      {children}
+    </Avatar>
+  )
+}
 
-export const AvatarGroupItem = forwardRef<AvatarElement, ComponentPropsWithoutRef<typeof Avatar>>(
-  ({ className, initials, ...rest }, ref) => {
-    return (
-      <Avatar
-        ref={ref}
-        className={cx(avatarGroupItemVariants({ className }))}
-        initials={initials}
-        {...rest}
-      />
-    )
-  },
-)
+export const AvatarGroupItem = ({ className, ...rest }: AvatarProps) => {
+  return <Avatar className={cx(avatarGroupItemVariants({ className }))} {...rest} />
+}
 
-const AvatarGroupBase = forwardRef<AvatarGroupElement, AvatarGroupProps>((props, ref) => {
-  const { children, items, size = "md", shape, previousOnTop, label, ...rest } = props
+const AvatarGroupBase = ({
+  children,
+  items,
+  size = "md",
+  shape,
+  previousOnTop,
+  label,
+  ...rest
+}: AvatarGroupProps) => {
   const avatarProps = { size, shape }
 
   return (
-    <AvatarGroupRoot ref={ref} size={size} {...rest}>
+    <AvatarGroupRoot size={size} {...rest}>
       <>
         {items?.map((item, i) => {
           const style = {
@@ -106,12 +99,10 @@ const AvatarGroupBase = forwardRef<AvatarGroupElement, AvatarGroupProps>((props,
       </>
     </AvatarGroupRoot>
   )
-})
+}
 
 export const AvatarGroup = Object.assign(AvatarGroupBase, {
   Root: AvatarGroupRoot,
   Item: AvatarGroupItem,
   Label: AvatarGroupLabel,
 })
-
-AvatarGroup.displayName = "AvatarGroup"

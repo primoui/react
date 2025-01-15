@@ -1,36 +1,31 @@
 "use client"
 
-import { Slot } from "@radix-ui/react-slot"
-import { type HTMLAttributes, forwardRef } from "react"
+import type { HTMLAttributes } from "react"
 
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx } from "../../shared"
 
 import { statusVariants } from "./Status.variants"
 
-export type StatusElement = HTMLSpanElement
-
-export type StatusProps = Omit<HTMLAttributes<StatusElement>, "size"> &
+export type StatusProps = HTMLAttributes<HTMLSpanElement> &
   VariantProps<typeof statusVariants> & {
     /**
-     * If set to `true`, the button will be rendered as a child within the component.
-     * This child component must be a valid React component.
+     * The label to display in the status.
      */
-    asChild?: boolean
+    label?: string
   }
 
-export const Status = forwardRef<StatusElement, StatusProps>(
-  ({ className, asChild = false, theme = "gray", variant = "empty", ...rest }, ref) => {
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Component = useAsChild ? Slot : "span"
-
-    return (
-      <Component
-        ref={ref}
-        className={cx(statusVariants({ theme, variant, className }))}
-        {...rest}
-      />
-    )
-  },
-)
-
-Status.displayName = "Status"
+export const Status = ({
+  children,
+  className,
+  label,
+  theme = "gray",
+  variant = "empty",
+  ...rest
+}: StatusProps) => {
+  return (
+    <span className={cx(statusVariants({ theme, variant, className }))} {...rest}>
+      {children ?? label}
+    </span>
+  )
+}

@@ -2,17 +2,15 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import { X } from "lucide-react"
-import { forwardRef } from "react"
 import type { ButtonHTMLAttributes, HTMLAttributes } from "react"
 
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx, isReactElement } from "../../shared"
 import { Slottable } from "../../utils/Slottable"
 
 import { featureCardCloserVariants, featureCardVariants } from "./FeatureCard.variants"
 
-export type FeatureCardElement = HTMLDivElement
-
-export type FeatureCardRootProps = HTMLAttributes<FeatureCardElement> &
+export type FeatureCardRootProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof featureCardVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -21,59 +19,58 @@ export type FeatureCardRootProps = HTMLAttributes<FeatureCardElement> &
     asChild?: boolean
   }
 
+export type FeatureCardCloserProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  /**
+   * If set to `true`, the button will be rendered as a child within the component.
+   * This child component must be a valid React component.
+   */
+  asChild?: boolean
+}
+
 export type FeatureCardProps = FeatureCardRootProps & {
   /**
-   * If set to `true`, it'll render a closer button.
+   * If set to `true`, the card will display a close button.
    */
   isCloseable?: boolean
 }
 
-type FeatureCardCloserProps = ButtonHTMLAttributes<HTMLButtonElement> &
-  VariantProps<typeof featureCardCloserVariants> & {
-    /**
-     * If set to `true`, the button will be rendered as a child within the component.
-     * This child component must be a valid React component.
-     */
-    asChild?: boolean
-  }
+export const FeatureCardRoot = ({
+  className,
+  asChild,
+  theme = "primary",
+  variant = "soft",
+  ...rest
+}: FeatureCardRootProps) => {
+  const useAsChild = asChild && isReactElement(rest.children)
+  const Component = useAsChild ? Slot : "div"
 
-export const FeatureCardRoot = forwardRef<FeatureCardElement, FeatureCardRootProps>(
-  (props, ref) => {
-    const { className, asChild, theme = "primary", variant = "soft", ...rest } = props
+  return <Component className={cx(featureCardVariants({ theme, variant, className }))} {...rest} />
+}
 
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Component = useAsChild ? Slot : "div"
-
-    return (
-      <Component
-        className={cx(featureCardVariants({ theme, variant, className }))}
-        ref={ref}
-        {...rest}
-      />
-    )
-  },
-)
-
-export const FeatureCardCloser = forwardRef<HTMLButtonElement, FeatureCardCloserProps>(
-  (props, ref) => {
-    const { children, className, asChild, ...rest } = props
-
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "button"
-
-    return (
-      <Component ref={ref} className={cx(featureCardCloserVariants({ className }))} {...rest}>
-        {useAsChild ? children : <X />}
-      </Component>
-    )
-  },
-)
-
-export const FeatureCardBase = forwardRef<FeatureCardElement, FeatureCardProps>((props, ref) => {
-  const { children, asChild, isCloseable = false, ...rest } = props
+export const FeatureCardCloser = ({
+  children,
+  className,
+  asChild,
+  ...rest
+}: FeatureCardCloserProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "button"
 
   return (
-    <FeatureCardRoot ref={ref} asChild={asChild} {...rest}>
+    <Component className={cx(featureCardCloserVariants({ className }))} {...rest}>
+      {useAsChild ? children : <X />}
+    </Component>
+  )
+}
+
+export const FeatureCardBase = ({
+  children,
+  asChild,
+  isCloseable = false,
+  ...rest
+}: FeatureCardProps) => {
+  return (
+    <FeatureCardRoot asChild={asChild} {...rest}>
       <Slottable child={children} asChild={asChild}>
         {child => (
           <>
@@ -84,11 +81,9 @@ export const FeatureCardBase = forwardRef<FeatureCardElement, FeatureCardProps>(
       </Slottable>
     </FeatureCardRoot>
   )
-})
+}
 
 export const FeatureCard = Object.assign(FeatureCardBase, {
   Root: FeatureCardRoot,
   Closer: FeatureCardCloser,
 })
-
-FeatureCard.displayName = "FeatureCard"

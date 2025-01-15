@@ -3,86 +3,79 @@
 import { Slot } from "@radix-ui/react-slot"
 import { Loader2 } from "lucide-react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
-import { forwardRef } from "react"
 
-import { type VariantProps, cx, isChildrenEmpty, isReactElement } from "../../shared"
+import { type VariantProps, cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Slottable } from "../../utils/Slottable"
 
 import { buttonAffixVariants, buttonVariants } from "./Button.variants"
 
-export type ButtonElement = HTMLButtonElement
-
-export type ButtonProps = Omit<ButtonHTMLAttributes<ButtonElement>, "size" | "prefix"> &
-  Omit<VariantProps<typeof buttonVariants>, "isAffixOnly"> & {
+export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size" | "prefix"> &
+  VariantProps<typeof buttonVariants> & {
     /**
-     * If set to `true`, the button will be rendered as a child within the component.
+     * If set to `true`, the element will be rendered as a child within the component.
      * This child component must be a valid React component.
      */
     asChild?: boolean
 
     /**
-     * If set to `true`, the button will be rendered in the pending state.
-     */
-    isPending?: boolean
-
-    /**
      * The slot to be rendered before the label.
      */
-    prefix?: ReactNode
+    prefix?: ReactNode | ReactNode[]
 
     /**
      * The slot to be rendered after the label.
      */
-    suffix?: ReactNode
+    suffix?: ReactNode | ReactNode[]
+
+    /**
+     * If set to `true`, the element will be rendered in the pending state.
+     */
+    isPending?: boolean
   }
 
-export const Button = forwardRef<ButtonElement, ButtonProps>(
-  (
-    {
-      children,
-      className,
-      disabled,
-      asChild = false,
-      isPending,
-      prefix,
-      suffix,
-      theme = "primary",
-      variant = "solid",
-      size = "lg",
-      type = "button",
-      ...rest
-    },
-    ref,
-  ) => {
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "button"
+export const Button = ({
+  children,
+  className,
+  asChild = false,
+  prefix: propPrefix,
+  suffix: propSuffix,
+  isPending = false,
+  theme = "primary",
+  size = "md",
+  ...rest
+}: ButtonProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "button"
 
-    // Determine if the button has affix only.
-    const isAffixOnly = isChildrenEmpty(children) && (!prefix || !suffix)
+  const prefix = toArrayOrWrap(propPrefix)
+  const suffix = toArrayOrWrap(propSuffix)
 
-    return (
-      <Component
-        ref={ref}
-        disabled={disabled ?? isPending}
-        className={cx(buttonVariants({ theme, variant, size, isAffixOnly, isPending, className }))}
-        type={type}
-        {...rest}
-      >
-        <Slottable child={children} asChild={asChild}>
-          {child => (
-            <>
-              <Affixable variants={buttonAffixVariants}>{prefix}</Affixable>
-              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-              <Affixable variants={buttonAffixVariants}>{suffix}</Affixable>
+  if (isPending) {
+    suffix.push(<Loader2 className="text-xs" />)
+  }
 
-              {!!isPending && <Loader2 className="absolute" />}
-            </>
-          )}
-        </Slottable>
-      </Component>
-    )
-  },
-)
+  return (
+    <Component className={cx(buttonVariants({ theme, size, className }))} {...rest}>
+      <Slottable child={children} asChild={asChild}>
+        {child => (
+          <>
+            {prefix?.map((p, i) => (
+              <Affixable key={i} variants={buttonAffixVariants}>
+                {p}
+              </Affixable>
+            ))}
 
-Button.displayName = "Button"
+            {!isChildrenEmpty(child) && <span className="flex-1 truncate">{child}</span>}
+
+            {suffix?.map((s, i) => (
+              <Affixable key={i} variants={buttonAffixVariants}>
+                {s}
+              </Affixable>
+            ))}
+          </>
+        )}
+      </Slottable>
+    </Component>
+  )
+}

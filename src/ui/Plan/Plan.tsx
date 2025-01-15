@@ -2,7 +2,7 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import { Check, X } from "lucide-react"
-import { type HTMLAttributes, type ReactNode, forwardRef } from "react"
+import type { HTMLAttributes, ReactNode } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
 
@@ -13,9 +13,7 @@ import { Card } from "../Card"
 import { Series } from "../Series"
 import { planFeatureCheckVariants, planFeatureVariants, planVariants } from "./Plan.variants"
 
-export type PlanElement = HTMLDivElement
-
-export type PlanProps = Omit<HTMLAttributes<PlanElement>, "size"> &
+export type PlanProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
   VariantProps<typeof planVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -69,69 +67,62 @@ export type PlanProps = Omit<HTMLAttributes<PlanElement>, "size"> &
     }[]
   }
 
-export const Plan = forwardRef<PlanElement, PlanProps>(
-  (
-    {
-      children,
-      className,
-      asChild = false,
-      price,
-      name,
-      description,
-      features,
-      isFeatured = false,
-      ...rest
-    },
-    ref,
-  ) => {
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "div"
+export const Plan = ({
+  children,
+  className,
+  asChild = false,
+  price,
+  name,
+  description,
+  features,
+  isFeatured = false,
+  ...rest
+}: PlanProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "div"
 
-    return (
-      <Card asChild>
-        <Component ref={ref} className={cx(planVariants({ isFeatured, className }))} {...rest}>
-          <div className="space-y-3">
-            <H3>{name}</H3>
+  return (
+    <Card asChild>
+      <Component className={cx(planVariants({ isFeatured, className }))} {...rest}>
+        <div className="space-y-3">
+          <H3>{name}</H3>
 
-            {description && (
-              <Paragraph size="sm" wrap="pretty" className="text-gray-600">
-                {description}
-              </Paragraph>
-            )}
-          </div>
-
-          <div className="relative flex flex-wrap items-end gap-1 font-medium">
-            <span className="text-xl/none text-gray-400">$</span>
-
-            <span className="text-black text-4xl font-bold !leading-[0.85em]">
-              {formatIntervalAmount(price.amount, price.interval)}
-            </span>
-
-            <div className="text-xs text-gray-500">
-              /mo
-              {price.interval === "year" && <div>billed annually</div>}
-            </div>
-          </div>
-
-          {!!features?.length && (
-            <Series direction="column" className="mb-auto">
-              {features.map(({ type, text }) => (
-                <div key={text} className={cx(planFeatureVariants())}>
-                  <Slot className={cx(planFeatureCheckVariants({ type }))}>
-                    {type === "negative" ? <X /> : <Check />}
-                  </Slot>
-
-                  <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>
-                </div>
-              ))}
-            </Series>
+          {description && (
+            <Paragraph size="sm" wrap="pretty" className="text-gray-600">
+              {description}
+            </Paragraph>
           )}
+        </div>
 
-          {children}
-        </Component>
-      </Card>
-    )
-  },
-)
+        <div className="relative flex flex-wrap items-end gap-1 font-medium">
+          <span className="text-xl/none text-gray-400">$</span>
 
-Plan.displayName = "Plan"
+          <span className="text-black text-4xl font-bold !leading-[0.85em]">
+            {formatIntervalAmount(price.amount, price.interval)}
+          </span>
+
+          <div className="text-xs text-gray-500">
+            /mo
+            {price.interval === "year" && <div>billed annually</div>}
+          </div>
+        </div>
+
+        {!!features?.length && (
+          <Series direction="column" className="mb-auto">
+            {features.map(({ type, text }) => (
+              <div key={text} className={cx(planFeatureVariants())}>
+                <Slot className={cx(planFeatureCheckVariants({ type }))}>
+                  {type === "negative" ? <X /> : <Check />}
+                </Slot>
+
+                <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>
+              </div>
+            ))}
+          </Series>
+        )}
+
+        {children}
+      </Component>
+    </Card>
+  )
+}

@@ -1,82 +1,69 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import { Loader2 } from "lucide-react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
-import { forwardRef } from "react"
 
-import { type VariantProps, cx, isChildrenEmpty, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx, isReactElement } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Slottable } from "../../utils/Slottable"
 
 import { actionAffixVariants, actionVariants } from "./Action.variants"
 
-export type ActionElement = HTMLButtonElement
-
-export type ActionProps = Omit<ButtonHTMLAttributes<ActionElement>, "size" | "prefix"> &
-  Omit<VariantProps<typeof actionVariants>, "isAffixOnly"> & {
+export type ActionProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "prefix"> &
+  VariantProps<typeof actionVariants> & {
     /**
-     * If set to `true`, the action will be rendered as a child within the component.
+     * If set to `true`, the button will be rendered as a child within the component.
      * This child component must be a valid React component.
      */
     asChild?: boolean
 
     /**
-     * If set to `true`, the action will be rendered in the pending state.
-     */
-    isPending?: boolean
-
-    /**
      * The slot to be rendered before the label.
      */
-    prefix?: ReactNode
+    prefix?: ReactNode | ReactNode[]
 
     /**
      * The slot to be rendered after the label.
      */
-    suffix?: ReactNode
+    suffix?: ReactNode | ReactNode[]
   }
 
-export const Action = forwardRef<ActionElement, ActionProps>(
-  (
-    {
-      children,
-      className,
-      disabled,
-      asChild = false,
-      isPending,
-      prefix,
-      suffix,
-      type = "submit",
-      ...rest
-    },
-    ref,
-  ) => {
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "button"
+export const Action = ({
+  children,
+  className,
+  asChild = false,
+  prefix: propPrefix,
+  suffix: propSuffix,
+  ...rest
+}: ActionProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "button"
 
-    return (
-      <Component
-        ref={ref}
-        disabled={disabled ?? isPending}
-        className={cx(actionVariants({ isPending, className }))}
-        type={type}
-        {...rest}
-      >
-        <Slottable child={children} asChild={asChild}>
-          {child => (
-            <>
-              <Affixable variants={actionAffixVariants}>{prefix}</Affixable>
-              {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
-              <Affixable variants={actionAffixVariants}>{suffix}</Affixable>
+  const prefix = propPrefix ? [propPrefix].flat() : []
+  const suffix = propSuffix ? [propSuffix].flat() : []
 
-              {!!isPending && <Loader2 className="absolute" />}
-            </>
-          )}
-        </Slottable>
-      </Component>
-    )
-  },
-)
+  return (
+    <Component className={cx(actionVariants({ className }))} {...rest}>
+      <Slottable child={children} asChild={asChild}>
+        {child => (
+          <>
+            {prefix?.map((p, i) => (
+              <Affixable key={i} variants={actionAffixVariants}>
+                {p}
+              </Affixable>
+            ))}
 
-Action.displayName = "Action"
+            {child}
+
+            {suffix?.map((s, i) => (
+              <Affixable key={i} variants={actionAffixVariants}>
+                {s}
+              </Affixable>
+            ))}
+          </>
+        )}
+      </Slottable>
+    </Component>
+  )
+}

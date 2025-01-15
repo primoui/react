@@ -1,19 +1,17 @@
 "use client"
 
-import { Slot } from "@radix-ui/react-slot"
-import { Loader2 } from "lucide-react"
-import { forwardRef } from "react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
 
-import { type VariantProps, cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
-import { Affixable } from "../../utils/Affixable"
-import { Slottable } from "../../utils/Slottable"
+import type { VariantProps } from "../../shared"
+import { cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
 
+import { Slot } from "@radix-ui/react-slot"
+import { Loader2 } from "lucide-react"
+import { Affixable } from "~/utils/Affixable"
+import { Slottable } from "~/utils/Slottable/Slottable"
 import { menuItemAffixVariants, menuItemVariants } from "./MenuItem.variants"
 
-export type MenuItemElement = HTMLButtonElement
-
-export type MenuItemProps = Omit<ButtonHTMLAttributes<MenuItemElement>, "prefix"> &
+export type MenuItemProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "prefix"> &
   VariantProps<typeof menuItemVariants> & {
     /**
      * If set to `true`, the element will be rendered as a child within the component.
@@ -42,62 +40,54 @@ export type MenuItemProps = Omit<ButtonHTMLAttributes<MenuItemElement>, "prefix"
     isPending?: boolean
   }
 
-export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>(
-  (
-    {
-      children,
-      className,
-      asChild = false,
-      prefix: propPrefix,
-      suffix: propSuffix,
-      isPending = false,
-      isActive = false,
-      theme = "secondary",
-      size = "md",
-      linkable = false,
-      ...rest
-    },
-    ref,
-  ) => {
-    const useAsChild = asChild && isReactElement(children)
-    const Component = useAsChild ? Slot : "button"
+export const MenuItem = ({
+  children,
+  className,
+  asChild = false,
+  prefix: propPrefix,
+  suffix: propSuffix,
+  isPending = false,
+  isActive = false,
+  theme = "secondary",
+  size = "md",
+  linkable = false,
+  ...rest
+}: MenuItemProps) => {
+  const useAsChild = asChild && isReactElement(children)
+  const Component = useAsChild ? Slot : "button"
 
-    const prefix = toArrayOrWrap(propPrefix)
-    const suffix = toArrayOrWrap(propSuffix)
+  const prefix = toArrayOrWrap(propPrefix)
+  const suffix = toArrayOrWrap(propSuffix)
 
-    if (isPending) {
-      suffix.push(<Loader2 className="text-xs" />)
-    }
+  if (isPending) {
+    suffix.push(<Loader2 className="text-xs" />)
+  }
 
-    return (
-      <Component
-        ref={ref}
-        aria-current={isActive ? "page" : undefined}
-        className={cx(menuItemVariants({ theme, size, linkable, className }))}
-        {...rest}
-      >
-        <Slottable child={children} asChild={asChild}>
-          {child => (
-            <>
-              {prefix?.map((p, i) => (
-                <Affixable key={i} variants={menuItemAffixVariants}>
-                  {p}
-                </Affixable>
-              ))}
+  return (
+    <Component
+      aria-current={isActive ? "page" : undefined}
+      className={cx(menuItemVariants({ theme, size, linkable, className }))}
+      {...rest}
+    >
+      <Slottable child={children} asChild={asChild}>
+        {child => (
+          <>
+            {prefix?.map((p, i) => (
+              <Affixable key={i} variants={menuItemAffixVariants}>
+                {p}
+              </Affixable>
+            ))}
 
-              {!isChildrenEmpty(child) && <span className="flex-1 truncate">{child}</span>}
+            {!isChildrenEmpty(child) && <span className="flex-1 truncate">{child}</span>}
 
-              {suffix?.map((s, i) => (
-                <Affixable key={i} variants={menuItemAffixVariants}>
-                  {s}
-                </Affixable>
-              ))}
-            </>
-          )}
-        </Slottable>
-      </Component>
-    )
-  },
-)
-
-MenuItem.displayName = "MenuItem"
+            {suffix?.map((s, i) => (
+              <Affixable key={i} variants={menuItemAffixVariants}>
+                {s}
+              </Affixable>
+            ))}
+          </>
+        )}
+      </Slottable>
+    </Component>
+  )
+}

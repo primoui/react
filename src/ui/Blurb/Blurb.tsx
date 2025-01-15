@@ -1,13 +1,12 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import { forwardRef } from "react"
 import type { ComponentPropsWithoutRef, ReactElement } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
-import type { ParagraphElement, ParagraphProps } from "../../typography/Paragraph"
+import type { ParagraphProps } from "../../typography/Paragraph"
 import { Paragraph } from "../../typography/Paragraph"
-import type { AvatarElement, AvatarProps } from "../Avatar"
+import type { AvatarProps } from "../Avatar"
 import { Avatar } from "../Avatar"
 
 import {
@@ -16,8 +15,6 @@ import {
   blurbTitleVariants,
   blurbVariants,
 } from "./Blurb.variants"
-
-export type BlurbElement = HTMLDivElement
 
 type BlurbRootProps = ComponentPropsWithoutRef<"div"> &
   VariantProps<typeof blurbVariants> & {
@@ -50,73 +47,65 @@ export type BlurbProps = BlurbRootProps & {
   size?: "sm" | "md" | "lg"
 }
 
-export const BlurbRoot = forwardRef<BlurbElement, BlurbRootProps>((props, ref) => {
-  const { className, asChild, ...rest } = props
+export const BlurbRoot = ({ className, asChild, ...rest }: BlurbRootProps) => {
   const useAsChild = asChild && isReactElement(rest.children)
   const Component = useAsChild ? Slot : "div"
 
-  return <Component ref={ref} className={cx(blurbVariants({ className }))} {...props} />
-})
+  return <Component className={cx(blurbVariants({ className }))} {...rest} />
+}
 
-export const BlurbAvatar = forwardRef<AvatarElement, AvatarProps>(
-  ({ size = "lg", ...props }, ref) => {
-    return <Avatar ref={ref} size={size} {...props} />
-  },
-)
+export const BlurbAvatar = ({ size = "lg", ...props }: AvatarProps) => {
+  return <Avatar size={size} {...props} />
+}
 
-export const BlurbContent = forwardRef<
-  HTMLDivElement,
-  ComponentPropsWithoutRef<"div"> & VariantProps<typeof blurbContentVariants>
->(({ className, ...props }, ref) => {
-  return <div ref={ref} className={cx(blurbContentVariants({ className }))} {...props} />
-})
+export const BlurbContent = ({
+  className,
+  ...props
+}: ComponentPropsWithoutRef<"div"> & VariantProps<typeof blurbContentVariants>) => {
+  return <div className={cx(blurbContentVariants({ className }))} {...props} />
+}
 
-export const BlurbTitle = forwardRef<
-  ParagraphElement,
-  ParagraphProps & VariantProps<typeof blurbTitleVariants>
->((props, ref) => {
-  const { className, size = "sm", ...rest } = props
-
+export const BlurbTitle = ({
+  className,
+  size = "sm",
+  ...rest
+}: ParagraphProps & VariantProps<typeof blurbTitleVariants>) => {
   if (!rest.children) {
     return null
   }
 
   return (
     <Paragraph
-      ref={ref}
       size={size}
       variant="medium"
       className={cx(blurbTitleVariants({ className }))}
       {...rest}
     />
   )
-})
+}
 
-export const BlurbDescription = forwardRef<
-  ParagraphElement,
-  ParagraphProps & VariantProps<typeof blurbDescriptionVariants>
->((props, ref) => {
-  const { className, size = "xs", ...rest } = props
-
+export const BlurbDescription = ({
+  className,
+  size = "xs",
+  ...rest
+}: ParagraphProps & VariantProps<typeof blurbDescriptionVariants>) => {
   if (!rest.children) {
     return null
   }
 
-  return (
-    <Paragraph
-      ref={ref}
-      size={size}
-      className={cx(blurbDescriptionVariants({ className }))}
-      {...rest}
-    />
-  )
-})
+  return <Paragraph size={size} className={cx(blurbDescriptionVariants({ className }))} {...rest} />
+}
 
-const BlurbBase = forwardRef<BlurbElement, BlurbProps>((props, ref) => {
-  const { children, avatar, title = "", description = "", size = "sm", ...rest } = props
-
+const BlurbBase = ({
+  children,
+  avatar,
+  title = "",
+  description = "",
+  size = "sm",
+  ...rest
+}: BlurbProps) => {
   return (
-    <BlurbRoot ref={ref} {...rest}>
+    <BlurbRoot {...rest}>
       {isReactElement(avatar)
         ? avatar
         : avatar && <BlurbAvatar size={size === "sm" ? "lg" : "xl"} {...avatar} />}
@@ -131,14 +120,7 @@ const BlurbBase = forwardRef<BlurbElement, BlurbProps>((props, ref) => {
       {children}
     </BlurbRoot>
   )
-})
-
-BlurbBase.displayName = "Blurb"
-BlurbRoot.displayName = "BlurbRoot"
-BlurbAvatar.displayName = "BlurbAvatar"
-BlurbContent.displayName = "BlurbContent"
-BlurbTitle.displayName = "BlurbTitle"
-BlurbDescription.displayName = "BlurbDescription"
+}
 
 export const Blurb = Object.assign(BlurbBase, {
   Root: BlurbRoot,

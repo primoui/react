@@ -2,15 +2,12 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
-import { forwardRef } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { containerVariants } from "./Container.variants"
 
-export type ContainerElement = HTMLDivElement
-
-export type ContainerProps = HTMLAttributes<ContainerElement> &
+export type ContainerProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof containerVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -19,13 +16,9 @@ export type ContainerProps = HTMLAttributes<ContainerElement> &
     asChild?: boolean
   }
 
-export const Container = forwardRef<ContainerElement, ContainerProps>(
-  ({ className, asChild = false, size = "md", ...rest }, ref) => {
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Component = useAsChild ? Slot : "main"
+export const Container = ({ className, asChild = false, size = "md", ...rest }: ContainerProps) => {
+  const useAsChild = asChild && isReactElement(rest.children)
+  const Component = useAsChild ? Slot : "main"
 
-    return <Component ref={ref} className={cx(containerVariants({ size, className }))} {...rest} />
-  },
-)
-
-Container.displayName = "Container"
+  return <Component className={cx(containerVariants({ size, className }))} {...rest} />
+}

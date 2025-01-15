@@ -2,13 +2,12 @@
 
 import { Trash } from "lucide-react"
 import type { ChangeEvent, MouseEventHandler } from "react"
-import { forwardRef, useRef } from "react"
+import { useRef } from "react"
 import { Button } from "../../../ui/Button"
 import { ButtonGroup } from "../../../ui/ButtonGroup"
 
-import { Series, type SeriesElement, type SeriesProps } from "../../../ui/Series"
+import { Series, type SeriesProps } from "../../../ui/Series"
 
-export type UploaderElement = SeriesElement
 export type UploaderProps = Omit<SeriesProps, "onChange"> & {
   /**
    * The label for the input
@@ -36,69 +35,64 @@ export type UploaderProps = Omit<SeriesProps, "onChange"> & {
   onClear?: () => void
 }
 
-export const Uploader = forwardRef<UploaderElement, UploaderProps>(
-  (
-    {
-      children,
-      className,
-      label = "Upload",
-      accept = ["image/*"],
-      isPending = false,
-      onChange,
-      onClear,
-      ...rest
-    },
-    ref,
-  ) => {
-    const uploadRef = useRef<HTMLInputElement | null>(null)
+export const Uploader = ({
+  children,
+  className,
+  label = "Upload",
+  accept = ["image/*"],
+  isPending = false,
+  onChange,
+  onClear,
+  ...rest
+}: UploaderProps) => {
+  const uploadRef = useRef<HTMLInputElement | null>(null)
 
-    const onClick: MouseEventHandler<HTMLButtonElement> = () => {
-      uploadRef.current?.click()
+  const onClick: MouseEventHandler<HTMLButtonElement> = () => {
+    uploadRef.current?.click()
+  }
+
+  const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      onChange(e.target.files[0])
     }
 
-    const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-      if (e.target.files?.[0]) {
-        onChange(e.target.files[0])
-      }
+    // Reset input value
+    e.target.value = ""
+  }
 
-      // Reset input value
-      e.target.value = ""
-    }
+  return (
+    <Series {...rest}>
+      {children}
 
-    return (
-      <Series ref={ref} {...rest}>
-        {children}
+      <input
+        type="file"
+        ref={uploadRef}
+        onChange={onInputChange}
+        accept={accept?.join(",")}
+        className="hidden"
+      />
 
-        <input
-          type="file"
-          ref={uploadRef}
-          onChange={onInputChange}
-          accept={accept?.join(",")}
-          className="hidden"
-        />
+      <ButtonGroup className="shrink-0">
+        <Button
+          type="button"
+          theme="secondary"
+          variant="outline"
+          onClick={onClick}
+          isPending={isPending}
+        >
+          {label}
+        </Button>
 
-        <ButtonGroup className="shrink-0">
+        {onClear && (
           <Button
             type="button"
-            theme="secondary"
+            theme="negative"
             variant="outline"
-            onClick={onClick}
-            isPending={isPending}
-          >
-            {label}
-          </Button>
-
-          {onClear && (
-            <Button
-              type="button"
-              theme="negative"
-              variant="outline"
-              prefix={<Trash />}
-              onClick={onClear}
-            />
-          )}
-        </ButtonGroup>
-      </Series>
-    )
-  },
-)
+            prefix={<Trash />}
+            onClick={onClear}
+          />
+        )}
+      </ButtonGroup>
+    </Series>
+  )
+}

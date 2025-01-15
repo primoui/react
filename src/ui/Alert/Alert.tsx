@@ -5,13 +5,10 @@ import { type VariantProps, cx } from "cva"
 
 import { X } from "lucide-react"
 import {
-  type ComponentPropsWithoutRef,
-  type ElementRef,
+  type ComponentProps,
   type HTMLAttributes,
   type MouseEventHandler,
-  type ReactElement,
   type ReactNode,
-  forwardRef,
   useCallback,
   useState,
 } from "react"
@@ -26,7 +23,6 @@ import {
   alertVariants,
 } from "./Alert.variants"
 
-/* ---------------------------------- Types --------------------------------- */
 type ClosableProps = {
   /**
    * Is the alert closable? If true, a close icon will be displayed.
@@ -93,133 +89,121 @@ export type AlertProps = Omit<HTMLAttributes<HTMLDivElement>, "title" | "prefix"
     title?: ReactNode
   } & (ClosableProps | NotClosableProps)
 
-/* ------------------------------- Components ------------------------------- */
-export const AlertBase = forwardRef<HTMLDivElement, AlertProps>(
-  (
-    {
-      className,
-      suffix,
-      prefix,
-      closable,
-      theme,
-      variant = "inline",
-      children,
-      title,
-      onClose,
-      ...props
+export const AlertBase = ({
+  className,
+  suffix,
+  prefix,
+  closable,
+  theme,
+  variant = "inline",
+  children,
+  title,
+  onClose,
+  ...props
+}: AlertProps) => {
+  const [visible, setVisible] = useState(true)
+
+  /**
+   * Handle the close event.
+   * @param event - The event object
+   */
+  const handleClose = useCallback(
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      // Do not close if the event is prevented by the onClose callback
+      if (!event.defaultPrevented) {
+        setVisible(false)
+      }
+
+      if (onClose) {
+        onClose(event)
+      }
     },
-    ref,
-  ) => {
-    const [visible, setVisible] = useState(true)
+    [onClose],
+  )
 
-    /**
-     * Handle the close event.
-     * @param event - The event object
-     */
-    const handleClose = useCallback(
-      (event: React.MouseEvent<HTMLButtonElement>) => {
-        // Do not close if the event is prevented by the onClose callback
-        if (!event.defaultPrevented) {
-          setVisible(false)
-        }
+  if (!visible) {
+    return null
+  }
 
-        if (onClose) {
-          onClose(event)
-        }
-      },
-      [onClose],
-    )
+  return (
+    <AlertRoot className={cx(alertVariants({ variant, theme }), className)} {...props}>
+      <Affixable variants={alertAffixVariants}>{prefix}</Affixable>
 
-    if (!visible) {
-      return null
-    }
-
-    return (
-      <AlertRoot ref={ref} className={cx(alertVariants({ variant, theme }), className)} {...props}>
-        <Affixable variants={alertAffixVariants}>{prefix}</Affixable>
-
+      <div
+        className={cx(
+          "flex grow flex-col items-start",
+          variant === "expanded" && "items-start gap-3 px-2",
+          variant === "inline" && "px-3 sm:flex-row sm:items-center sm:gap-2",
+          variant === "inline" && closable && "pr-1",
+        )}
+      >
         <div
           className={cx(
             "flex grow flex-col items-start",
-            variant === "expanded" && "items-start gap-3 px-2",
-            variant === "inline" && "px-3 sm:flex-row sm:items-center sm:gap-2",
-            variant === "inline" && closable && "pr-1",
+            variant === "expanded" && "items-start",
+            variant === "inline" && "sm:flex-row sm:items-center sm:gap-2",
           )}
         >
-          <div
-            className={cx(
-              "flex grow flex-col items-start",
-              variant === "expanded" && "items-start",
-              variant === "inline" && "sm:flex-row sm:items-center sm:gap-2",
-            )}
-          >
-            {title && <AlertTitle theme={theme}>{title}</AlertTitle>}
-            {children && <AlertDescription>{children}</AlertDescription>}
-          </div>
-
-          <Affixable variants={alertAffixVariants} className="mt-3 sm:ml-auto sm:mt-0">
-            {suffix}
-          </Affixable>
+          {title && <AlertTitle theme={theme}>{title}</AlertTitle>}
+          {children && <AlertDescription>{children}</AlertDescription>}
         </div>
 
-        {closable && (
-          <AlertCloseButton className={cx(variant === "inline" && "mr-1")} onClick={handleClose} />
-        )}
-      </AlertRoot>
-    )
-  },
-)
-
-/* Root */
-export const AlertRoot = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, children, ...props }, ref) => {
-    return (
-      <div ref={ref} className={cx(alertRootVariants({ className }))} role="alert" {...props}>
-        {children}
+        <Affixable variants={alertAffixVariants} className="mt-3 sm:ml-auto sm:mt-0">
+          {suffix}
+        </Affixable>
       </div>
-    )
-  },
-)
 
-/* Title */
-export const AlertTitle = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement> & VariantProps<typeof alertTitleVariants>
->(({ className, theme, children, ...props }, ref) => {
+      {closable && (
+        <AlertCloseButton className={cx(variant === "inline" && "mr-1")} onClick={handleClose} />
+      )}
+    </AlertRoot>
+  )
+}
+
+export const AlertRoot = ({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <div className={cx(alertRootVariants({ className }))} role="alert" {...props}>
+      {children}
+    </div>
+  )
+}
+
+export const AlertTitle = ({
+  className,
+  theme,
+  children,
+  ...props
+}: HTMLAttributes<HTMLParagraphElement> & VariantProps<typeof alertTitleVariants>) => {
   const Component = isReactElement(children) ? Slot : "p"
 
   return (
-    <Component ref={ref} className={cx(alertTitleVariants({ theme }), className)} {...props}>
+    <Component className={cx(alertTitleVariants({ theme }), className)} {...props}>
       {children}
     </Component>
   )
-})
+}
 
-/* Description */
-export const AlertDescription = forwardRef<
-  HTMLParagraphElement,
-  HTMLAttributes<HTMLParagraphElement>
->(({ className, children, ...props }, ref) => {
+export const AlertDescription = ({
+  className,
+  children,
+  ...props
+}: HTMLAttributes<HTMLParagraphElement>) => {
   const Component = isReactElement(children) ? Slot : "p"
 
   return (
-    <Component ref={ref} className={cx("text-start", className)} {...props}>
+    <Component className={cx("text-start", className)} {...props}>
       {children}
     </Component>
   )
-})
+}
 
-/* CloseButton */
-export const AlertCloseButton = forwardRef<
-  ElementRef<typeof Button>,
-  ComponentPropsWithoutRef<typeof Button>
->(({ children, ...props }, ref) => {
-  const renderCloseIcon = (children: ReactNode): ReactElement<HTMLElement> => {
+export const AlertCloseButton = ({ children, ...props }: ComponentProps<typeof Button>) => {
+  const renderCloseIcon = (children: ReactNode) => {
     return isReactElement(children) ? children : <X aria-label="Close" />
   }
 
-  return <Action ref={ref} prefix={renderCloseIcon(children)} {...props} />
-})
+  return <Action prefix={renderCloseIcon(children)} {...props} />
+}
 
 export const Alert = Object.assign(AlertBase, {
   Root: AlertRoot,

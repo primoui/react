@@ -1,16 +1,15 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import { forwardRef } from "react"
-import type { ComponentPropsWithoutRef, HTMLAttributes } from "react"
+import type { ComponentProps, HTMLAttributes } from "react"
 
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx, isReactElement } from "../../shared"
 
 import { sectionVariants } from "../../layout/Section/Section.variants"
 import { cardPanelVariants, cardRowVariants, cardVariants } from "./Card.variants"
 
-export type CardElement = HTMLDivElement
-export type CardProps = HTMLAttributes<CardElement> &
+export type CardProps = HTMLAttributes<HTMLDivElement> &
   VariantProps<typeof cardVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -19,17 +18,14 @@ export type CardProps = HTMLAttributes<CardElement> &
     asChild?: boolean
   }
 
-export const CardRoot = forwardRef<CardElement, CardProps>(
-  ({ asChild = false, className, ...rest }, ref) => {
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Component = useAsChild ? Slot : "div"
+export const CardRoot = ({ asChild = false, className, ...rest }: CardProps) => {
+  const useAsChild = asChild && isReactElement(rest.children)
+  const Component = useAsChild ? Slot : "div"
 
-    return <Component ref={ref} className={cx(cardVariants({ className }))} {...rest} />
-  },
-)
+  return <Component className={cx(cardVariants({ className }))} {...rest} />
+}
 
-type CardPanelElement = HTMLDivElement
-type CardPanelProps = ComponentPropsWithoutRef<"div"> &
+export type CardPanelProps = ComponentProps<"div"> &
   VariantProps<typeof cardPanelVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -38,52 +34,51 @@ type CardPanelProps = ComponentPropsWithoutRef<"div"> &
     asChild?: boolean
   }
 
-export const CardPanel = forwardRef<CardPanelElement, CardPanelProps>((props, ref) => {
-  const { className, asChild, size, theme, sticky, scrollable, ...rest } = props
+export const CardPanel = ({
+  className,
+  asChild,
+  size,
+  theme,
+  sticky,
+  scrollable,
+  ...rest
+}: CardPanelProps) => {
   const useAsChild = asChild && isReactElement(rest.children)
   const Component = useAsChild ? Slot : "div"
 
   return (
     <Component
-      ref={ref}
       className={cx(cardPanelVariants({ size, theme, sticky, scrollable, className }))}
       {...rest}
     />
   )
-})
+}
 
-export const CardSection = forwardRef<
-  CardPanelElement,
-  CardPanelProps & VariantProps<typeof sectionVariants>
->((props, ref) => {
-  const { className, size, ...rest } = props
+export const CardSection = ({
+  className,
+  size,
+  ...rest
+}: CardPanelProps & VariantProps<typeof sectionVariants>) => {
+  return <CardPanel size={size} className={cx(sectionVariants({ className }))} {...rest} />
+}
 
-  return (
-    <CardPanel ref={ref} size={size} className={cx(sectionVariants({ className }))} {...rest} />
-  )
-})
-
-export const CardRow = forwardRef<
-  CardPanelElement,
-  CardPanelProps & VariantProps<typeof cardRowVariants>
->((props, ref) => {
-  const { className, size, gap, direction, theme = "gray", ...rest } = props
-
+export const CardRow = ({
+  className,
+  size,
+  gap,
+  direction,
+  theme = "gray",
+  ...rest
+}: CardPanelProps & VariantProps<typeof cardRowVariants>) => {
   return (
     <CardPanel
-      ref={ref}
       theme={theme}
       size={size}
       className={cx(cardRowVariants({ size, gap, direction, className }))}
       {...rest}
     />
   )
-})
-
-CardRoot.displayName = "Card"
-CardPanel.displayName = "CardPanel"
-CardSection.displayName = "CardSection"
-CardRow.displayName = "CardRow"
+}
 
 export const Card = Object.assign(CardRoot, {
   Panel: CardPanel,

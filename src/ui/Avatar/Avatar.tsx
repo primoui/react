@@ -1,9 +1,8 @@
 "use client"
 
-import * as Primitive from "@radix-ui/react-avatar"
+import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { Slot } from "@radix-ui/react-slot"
-import { forwardRef } from "react"
-import type { ComponentPropsWithoutRef, ElementRef, ReactNode, RefObject } from "react"
+import type { ComponentProps, ReactNode } from "react"
 
 import { type VariantProps, cx, getInitials, isReactElement } from "../../shared"
 
@@ -15,13 +14,11 @@ import {
   avatarVariants,
 } from "./Avatar.variants"
 
-export type AvatarElement = ElementRef<typeof Primitive.Image> | HTMLDivElement
-
 type AvatarVariantProps = VariantProps<typeof avatarVariants> &
   VariantProps<typeof avatarImageVariants> &
   VariantProps<typeof avatarFallbackVariants>
 
-export type AvatarProps = Omit<ComponentPropsWithoutRef<typeof Primitive.Image>, "src"> &
+export type AvatarProps = Omit<ComponentProps<typeof AvatarPrimitive.Image>, "src"> &
   AvatarVariantProps & {
     /**
      * The URL of the image to be displayed.
@@ -50,105 +47,100 @@ export type AvatarProps = Omit<ComponentPropsWithoutRef<typeof Primitive.Image>,
     bottomStatus?: ReactNode
   }
 
-export const AvatarRoot = forwardRef<
-  ElementRef<typeof Primitive.Root>,
-  ComponentPropsWithoutRef<typeof Primitive.Root> & VariantProps<typeof avatarVariants>
->(({ className, variant, size, shape, ...props }, ref) => {
+export const AvatarRoot = ({
+  className,
+  variant,
+  size,
+  shape,
+  ...props
+}: ComponentProps<typeof AvatarPrimitive.Root> & VariantProps<typeof avatarVariants>) => {
   return (
-    <Primitive.Root
-      ref={ref}
+    <AvatarPrimitive.Root
       className={cx(avatarVariants({ variant, size, shape, className }))}
       {...props}
     />
   )
-})
+}
 
-export const AvatarImage = forwardRef<
-  ElementRef<typeof Primitive.Image>,
-  ComponentPropsWithoutRef<typeof Primitive.Image> & VariantProps<typeof avatarImageVariants>
->(({ className, ...props }, ref) => (
-  <Primitive.Image ref={ref} className={cx(avatarImageVariants({ className }))} {...props} />
-))
+export const AvatarImage = ({
+  className,
+  ...props
+}: ComponentProps<typeof AvatarPrimitive.Image> & VariantProps<typeof avatarImageVariants>) => {
+  return <AvatarPrimitive.Image className={cx(avatarImageVariants({ className }))} {...props} />
+}
 
-export const AvatarFallback = forwardRef<
-  ElementRef<typeof Primitive.Fallback>,
-  ComponentPropsWithoutRef<typeof Primitive.Fallback> & VariantProps<typeof avatarFallbackVariants>
->(({ className, ...props }, ref) => (
-  <Primitive.Fallback ref={ref} className={cx(avatarFallbackVariants({ className }))} {...props} />
-))
+export const AvatarFallback = ({
+  className,
+  ...props
+}: ComponentProps<typeof AvatarPrimitive.Fallback> &
+  VariantProps<typeof avatarFallbackVariants>) => {
+  return (
+    <AvatarPrimitive.Fallback className={cx(avatarFallbackVariants({ className }))} {...props} />
+  )
+}
 
-export const AvatarStatus = forwardRef<
-  HTMLSpanElement,
-  ComponentPropsWithoutRef<"span"> & VariantProps<typeof avatarStatusVariants>
->(({ className, position, ...rest }, ref) => {
+export const AvatarStatus = ({
+  className,
+  position,
+  ...rest
+}: ComponentProps<"span"> & VariantProps<typeof avatarStatusVariants>) => {
   const Comp = isReactElement(rest.children) ? Slot : "span"
 
-  return <Comp ref={ref} className={cx(avatarStatusVariants({ position, className }))} {...rest} />
-})
+  return <Comp className={cx(avatarStatusVariants({ position, className }))} {...rest} />
+}
 
-const AvatarBase = forwardRef<AvatarElement, AvatarProps>(
-  (
-    {
-      children,
-      initials,
-      topStatus,
-      bottomStatus,
-      variant = "soft",
-      size = "md",
-      shape,
-      src,
-      alt,
-      ...rest
-    },
-    ref,
-  ) => {
-    return (
-      <AvatarRoot variant={variant} size={size} shape={shape} {...rest}>
-        {/* Show image if available */}
-        {src && <AvatarImage ref={ref as RefObject<HTMLImageElement>} alt={alt} src={src} />}
+const AvatarBase = ({
+  children,
+  initials,
+  topStatus,
+  bottomStatus,
+  variant = "soft",
+  size = "md",
+  shape,
+  src,
+  alt,
+  ...rest
+}: AvatarProps) => {
+  return (
+    <AvatarRoot variant={variant} size={size} shape={shape} {...rest}>
+      {/* Show image if available */}
+      {src && <AvatarImage alt={alt} src={src} />}
 
-        {/* Allow children to be used as fallback */}
-        {children && (
-          <AvatarFallback ref={ref} aria-label={alt} asChild={isReactElement(children)}>
-            {children}
-          </AvatarFallback>
-        )}
+      {/* Allow children to be used as fallback */}
+      {children && (
+        <AvatarFallback aria-label={alt} asChild={isReactElement(children)}>
+          {children}
+        </AvatarFallback>
+      )}
 
-        {/* Show pending icon until image is loaded,
+      {/* Show pending icon until image is loaded,
           only if children fallback is not set */}
-        {!children && src && !initials && (
-          <AvatarFallback aria-label={alt}>
-            <Loader2 aria-hidden="true" />
-          </AvatarFallback>
-        )}
+      {!children && src && !initials && (
+        <AvatarFallback aria-label={alt}>
+          <Loader2 aria-hidden="true" />
+        </AvatarFallback>
+      )}
 
-        {/* Initials */}
-        {!children && initials && (
-          <AvatarFallback ref={ref} aria-label={alt}>
-            {getInitials(initials, size === "xs" ? 1 : 2)}
-          </AvatarFallback>
-        )}
+      {/* Initials */}
+      {!children && initials && (
+        <AvatarFallback aria-label={alt}>
+          {getInitials(initials, size === "xs" ? 1 : 2)}
+        </AvatarFallback>
+      )}
 
-        {/* Fallback */}
-        {!children && !src && !initials && (
-          <AvatarFallback ref={ref} aria-label={alt} role="img">
-            <User />
-          </AvatarFallback>
-        )}
+      {/* Fallback */}
+      {!children && !src && !initials && (
+        <AvatarFallback aria-label={alt} role="img">
+          <User />
+        </AvatarFallback>
+      )}
 
-        {/* Statuses */}
-        {topStatus && <AvatarStatus position="top">{topStatus}</AvatarStatus>}
-        {bottomStatus && <AvatarStatus position="bottom">{bottomStatus}</AvatarStatus>}
-      </AvatarRoot>
-    )
-  },
-)
-
-AvatarBase.displayName = "Avatar"
-AvatarRoot.displayName = Primitive.Root.displayName
-AvatarFallback.displayName = Primitive.Fallback.displayName
-AvatarImage.displayName = Primitive.Image.displayName
-AvatarStatus.displayName = "AvatarStatus"
+      {/* Statuses */}
+      {topStatus && <AvatarStatus position="top">{topStatus}</AvatarStatus>}
+      {bottomStatus && <AvatarStatus position="bottom">{bottomStatus}</AvatarStatus>}
+    </AvatarRoot>
+  )
+}
 
 export const Avatar = Object.assign(AvatarBase, {
   Fallback: AvatarFallback,

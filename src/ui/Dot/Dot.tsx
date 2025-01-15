@@ -1,15 +1,14 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import { type HTMLAttributes, forwardRef } from "react"
+import type { HTMLAttributes } from "react"
 
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx, isReactElement } from "../../shared"
 
 import { dotVariants } from "./Dot.variants"
 
-export type DotElement = HTMLSpanElement
-
-export type DotProps = Omit<HTMLAttributes<DotElement>, "size"> &
+export type DotProps = Omit<HTMLAttributes<HTMLSpanElement>, "size"> &
   VariantProps<typeof dotVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -18,13 +17,9 @@ export type DotProps = Omit<HTMLAttributes<DotElement>, "size"> &
     asChild?: boolean
   }
 
-export const Dot = forwardRef<DotElement, DotProps>(
-  ({ className, asChild = false, variant = "solid", ...rest }, ref) => {
-    const useAsChild = asChild && isReactElement(rest.children)
-    const Component = useAsChild ? Slot : "span"
+export const Dot = ({ className, asChild = false, variant = "solid", ...rest }: DotProps) => {
+  const useAsChild = asChild && isReactElement(rest.children)
+  const Component = useAsChild ? Slot : "span"
 
-    return <Component ref={ref} className={cx(dotVariants({ variant, className }))} {...rest} />
-  },
-)
-
-Dot.displayName = "Dot"
+  return <Component className={cx(dotVariants({ variant, className }))} {...rest} />
+}

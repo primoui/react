@@ -1,18 +1,15 @@
 "use client"
 
-import { forwardRef } from "react"
-
 import { cx } from "../../../shared"
-import type { ParagraphElement, ParagraphProps } from "../../../typography/Paragraph"
+import type { ParagraphProps } from "../../../typography/Paragraph"
 import { Paragraph } from "../../../typography/Paragraph"
 
 import { hintVariants } from "./Hint.variants"
 
-export type HintElement = ParagraphElement
 export type HintProps = ParagraphProps
 
-export const Hint = forwardRef<ParagraphElement, ParagraphProps>((props, ref) => {
+export const Hint = (props: HintProps) => {
   const { className, ...rest } = props
 
-  return <Paragraph ref={ref} size="xs" className={cx(hintVariants({ className }))} {...rest} />
-})
+  return <Paragraph size="xs" className={cx(hintVariants({ className }))} {...rest} />
+}

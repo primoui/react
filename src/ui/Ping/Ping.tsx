@@ -1,26 +1,21 @@
 "use client"
 
-import { type HTMLAttributes, forwardRef } from "react"
+import type { HTMLAttributes } from "react"
 
-import { type VariantProps, cx } from "../../shared"
+import type { VariantProps } from "../../shared"
+import { cx } from "../../shared"
 
 import { pingDotOutlineVariants, pingDotVariants, pingVariants } from "./Ping.variants"
 
-export type PingElement = HTMLDivElement
-
-export type PingProps = Omit<HTMLAttributes<PingElement>, "size"> &
+export type PingProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
   VariantProps<typeof pingVariants>
 
-export const Ping = forwardRef<PingElement, PingProps>((props, ref) => {
-  const { className, theme = "gray", ...rest } = props
-
+export const Ping = ({ className, theme = "gray", ...rest }: PingProps) => {
   return (
-    <div ref={ref} className={cx(pingVariants({ theme, className }))} {...rest}>
+    <div className={cx(pingVariants({ theme, className }))} {...rest}>
       <div className={cx(pingDotOutlineVariants({ className: "animate-ping" }))} />
       <div className={cx(pingDotOutlineVariants({ className: "animate-pulse" }))} />
       <div className={cx(pingDotVariants())} />
     </div>
   )
-})
-
-Ping.displayName = "Ping"
+}
