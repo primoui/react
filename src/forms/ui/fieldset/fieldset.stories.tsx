@@ -3,7 +3,9 @@ import { Fieldset } from "./fieldset"
 
 type Story = StoryObj<typeof Fieldset>
 
+// Meta
 export default {
+  title: "Form UI/Fieldset",
   component: Fieldset,
   args: {
     layout: "adaptive",
@@ -14,6 +16,7 @@ export default {
   },
 } satisfies Meta<typeof Fieldset>
 
+// Stories
 export const Default: Story = {
   args: {
     children: <div>Fieldset content</div>,

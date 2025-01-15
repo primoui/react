@@ -5,7 +5,7 @@ import type { HTMLAttributes, ReactNode } from "react"
 import { type VariantProps, cx } from "~/shared/cva"
 import { isReactElement } from "~/shared/helpers"
 import { Heading, type HeadingProps } from "~/typography/heading"
-import { Markdown, type MarkdownProps } from "~/typography/markdown"
+import { Prose, type ProseProps } from "~/typography/prose"
 import { Stack } from "~/ui/stack"
 import { headerDescriptionVariants, headerTitleVariants, headerVariants } from "./header.variants"
 
@@ -62,10 +62,10 @@ const HeaderDescription = ({
   className,
   size = "sm",
   ...props
-}: MarkdownProps & VariantProps<typeof headerDescriptionVariants>) => {
+}: ProseProps & VariantProps<typeof headerDescriptionVariants>) => {
   return (
     <div className="w-full">
-      <Markdown size={size} className={cx(headerDescriptionVariants({ className }))} {...props} />
+      <Prose size={size} className={cx(headerDescriptionVariants({ className }))} {...props} />
     </div>
   )
 }

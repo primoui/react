@@ -37,7 +37,6 @@ export * from "./ui/tooltip"
 
 // Typography
 export * from "./typography/heading"
-export * from "./typography/markdown"
 export * from "./typography/paragraph"
 export * from "./typography/prose"
 export * from "./typography/subheading"
