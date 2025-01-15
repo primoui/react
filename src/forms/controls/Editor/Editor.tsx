@@ -6,8 +6,8 @@ import type { ComponentProps } from "react"
 import type { VariantProps } from "../../../shared"
 import { cx } from "../../../shared"
 import { proseVariants } from "../../../typography/Prose/Prose.variants"
-import type { SeriesProps } from "../../../ui/Series"
-import { Series } from "../../../ui/Series"
+import type { SeriesProps } from "../../../ui/Stack"
+import { Series } from "../../../ui/Stack"
 
 import { editorContentVariants, editorMenuVariants, editorVariants } from "./Editor.variants"
 

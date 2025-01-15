@@ -1,6 +1,6 @@
 import { cva } from "../../shared"
 
-export const seriesVariants = cva({
+export const stackVariants = cva({
   base: "flex",
 
   variants: {

@@ -6,7 +6,7 @@ import { useRef } from "react"
 import { Button } from "../../../ui/Button"
 import { ButtonGroup } from "../../../ui/ButtonGroup"
 
-import { Series, type SeriesProps } from "../../../ui/Series"
+import { Series, type SeriesProps } from "../../../ui/Stack"
 
 export type UploaderProps = Omit<SeriesProps, "onChange"> & {
   /**

@@ -8,7 +8,7 @@ import type { HeadingProps } from "../../typography/Heading"
 import { Heading } from "../../typography/Heading"
 import type { MarkdownProps } from "../../typography/Markdown"
 import { Markdown } from "../../typography/Markdown"
-import { Series } from "../../ui/Series"
+import { Series } from "../../ui/Stack"
 
 import { headerDescriptionVariants, headerTitleVariants, headerVariants } from "./Header.variants"
 

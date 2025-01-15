@@ -2,14 +2,14 @@ import type { Meta, StoryObj } from "@storybook/react"
 import { User, X } from "lucide-react"
 import { Button } from "../Button"
 
-import { Series } from "./Series"
+import { Stack } from "./Stack"
 
-type Story = StoryObj<typeof Series>
+type Story = StoryObj<typeof Stack>
 
 // Meta
 export default {
-  title: "UI/Series",
-  component: Series,
+  title: "UI/Stack",
+  component: Stack,
   args: {
     size: "md",
     direction: "row",
@@ -24,7 +24,7 @@ export default {
       </>
     ),
   },
-} satisfies Meta<typeof Series>
+} satisfies Meta<typeof Stack>
 
 // Stories
 export const Default = {

@@ -10,7 +10,7 @@ import { formatIntervalAmount } from "@curiousleaf/utils"
 import { H3 } from "../../typography/Heading"
 import { Paragraph } from "../../typography/Paragraph"
 import { Card } from "../Card"
-import { Series } from "../Series"
+import { Series } from "../Stack"
 import { planFeatureCheckVariants, planFeatureVariants, planVariants } from "./Plan.variants"
 
 export type PlanProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
