@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const drawerVariants = cva({
   base: [

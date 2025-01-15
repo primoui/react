@@ -2,8 +2,8 @@
 
 import type { HTMLAttributes, ReactNode } from "react"
 
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 import { Hint } from "../Hint/Hint"
 import { Label } from "../Label/Label"
 

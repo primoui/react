@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const selectScrollVariants = cva({
   base: "absolute z-10 flex items-center justify-center w-full h-8 bg-gradient-to-b",

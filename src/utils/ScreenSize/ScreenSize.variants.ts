@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const screenSizeVariants = cva({
   base: "fixed bottom-5 z-50 flex items-center gap-2 py-1 px-2.5 bg-white border rounded font-mono text-xs font-medium",

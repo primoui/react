@@ -1,9 +1,9 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
-import type { ComponentPropsWithoutRef, ReactElement } from "react"
-
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import type { ComponentProps, ReactElement } from "react"
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import type { ParagraphProps } from "../../typography/Paragraph"
 import { Paragraph } from "../../typography/Paragraph"
 import type { AvatarProps } from "../Avatar"
@@ -16,7 +16,7 @@ import {
   blurbVariants,
 } from "./Blurb.variants"
 
-type BlurbRootProps = ComponentPropsWithoutRef<"div"> &
+type BlurbRootProps = ComponentProps<"div"> &
   VariantProps<typeof blurbVariants> & {
     /**
      * If set to `true`, the button will be rendered as a child within the component.
@@ -61,7 +61,7 @@ export const BlurbAvatar = ({ size = "lg", ...props }: AvatarProps) => {
 export const BlurbContent = ({
   className,
   ...props
-}: ComponentPropsWithoutRef<"div"> & VariantProps<typeof blurbContentVariants>) => {
+}: ComponentProps<"div"> & VariantProps<typeof blurbContentVariants>) => {
   return <div className={cx(blurbContentVariants({ className }))} {...props} />
 }
 

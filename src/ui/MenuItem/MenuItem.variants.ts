@@ -1,4 +1,5 @@
-import { cva, disabledClasses } from "../../shared"
+import { disabledClasses } from "~/shared/classes"
+import { cva } from "~/shared/cva"
 
 export const menuItemVariants = cva({
   base: [

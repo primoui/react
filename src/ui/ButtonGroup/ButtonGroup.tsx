@@ -1,7 +1,7 @@
 "use client"
 
-import type { VariantProps } from "../../shared"
-import { cx } from "../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 import type { ButtonProps } from "../Button/Button"
 import { Button } from "../Button/Button"
 import type { buttonVariants } from "../Button/Button.variants"

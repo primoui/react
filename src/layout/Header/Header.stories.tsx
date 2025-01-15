@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { default as SeriesStory } from "../../ui/Stack/Series.stories"
+import { default as StackStory } from "../../ui/Stack/Stack.stories"
 
 import { Header } from "./Header"
 
@@ -16,7 +16,7 @@ export default {
   args: {
     title: "Page title here",
     description: "Insert page description here",
-    children: SeriesStory.args.children,
+    children: StackStory.args.children,
   },
 } satisfies Meta<typeof Header>
 

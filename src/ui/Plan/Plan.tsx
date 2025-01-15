@@ -1,16 +1,15 @@
 "use client"
 
+import { formatIntervalAmount } from "@curiousleaf/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { Check, X } from "lucide-react"
 import type { HTMLAttributes, ReactNode } from "react"
-
-import { type VariantProps, cx, isReactElement } from "../../shared"
-
-import { formatIntervalAmount } from "@curiousleaf/utils"
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import { H3 } from "../../typography/Heading"
 import { Paragraph } from "../../typography/Paragraph"
 import { Card } from "../Card"
-import { Series } from "../Stack"
+import { Stack } from "../Stack"
 import { planFeatureCheckVariants, planFeatureVariants, planVariants } from "./Plan.variants"
 
 export type PlanProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
@@ -108,7 +107,7 @@ export const Plan = ({
         </div>
 
         {!!features?.length && (
-          <Series direction="column" className="mb-auto">
+          <Stack direction="column" className="mb-auto">
             {features.map(({ type, text }) => (
               <div key={text} className={cx(planFeatureVariants())}>
                 <Slot className={cx(planFeatureCheckVariants({ type }))}>
@@ -118,7 +117,7 @@ export const Plan = ({
                 <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>
               </div>
             ))}
-          </Series>
+          </Stack>
         )}
 
         {children}

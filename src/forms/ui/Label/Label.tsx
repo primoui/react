@@ -2,9 +2,7 @@
 
 import * as LabelPrimitive from "@radix-ui/react-label"
 import type { ComponentProps } from "react"
-
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
 
 import { labelVariants } from "./Label.variants"
 

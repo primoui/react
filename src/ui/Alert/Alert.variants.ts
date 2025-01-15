@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const alertRootVariants = cva({
   base: "flex items-start bg-gray-100 text-sm/relaxed",

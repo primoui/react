@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const labelVariants = cva({
   base: "text-sm font-medium text-gray-700 [&[for]]:cursor-pointer",

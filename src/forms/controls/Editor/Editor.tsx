@@ -2,28 +2,25 @@
 
 import { EditorContent } from "@tiptap/react"
 import type { ComponentProps } from "react"
-
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
-import { proseVariants } from "../../../typography/Prose/Prose.variants"
-import type { SeriesProps } from "../../../ui/Stack"
-import { Series } from "../../../ui/Stack"
+import { type VariantProps, cx } from "~/shared/cva"
+import { proseVariants } from "~/typography/Prose/Prose.variants"
+import { Stack } from "~/ui/Stack"
 
 import { editorContentVariants, editorMenuVariants, editorVariants } from "./Editor.variants"
 
-export type EditorProps = ComponentProps<typeof EditorContent> & VariantProps<typeof editorVariants>
+type EditorProps = ComponentProps<typeof EditorContent> & VariantProps<typeof editorVariants>
 
 const EditorRoot = ({ className, error, plain, ...rest }: EditorProps) => {
   return <EditorContent className={cx(editorVariants({ error, plain, className }))} {...rest} />
 }
 
-type EditorMenuProps = SeriesProps & VariantProps<typeof editorMenuVariants>
+type EditorMenuProps = ComponentProps<typeof Stack> & VariantProps<typeof editorMenuVariants>
 
-export const EditorMenu = ({ className, plain, ...rest }: EditorMenuProps) => {
-  return <Series size="sm" className={cx(editorMenuVariants({ plain, className }))} {...rest} />
+const EditorMenu = ({ className, plain, ...rest }: EditorMenuProps) => {
+  return <Stack size="sm" className={cx(editorMenuVariants({ plain, className }))} {...rest} />
 }
 
-export const Editor = Object.assign(EditorRoot, {
+const Editor = Object.assign(EditorRoot, {
   Menu: EditorMenu,
   ContentClass: ({ compact, plain }: VariantProps<typeof editorContentVariants>) =>
     cx(
@@ -34,3 +31,5 @@ export const Editor = Object.assign(EditorRoot, {
       }),
     ),
 })
+
+export { Editor, EditorMenu }

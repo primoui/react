@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const featureCardVariants = cva({
   base: "relative flex flex-wrap items-center gap-x-2 gap-y-3 p-4 rounded-lg border border-transparent text-start",

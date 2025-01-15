@@ -4,8 +4,8 @@ import * as PopoverPrimitive from "@radix-ui/react-popover"
 import { X } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
 
-import type { VariantProps } from "../../shared"
-import { cx } from "../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 
 import { popoverArrowVariants, popoverCloseVariants, popoverVariants } from "./Popover.variants"
 

@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const containerVariants = cva({
   base: "@container/main container mx-auto w-full px-5 md:px-6 lg:px-8",

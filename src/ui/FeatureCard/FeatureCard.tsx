@@ -3,11 +3,10 @@
 import { Slot } from "@radix-ui/react-slot"
 import { X } from "lucide-react"
 import type { ButtonHTMLAttributes, HTMLAttributes } from "react"
-
-import type { VariantProps } from "../../shared"
-import { cx, isReactElement } from "../../shared"
-import { Slottable } from "../../utils/Slottable"
-
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
+import { Slottable } from "~/utils/Slottable/Slottable"
 import { featureCardCloserVariants, featureCardVariants } from "./FeatureCard.variants"
 
 export type FeatureCardRootProps = HTMLAttributes<HTMLDivElement> &

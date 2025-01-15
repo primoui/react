@@ -4,8 +4,8 @@ import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
 import { Check } from "lucide-react"
 import type { ComponentProps } from "react"
 
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 
 import { checkboxVariants } from "./Checkbox.variants"
 

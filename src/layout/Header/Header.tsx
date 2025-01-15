@@ -2,14 +2,11 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes, ReactNode } from "react"
-
-import { type VariantProps, cx, isReactElement } from "../../shared"
-import type { HeadingProps } from "../../typography/Heading"
-import { Heading } from "../../typography/Heading"
-import type { MarkdownProps } from "../../typography/Markdown"
-import { Markdown } from "../../typography/Markdown"
-import { Series } from "../../ui/Stack"
-
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
+import { Heading, type HeadingProps } from "~/typography/Heading"
+import { Markdown, type MarkdownProps } from "~/typography/Markdown"
+import { Stack } from "~/ui/Stack"
 import { headerDescriptionVariants, headerTitleVariants, headerVariants } from "./Header.variants"
 
 type HeaderRootProps = HTMLAttributes<HTMLDivElement> &
@@ -86,7 +83,7 @@ const HeaderBase = ({
   return (
     <HeaderRoot alignment={alignment} gap={gap} separated={separated} {...rest}>
       {title && <HeaderTitle size={size}>{title}</HeaderTitle>}
-      {children && <Series className="-my-0.5">{children}</Series>}
+      {children && <Stack className="-my-0.5">{children}</Stack>}
       {description && <HeaderDescription content={description} />}
     </HeaderRoot>
   )

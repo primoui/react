@@ -1,3 +1,4 @@
+import { isTruthy } from "@curiousleaf/utils"
 import type { ReactElement, ReactNode } from "react"
 import { Children, isValidElement } from "react"
 
@@ -46,15 +47,6 @@ export const getElementWidth = (element: HTMLElement | null, includeMargins = fa
   }
 
   return width
-}
-
-/**
- * Check if a value is truthy
- * @param value - The value to check
- * @returns A boolean indicating if the value is truthy
- */
-export function isTruthy<T>(value?: T | undefined | null | false): value is T {
-  return !!value
 }
 
 /**

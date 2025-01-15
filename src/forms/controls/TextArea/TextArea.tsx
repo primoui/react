@@ -2,8 +2,8 @@
 
 import type { TextareaHTMLAttributes } from "react"
 
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 import { useAffix } from "../../ui/Affix/Affix"
 import { inputVariants } from "../Input/Input.variants"
 

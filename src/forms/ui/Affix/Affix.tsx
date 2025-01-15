@@ -2,10 +2,10 @@
 
 import type { InputHTMLAttributes, ReactNode } from "react"
 import { useEffect, useRef, useState } from "react"
-
-import type { VariantProps } from "../../../shared"
-import { createSimpleContext, cx, getElementWidth } from "../../../shared"
-import { Affixable } from "../../../utils/Affixable"
+import { type VariantProps, cx } from "~/shared/cva"
+import { getElementWidth } from "~/shared/helpers"
+import { createSimpleContext } from "~/shared/providers"
+import { Affixable } from "~/utils/Affixable/Affixable"
 
 import { affixGroupVariants, affixVariants } from "./Affix.variants"
 
@@ -49,15 +49,11 @@ export const Affix = (props: AffixProps) => {
   return (
     <AffixContext.Provider value={{ prefixWidth, suffixWidth }}>
       <div className={cx(affixGroupVariants({ className }))} {...rest}>
-        <Affixable ref={prefixRef} variants={affixVariants}>
-          {prefix}
-        </Affixable>
+        <Affixable variants={affixVariants}>{prefix}</Affixable>
 
         {children}
 
-        <Affixable ref={suffixRef} variants={affixVariants}>
-          {suffix}
-        </Affixable>
+        <Affixable variants={affixVariants}>{suffix}</Affixable>
       </div>
     </AffixContext.Provider>
   )

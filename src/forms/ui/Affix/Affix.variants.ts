@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const affixGroupVariants = cva({
   base: "relative w-full",

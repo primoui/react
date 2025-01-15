@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const cardVariants = cva({
   base: "relative flex flex-col bg-white border rounded-md shadow-sm overflow-clip hover:[&[href]]:z-10 hover:[&[href]]:border-gray-300",

@@ -2,12 +2,11 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes, ReactNode } from "react"
-
-import type { VariantProps } from "../../shared"
-import { cx, isReactElement } from "../../shared"
-import { Affixable } from "../../utils/Affixable"
-import { Slottable } from "../../utils/Slottable"
-
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
+import { Affixable } from "~/utils/Affixable/Affixable"
+import { Slottable } from "~/utils/Slottable/Slottable"
 import { badgeAffixVariants, badgeVariants } from "./Badge.variants"
 
 export type BadgeProps = Omit<HTMLAttributes<HTMLSpanElement>, "size" | "prefix"> &

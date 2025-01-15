@@ -2,11 +2,10 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { ComponentProps, HTMLAttributes } from "react"
-
-import type { VariantProps } from "../../shared"
-import { cleanPercentage, cx, isReactElement } from "../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { cleanPercentage, isReactElement } from "~/shared/helpers"
 import { Paragraph } from "../../typography/Paragraph"
-
 import {
   progressBarHintVariants,
   progressBarLabelVariants,

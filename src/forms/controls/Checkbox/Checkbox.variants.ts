@@ -1,4 +1,5 @@
-import { cva, focusClasses } from "../../../shared"
+import { focusClasses } from "~/shared/classes"
+import { cva } from "~/shared/cva"
 
 export const checkboxVariants = cva({
   base: [

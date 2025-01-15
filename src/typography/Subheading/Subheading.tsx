@@ -2,9 +2,8 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
-
-import { type VariantProps, cx, isReactElement } from "../../shared"
-
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import { subheadingVariants } from "./Subheading.variants"
 
 export type SubheadingProps = Omit<HTMLAttributes<HTMLParagraphElement>, "size"> &

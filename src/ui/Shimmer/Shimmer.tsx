@@ -1,6 +1,6 @@
 import type { HTMLAttributes } from "react"
 
-import { cx } from "../../shared"
+import { cx } from "~/shared/cva"
 import { shimmerVariants } from "./Shimmer.variants"
 
 export type ShimmerProps = HTMLAttributes<HTMLDivElement>

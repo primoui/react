@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const headerVariants = cva({
   base: "@container/header flex flex-wrap items-center w-full min-w-0",

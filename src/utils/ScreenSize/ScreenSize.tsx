@@ -3,7 +3,7 @@
 import type { HTMLAttributes } from "react"
 import { useEffect, useState } from "react"
 
-import { type VariantProps, cx } from "../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
 
 import { screenSizeSeparatorVariants, screenSizeVariants } from "./ScreenSize.variants"
 

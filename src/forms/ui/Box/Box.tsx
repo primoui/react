@@ -3,7 +3,7 @@
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes, LabelHTMLAttributes, ReactNode } from "react"
 
-import { type VariantProps, cx } from "../../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
 import { inputVariants } from "../../controls/Input/Input.variants"
 
 import { boxGroupVariants, boxVariants } from "./Box.variants"

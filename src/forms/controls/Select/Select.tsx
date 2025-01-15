@@ -1,13 +1,11 @@
 "use client"
 
+import { isTruthy } from "@curiousleaf/utils"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"
-
-import type { VariantProps } from "../../../shared"
-import { cx, isTruthy } from "../../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
 import { inputVariants } from "../Input/Input.variants"
-
 import {
   selectContentVariants,
   selectItemVariants,

@@ -1,4 +1,5 @@
-import { cva, focusWithinClasses } from "../../../shared"
+import { focusWithinClasses } from "~/shared/classes"
+import { cva } from "~/shared/cva"
 
 export const editorVariants = cva({
   base: ["relative w-full border rounded-md overflow-hidden transition", focusWithinClasses],

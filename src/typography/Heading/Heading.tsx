@@ -2,9 +2,8 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { ElementType, HTMLAttributes } from "react"
-
-import { type VariantProps, cx, isReactElement } from "../../shared"
-
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import { headingVariants } from "./Heading.variants"
 
 export type HeadingProps = Omit<HTMLAttributes<HTMLHeadingElement>, "size"> &

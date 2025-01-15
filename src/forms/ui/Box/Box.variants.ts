@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const boxVariants = cva({
   base: "cursor-pointer self-start w-auto select-none",

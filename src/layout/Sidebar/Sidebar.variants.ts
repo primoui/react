@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const sidebarVariants = cva({
   base: "@container/sidebar flex shrink-0 flex-col gap-y-5 p-4",

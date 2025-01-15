@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const fieldsetVariants = cva({
   base: "relative grid min-w-0 gap-x-4 gap-y-6",

@@ -2,7 +2,8 @@
 
 import type { ComponentProps, HTMLAttributes, ReactNode } from "react"
 
-import { type VariantProps, cx, isReactElement } from "../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import type { AvatarProps } from "../Avatar/Avatar"
 import { Avatar } from "../Avatar/Avatar"
 import type { avatarVariants } from "../Avatar/Avatar.variants"

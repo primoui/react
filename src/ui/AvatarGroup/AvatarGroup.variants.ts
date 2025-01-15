@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const avatarGroupVariants = cva({
   base: "relative flex flex-wrap items-center gap-y-1",

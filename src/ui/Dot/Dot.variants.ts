@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const dotVariants = cva({
   base: "block size-[0.5em] rounded-full border border-transparent",

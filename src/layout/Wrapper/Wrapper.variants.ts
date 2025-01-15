@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const wrapperVariants = cva({
   base: "@container/wrapper flex h-dvh flex-col bg-[#f7f7f7] lg:flex-row",

@@ -1,4 +1,4 @@
-import { cva } from "../../../shared"
+import { cva } from "~/shared/cva"
 
 export const fieldVariants = cva({
   base: "flex flex-col flex-wrap items-start w-full justify-start gap-x-4 gap-y-2 @md/set:flex-row @md/set:flex-nowrap",

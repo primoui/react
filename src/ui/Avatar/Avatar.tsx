@@ -2,11 +2,10 @@
 
 import * as AvatarPrimitive from "@radix-ui/react-avatar"
 import { Slot } from "@radix-ui/react-slot"
-import type { ComponentProps, ReactNode } from "react"
-
-import { type VariantProps, cx, getInitials, isReactElement } from "../../shared"
-
 import { Loader2, User } from "lucide-react"
+import type { ComponentProps, ReactNode } from "react"
+import { type VariantProps, cx } from "~/shared/cva"
+import { getInitials, isReactElement } from "~/shared/helpers"
 import {
   avatarFallbackVariants,
   avatarImageVariants,

@@ -2,11 +2,11 @@
 
 import type { ButtonHTMLAttributes, ReactNode } from "react"
 
-import type { VariantProps } from "../../shared"
-import { cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
-
 import { Slot } from "@radix-ui/react-slot"
 import { Loader2 } from "lucide-react"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { isChildrenEmpty, isReactElement, toArrayOrWrap } from "~/shared/helpers"
 import { Affixable } from "~/utils/Affixable"
 import { Slottable } from "~/utils/Slottable/Slottable"
 import { menuItemAffixVariants, menuItemVariants } from "./MenuItem.variants"

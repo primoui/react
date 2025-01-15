@@ -2,7 +2,7 @@
 
 import type { HTMLAttributes, ReactNode } from "react"
 
-import type { VariantProps } from "../../shared"
+import type { VariantProps } from "~/shared/cva"
 import { Subheading } from "../../typography/Subheading"
 
 import { dividerVariants } from "./Divider.variants"

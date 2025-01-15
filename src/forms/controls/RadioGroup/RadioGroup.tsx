@@ -3,8 +3,8 @@
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
 import type { ComponentProps } from "react"
 
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 
 import { Dot } from "../../../ui/Dot"
 import { radioGroupItemVariants } from "./RadioGroup.variants"

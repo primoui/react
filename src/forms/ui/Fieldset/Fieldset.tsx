@@ -2,8 +2,8 @@
 
 import type { FieldsetHTMLAttributes } from "react"
 
-import type { VariantProps } from "../../../shared"
-import { cx } from "../../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 
 import { fieldsetVariants } from "./Fieldset.variants"
 

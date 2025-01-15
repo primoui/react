@@ -1,14 +1,13 @@
 "use client"
 
 import { Trash } from "lucide-react"
-import type { ChangeEvent, MouseEventHandler } from "react"
+import type { ChangeEvent, ComponentProps, MouseEventHandler } from "react"
 import { useRef } from "react"
-import { Button } from "../../../ui/Button"
-import { ButtonGroup } from "../../../ui/ButtonGroup"
+import { Button } from "~/ui/Button"
+import { ButtonGroup } from "~/ui/ButtonGroup"
+import { Stack } from "~/ui/Stack"
 
-import { Series, type SeriesProps } from "../../../ui/Stack"
-
-export type UploaderProps = Omit<SeriesProps, "onChange"> & {
+export type UploaderProps = Omit<ComponentProps<typeof Stack>, "onChange"> & {
   /**
    * The label for the input
    */
@@ -61,7 +60,7 @@ export const Uploader = ({
   }
 
   return (
-    <Series {...rest}>
+    <Stack {...rest}>
       {children}
 
       <input
@@ -93,6 +92,6 @@ export const Uploader = ({
           />
         )}
       </ButtonGroup>
-    </Series>
+    </Stack>
   )
 }

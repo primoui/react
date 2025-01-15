@@ -2,10 +2,9 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
-
-import type { VariantProps } from "../../shared"
-import { cx, isReactElement } from "../../shared"
-
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import { dotVariants } from "./Dot.variants"
 
 export type DotProps = Omit<HTMLAttributes<HTMLSpanElement>, "size"> &

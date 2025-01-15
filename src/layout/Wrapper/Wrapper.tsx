@@ -2,7 +2,7 @@
 
 import type { HTMLAttributes } from "react"
 
-import { type VariantProps, cx } from "../../shared"
+import { type VariantProps, cx } from "~/shared/cva"
 
 import { wrapperContentVariants, wrapperVariants } from "./Wrapper.variants"
 

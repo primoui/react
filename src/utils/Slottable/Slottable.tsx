@@ -2,8 +2,7 @@
 
 import type { ReactNode } from "react"
 import { cloneElement } from "react"
-
-import { isReactElement } from "../../shared"
+import { isReactElement } from "~/shared/helpers"
 
 export type SlottableProps = {
   asChild?: boolean

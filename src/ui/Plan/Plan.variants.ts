@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const planVariants = cva({
   base: "gap-8 p-4 min-w-64 md:p-6",

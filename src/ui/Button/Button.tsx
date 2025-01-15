@@ -3,11 +3,10 @@
 import { Slot } from "@radix-ui/react-slot"
 import { Loader2 } from "lucide-react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
-
-import { type VariantProps, cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
-import { Affixable } from "../../utils/Affixable"
-import { Slottable } from "../../utils/Slottable"
-
+import { type VariantProps, cx } from "~/shared/cva"
+import { isChildrenEmpty, isReactElement, toArrayOrWrap } from "~/shared/helpers"
+import { Affixable } from "~/utils/Affixable/Affixable"
+import { Slottable } from "~/utils/Slottable/Slottable"
 import { buttonAffixVariants, buttonVariants } from "./Button.variants"
 
 export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size" | "prefix"> &

@@ -12,8 +12,8 @@ import {
   useCallback,
   useState,
 } from "react"
-import { isReactElement } from "../../shared"
-import { Affixable } from "../../utils/Affixable"
+import { isReactElement } from "~/shared/helpers"
+import { Affixable } from "~/utils/Affixable/Affixable"
 import { Action } from "../Action"
 import type { Button } from "../Button"
 import {

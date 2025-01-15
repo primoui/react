@@ -1,4 +1,5 @@
-import { activeClasses, cva, disabledClasses, focusClasses } from "../../shared"
+import { activeClasses, disabledClasses, focusClasses } from "~/shared/classes"
+import { cva } from "~/shared/cva"
 
 export const actionVariants = cva({
   base: [

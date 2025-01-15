@@ -1,4 +1,5 @@
-import { cva, disabledClasses, focusClasses } from "../../../shared"
+import { disabledClasses, focusClasses } from "~/shared/classes"
+import { cva } from "~/shared/cva"
 
 export const switchVariants = cva({
   base: [

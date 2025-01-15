@@ -3,7 +3,7 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion"
 import type { ComponentProps } from "react"
 
-import { cx } from "../../shared"
+import { cx } from "~/shared/cva"
 
 import { accordionVariants } from "./Accordion.variants"
 

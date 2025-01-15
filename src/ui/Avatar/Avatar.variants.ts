@@ -1,4 +1,4 @@
-import { cva } from "../../shared"
+import { cva } from "~/shared/cva"
 
 export const avatarVariants = cva({
   base: "relative flex items-center justify-center shrink-0 w-auto",

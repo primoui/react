@@ -2,10 +2,8 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
-
-import type { VariantProps } from "../../shared"
-import { cx, isReactElement } from "../../shared"
-
+import { type VariantProps, cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 import { modalVariants } from "./Modal.variants"
 
 export type ModalProps = HTMLAttributes<HTMLDivElement> &

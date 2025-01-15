@@ -3,8 +3,8 @@
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import type { ComponentProps } from "react"
 
-import type { VariantProps } from "../../shared"
-import { cx } from "../../shared"
+import type { VariantProps } from "~/shared/cva"
+import { cx } from "~/shared/cva"
 
 import { tabsContentVariants, tabsListVariants, tabsTriggerVariants } from "./Tabs.variants"
 

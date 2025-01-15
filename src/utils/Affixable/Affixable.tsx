@@ -2,9 +2,9 @@
 
 import { Slot } from "@radix-ui/react-slot"
 import type { HTMLAttributes } from "react"
-
-import type { cva } from "../../shared"
-import { cx, isReactElement } from "../../shared"
+import type { cva } from "~/shared/cva"
+import { cx } from "~/shared/cva"
+import { isReactElement } from "~/shared/helpers"
 
 export type AffixableProps = HTMLAttributes<HTMLElement> & {
   variants: ReturnType<typeof cva>
