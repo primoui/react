@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconClose } from "../../icons/IconClose"
-import { IconUser } from "../../icons/IconUser"
+import { User, X } from "lucide-react"
 import { Button } from "../Button"
 
 import { Series } from "./Series"
@@ -17,12 +15,12 @@ export default {
     direction: "row",
     children: (
       <>
-        <Button theme="secondary" variant="ghost" prefix={<IconUser />} />
-        <Button theme="secondary" variant="ghost" prefix={<IconUser />} />
-        <Button theme="secondary" variant="outline" prefix={<IconUser />}>
+        <Button theme="secondary" variant="ghost" prefix={<User />} />
+        <Button theme="secondary" variant="ghost" prefix={<User />} />
+        <Button theme="secondary" variant="outline" prefix={<User />}>
           Schedule
         </Button>
-        <Button prefix={<IconClose />}>Create Request</Button>
+        <Button prefix={<X />}>Create Request</Button>
       </>
     ),
   },

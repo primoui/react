@@ -1,9 +1,8 @@
 "use client"
 
+import { Trash } from "lucide-react"
 import type { ChangeEvent, MouseEventHandler } from "react"
 import { forwardRef, useRef } from "react"
-
-import { IconTrash } from "../../../icons/IconTrash"
 import { Button } from "../../../ui/Button"
 import { ButtonGroup } from "../../../ui/ButtonGroup"
 
@@ -94,7 +93,7 @@ export const Uploader = forwardRef<UploaderElement, UploaderProps>(
               type="button"
               theme="negative"
               variant="outline"
-              prefix={<IconTrash />}
+              prefix={<Trash />}
               onClick={onClear}
             />
           )}

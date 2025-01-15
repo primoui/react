@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconBullet } from "../../icons/IconBullet"
-import { IconUser } from "../../icons/IconUser"
+import { Dot, User } from "lucide-react"
 
 import { Badge } from "./Badge"
 
@@ -34,13 +32,13 @@ export const AsChild = {
 
 export const WithPrefix = {
   args: {
-    prefix: <IconUser />,
+    prefix: <User />,
   },
 } satisfies Story
 
 export const WithSuffix = {
   args: {
-    suffix: <IconUser />,
+    suffix: <User />,
   },
 } satisfies Story
 
@@ -48,13 +46,13 @@ export const WithStatus = {
   args: {
     theme: "gray",
     variant: "outline",
-    prefix: <IconBullet style={{ color: "blue" }} />,
+    prefix: <Dot style={{ color: "blue" }} />,
   },
 } satisfies Story
 
 export const WithIconOnly = {
   args: {
-    prefix: <IconUser />,
+    prefix: <User />,
     children: null,
   },
 } satisfies Story

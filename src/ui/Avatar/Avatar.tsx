@@ -5,10 +5,9 @@ import { Slot } from "@radix-ui/react-slot"
 import { forwardRef } from "react"
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode, RefObject } from "react"
 
-import { IconSpinner } from "../../icons/IconSpinner"
-import { IconUser } from "../../icons/IconUser"
 import { type VariantProps, cx, getInitials, isReactElement } from "../../shared"
 
+import { Loader2, User } from "lucide-react"
 import {
   avatarFallbackVariants,
   avatarImageVariants,
@@ -119,7 +118,7 @@ const AvatarBase = forwardRef<AvatarElement, AvatarProps>(
           only if children fallback is not set */}
         {!children && src && !initials && (
           <AvatarFallback aria-label={alt}>
-            <IconSpinner aria-hidden="true" />
+            <Loader2 aria-hidden="true" />
           </AvatarFallback>
         )}
 
@@ -133,7 +132,7 @@ const AvatarBase = forwardRef<AvatarElement, AvatarProps>(
         {/* Fallback */}
         {!children && !src && !initials && (
           <AvatarFallback ref={ref} aria-label={alt} role="img">
-            <IconUser />
+            <User />
           </AvatarFallback>
         )}
 

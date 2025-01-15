@@ -1,10 +1,10 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
+import { Loader2 } from "lucide-react"
 import { forwardRef } from "react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
 
-import { IconSpinner } from "../../icons/IconSpinner"
 import { type VariantProps, cx, isChildrenEmpty, isReactElement, toArrayOrWrap } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Slottable } from "../../utils/Slottable"
@@ -66,7 +66,7 @@ export const MenuItem = forwardRef<MenuItemElement, MenuItemProps>(
     const suffix = toArrayOrWrap(propSuffix)
 
     if (isPending) {
-      suffix.push(<IconSpinner className="text-xs" />)
+      suffix.push(<Loader2 className="text-xs" />)
     }
 
     return (

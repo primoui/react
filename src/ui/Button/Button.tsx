@@ -1,10 +1,10 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
+import { Loader2 } from "lucide-react"
 import type { ButtonHTMLAttributes, ReactNode } from "react"
 import { forwardRef } from "react"
 
-import { IconSpinner } from "../../icons/IconSpinner"
 import { type VariantProps, cx, isChildrenEmpty, isReactElement } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Slottable } from "../../utils/Slottable"
@@ -76,7 +76,7 @@ export const Button = forwardRef<ButtonElement, ButtonProps>(
               {!isChildrenEmpty(child) && <span className="truncate">{child}</span>}
               <Affixable variants={buttonAffixVariants}>{suffix}</Affixable>
 
-              {!!isPending && <IconSpinner className="absolute" />}
+              {!!isPending && <Loader2 className="absolute" />}
             </>
           )}
         </Slottable>

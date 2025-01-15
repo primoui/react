@@ -1,10 +1,10 @@
 "use client"
 
 import * as DrawerPrimitive from "@radix-ui/react-dialog"
+import { X } from "lucide-react"
 import { forwardRef } from "react"
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
 
-import { IconClose } from "../../icons/IconClose"
 import type { VariantProps } from "../../shared"
 import { cx } from "../../shared"
 import { Backdrop } from "../Backdrop"
@@ -63,7 +63,7 @@ export const DrawerClose = forwardRef<
   ComponentPropsWithoutRef<typeof DrawerPrimitive.Close>
 >(({ className, ...props }, ref) => (
   <DrawerPrimitive.Close ref={ref} className={cx("-my-1", className)} {...props}>
-    <IconClose />
+    <X />
   </DrawerPrimitive.Close>
 ))
 

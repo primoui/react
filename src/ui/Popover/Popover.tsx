@@ -1,10 +1,10 @@
 "use client"
 
 import * as PopoverPrimitive from "@radix-ui/react-popover"
+import { X } from "lucide-react"
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react"
 import { forwardRef } from "react"
 
-import { IconClose } from "../../icons/IconClose"
 import type { VariantProps } from "../../shared"
 import { cx } from "../../shared"
 
@@ -48,7 +48,7 @@ export const PopoverClose = forwardRef<
     VariantProps<typeof popoverCloseVariants>
 >(({ className, ...props }, ref) => (
   <PopoverPrimitive.Close ref={ref} className={cx(popoverCloseVariants({ className }))} {...props}>
-    <IconClose />
+    <X />
   </PopoverPrimitive.Close>
 ))
 

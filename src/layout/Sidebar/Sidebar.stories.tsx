@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react"
+import { ChevronRight, User } from "lucide-react"
 
-import { IconChevronRight } from "../../icons/IconChevronRight"
-import { IconUser } from "../../icons/IconUser"
 import { Badge } from "../../ui/Badge"
 import { Blurb } from "../../ui/Blurb"
 import { FeatureCard } from "../../ui/FeatureCard"
@@ -17,28 +16,28 @@ const menus = {
   Main: [
     {
       children: "Dashboard",
-      prefix: <IconUser />,
+      prefix: <User />,
       active: true,
     },
     {
       children: "My Cards",
-      prefix: <IconUser />,
+      prefix: <User />,
     },
     {
       children: "Transfer",
-      prefix: <IconUser />,
+      prefix: <User />,
     },
     {
       children: "Transactions",
-      prefix: <IconUser />,
+      prefix: <User />,
     },
     {
       children: "Payments",
-      prefix: <IconUser />,
+      prefix: <User />,
     },
     {
       children: "Exchange",
-      prefix: <IconUser />,
+      prefix: <User />,
       suffix: (
         <Badge theme="gray" variant="soft">
           Soon
@@ -51,12 +50,12 @@ const menus = {
   Other: [
     {
       children: "Settings",
-      prefix: <IconUser />,
+      prefix: <User />,
       suffix: <Shortcut>⌘K</Shortcut>,
     },
     {
       children: "Support",
-      prefix: <IconUser />,
+      prefix: <User />,
       isPending: true,
     },
   ],
@@ -110,7 +109,7 @@ export default {
           description="Software Engineer"
         >
           <button type="button" className="ml-2 rounded border p-0.5 text-xs">
-            <IconChevronRight />
+            <ChevronRight />
           </button>
         </Blurb>
       </>

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconUser } from "../../../icons/IconUser"
+import { User } from "lucide-react"
 import { Affix } from "../../ui/Affix"
 import { Input } from "./Input"
 
@@ -28,7 +27,7 @@ export const Default = {
 export const WithAffix = {
   args: {},
   render: props => (
-    <Affix prefix={<IconUser />} suffix={<span>Suffix</span>}>
+    <Affix prefix={<User />} suffix={<span>Suffix</span>}>
       <Input {...props} />
     </Affix>
   ),

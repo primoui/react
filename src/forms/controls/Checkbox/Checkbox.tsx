@@ -1,10 +1,10 @@
 "use client"
 
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+import { Check } from "lucide-react"
 import type { ComponentPropsWithoutRef, ElementRef } from "react"
 import { forwardRef } from "react"
 
-import { IconCheck } from "../../../icons/IconCheck"
 import type { VariantProps } from "../../../shared"
 import { cx } from "../../../shared"
 
@@ -24,7 +24,7 @@ export const Checkbox = forwardRef<CheckboxElement, CheckboxProps>(
         {...rest}
       >
         <CheckboxPrimitive.Indicator asChild>
-          <IconCheck className="size-3.5 !stroke-2" />
+          <Check className="size-3.5 !stroke-2" />
         </CheckboxPrimitive.Indicator>
       </CheckboxPrimitive.Root>
     )

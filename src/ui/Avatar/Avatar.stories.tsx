@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconUser } from "../../icons/IconUser"
+import { User } from "lucide-react"
 import { Dot } from "../Dot"
 
 import { Avatar } from "./Avatar"
@@ -37,14 +36,14 @@ export const WithFallback = {
 
 export const WithChildrenFallback = {
   args: {
-    children: <IconUser />,
+    children: <User />,
   },
 } satisfies Story
 
 export const WithTopStatus = {
   args: {
     src: "https://i.pravatar.cc/150?img=1",
-    topStatus: <IconUser className="-m-[7.5%] bg-white text-teal" />,
+    topStatus: <User className="-m-[7.5%] bg-white text-teal" />,
   },
 } satisfies Story
 
@@ -61,7 +60,7 @@ export const WithCustomMarkup = {
       <Avatar.Image src="https://i.pravatar.cc/150?img=5" />
       <Avatar.Fallback />
       <Avatar.Status className="-m-2 bg-white text-teal ring-0">
-        <IconUser />
+        <User />
       </Avatar.Status>
     </Avatar.Root>
   ),

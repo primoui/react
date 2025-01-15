@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconUser } from "../../icons/IconUser"
+import { User } from "lucide-react"
 
 import { Button } from "./Button"
 
@@ -35,19 +34,19 @@ export const AsChild = {
 
 export const WithPrefix = {
   args: {
-    prefix: <IconUser />,
+    prefix: <User />,
   },
 } satisfies Story
 
 export const WithSuffix = {
   args: {
-    suffix: <IconUser />,
+    suffix: <User />,
   },
 } satisfies Story
 
 export const WithIconOnly = {
   args: {
-    prefix: <IconUser />,
+    prefix: <User />,
     children: null,
   },
 } satisfies Story

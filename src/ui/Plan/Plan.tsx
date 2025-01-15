@@ -1,13 +1,12 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
+import { Check, X } from "lucide-react"
 import { type HTMLAttributes, type ReactNode, forwardRef } from "react"
 
 import { type VariantProps, cx, isReactElement } from "../../shared"
 
 import { formatIntervalAmount } from "@curiousleaf/utils"
-import { IconCheck } from "../../icons/IconCheck"
-import { IconClose } from "../../icons/IconClose"
 import { H3 } from "../../typography/Heading"
 import { Paragraph } from "../../typography/Paragraph"
 import { Card } from "../Card"
@@ -119,7 +118,7 @@ export const Plan = forwardRef<PlanElement, PlanProps>(
               {features.map(({ type, text }) => (
                 <div key={text} className={cx(planFeatureVariants())}>
                   <Slot className={cx(planFeatureCheckVariants({ type }))}>
-                    {type === "negative" ? <IconClose /> : <IconCheck />}
+                    {type === "negative" ? <X /> : <Check />}
                   </Slot>
 
                   <span className={cx(type === "negative" && "text-gray-500")}>{text}</span>

@@ -1,12 +1,10 @@
 "use client"
 
 import * as SelectPrimitive from "@radix-ui/react-select"
+import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import type { ComponentPropsWithoutRef, ElementRef, ReactNode } from "react"
 import { forwardRef } from "react"
 
-import { IconCheck } from "../../../icons/IconCheck"
-import { IconChevronDown } from "../../../icons/IconChevronDown"
-import { IconChevronUp } from "../../../icons/IconChevronUp"
 import type { VariantProps } from "../../../shared"
 import { cx, isTruthy } from "../../../shared"
 import { inputVariants } from "../Input/Input.variants"
@@ -35,7 +33,7 @@ export const SelectTrigger = forwardRef<
     <div className="grow truncate">{children}</div>
 
     <SelectPrimitive.Icon asChild>
-      <IconChevronDown className="shrink-0 opacity-70" />
+      <ChevronDown className="shrink-0 opacity-70" />
     </SelectPrimitive.Icon>
   </SelectPrimitive.Trigger>
 ))
@@ -52,7 +50,7 @@ export const SelectContent = forwardRef<
       {...props}
     >
       <SelectPrimitive.ScrollUpButton className={cx(selectScrollVariants({ position: "top" }))}>
-        <IconChevronUp className="opacity-70" />
+        <ChevronUp className="opacity-70" />
       </SelectPrimitive.ScrollUpButton>
 
       <SelectPrimitive.Viewport
@@ -64,7 +62,7 @@ export const SelectContent = forwardRef<
       <SelectPrimitive.ScrollDownButton
         className={cx(selectScrollVariants({ position: "bottom" }))}
       >
-        <IconChevronDown className="opacity-70" />
+        <ChevronDown className="opacity-70" />
       </SelectPrimitive.ScrollDownButton>
     </SelectPrimitive.Content>
   </SelectPrimitive.Portal>
@@ -89,7 +87,7 @@ export const SelectItem = forwardRef<
     <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
 
     <SelectPrimitive.ItemIndicator asChild>
-      <IconCheck className="absolute right-1.5 top-1/2 -translate-y-1/2 stroke-2 text-sm opacity-70" />
+      <Check className="absolute right-1.5 top-1/2 -translate-y-1/2 stroke-2 text-sm opacity-70" />
     </SelectPrimitive.ItemIndicator>
   </SelectPrimitive.Item>
 ))
@@ -138,14 +136,10 @@ const SelectBase = forwardRef<ElementRef<typeof SelectPrimitive.Trigger>, Select
   },
 )
 
-export const Select = Object.assign(SelectBase, {
-  Root: SelectRoot,
-  Group: SelectGroup,
-  Value: SelectValue,
-  Icon: SelectIcon,
-  Trigger: SelectTrigger,
-  Content: SelectContent,
-  Label: SelectLabel,
-  Item: SelectItem,
-  Separator: SelectSeparator,
-})
+export const Select = forwardRef<ElementRef<typeof SelectPrimitive.Root>, SelectProps>(
+  ({ children, className, ...props }, ref) => (
+    <SelectPrimitive.Root ref={ref} className={cx(className)} {...props}>
+      {children}
+    </SelectPrimitive.Root>
+  ),
+)

@@ -1,12 +1,10 @@
 "use client"
 
-import { isLightColor } from "@curiousleaf/utils"
 import Sketch, { type SketchProps } from "@uiw/react-color-sketch"
+import { Grid, X } from "lucide-react"
 import type { HTMLAttributes } from "react"
 import { forwardRef } from "react"
 
-import { IconCheckerboard } from "../../../icons/IconCheckerboard"
-import { IconClose } from "../../../icons/IconClose"
 import type { VariantProps } from "../../../shared"
 import { cx } from "../../../shared"
 import { Popover } from "../../../ui/Popover"
@@ -41,7 +39,7 @@ export const ColorPicker = forwardRef<ColorPickerElement, ColorPickerProps>(
         >
           <button type="button" className={cx(inputVariants({ className: "w-auto" }))}>
             <div className={cx(colorPickerPreviewVariants())}>
-              <IconCheckerboard className="size-full opacity-25" />
+              <Grid className="size-full opacity-25" />
               {!!color && <div className="absolute inset-0" style={{ backgroundColor: color }} />}
             </div>
 
@@ -52,12 +50,8 @@ export const ColorPicker = forwardRef<ColorPickerElement, ColorPickerProps>(
         </Popover>
 
         {!!color && (
-          <button
-            type="button"
-            className={colorPickerClearVariants({ light: isLightColor(color) })}
-            onClick={onClear}
-          >
-            <IconClose className="pointer-events-none size-3.5" />
+          <button type="button" className={cx(colorPickerClearVariants())} onClick={onClear}>
+            <X className="pointer-events-none size-3.5" />
           </button>
         )}
       </div>

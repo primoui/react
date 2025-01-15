@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { IconChevronRight } from "../../icons/IconChevronRight"
-import { IconUser } from "../../icons/IconUser"
+import { ChevronRight, User } from "lucide-react"
 
 import { MenuItem } from "./MenuItem"
 
@@ -17,8 +15,8 @@ export default {
     linkable: false,
     style: { width: 200 },
     children: "Dashboard",
-    prefix: <IconUser />,
-    suffix: <IconChevronRight />,
+    prefix: <User />,
+    suffix: <ChevronRight />,
   },
 } satisfies Meta<typeof MenuItem>
 

@@ -3,6 +3,7 @@
 import { Slot } from "@radix-ui/react-slot"
 import { type VariantProps, cx } from "cva"
 
+import { X } from "lucide-react"
 import {
   type ComponentPropsWithoutRef,
   type ElementRef,
@@ -14,7 +15,6 @@ import {
   useCallback,
   useState,
 } from "react"
-import { IconClose } from "../../icons/IconClose"
 import { isReactElement } from "../../shared"
 import { Affixable } from "../../utils/Affixable"
 import { Action } from "../Action"
@@ -215,7 +215,7 @@ export const AlertCloseButton = forwardRef<
   ComponentPropsWithoutRef<typeof Button>
 >(({ children, ...props }, ref) => {
   const renderCloseIcon = (children: ReactNode): ReactElement<HTMLElement> => {
-    return isReactElement(children) ? children : <IconClose aria-label="Close" />
+    return isReactElement(children) ? children : <X aria-label="Close" />
   }
 
   return <Action ref={ref} prefix={renderCloseIcon(children)} {...props} />

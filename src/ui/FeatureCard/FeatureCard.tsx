@@ -1,10 +1,10 @@
 "use client"
 
 import { Slot } from "@radix-ui/react-slot"
+import { X } from "lucide-react"
 import { forwardRef } from "react"
 import type { ButtonHTMLAttributes, HTMLAttributes } from "react"
 
-import { IconClose } from "../../icons/IconClose"
 import { type VariantProps, cx, isReactElement } from "../../shared"
 import { Slottable } from "../../utils/Slottable"
 
@@ -63,7 +63,7 @@ export const FeatureCardCloser = forwardRef<HTMLButtonElement, FeatureCardCloser
 
     return (
       <Component ref={ref} className={cx(featureCardCloserVariants({ className }))} {...rest}>
-        {useAsChild ? children : <IconClose />}
+        {useAsChild ? children : <X />}
       </Component>
     )
   },
