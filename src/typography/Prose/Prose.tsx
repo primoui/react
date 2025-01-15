@@ -15,9 +15,11 @@ export type ProseProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
     asChild?: boolean
   }
 
-export const Prose = ({ className, asChild = false, size = "md", ...props }: ProseProps) => {
+const Prose = ({ className, asChild = false, size = "md", ...props }: ProseProps) => {
   const useAsChild = asChild && isReactElement(props.children)
   const Comp = useAsChild ? Slot : "div"
 
   return <Comp className={cx(proseVariants({ size, className }))} {...props} />
 }
+
+export { Prose }

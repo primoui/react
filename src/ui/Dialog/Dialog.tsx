@@ -14,10 +14,10 @@ import { dialogVariants } from "./Dialog.variants"
 
 export type DialogProps = ComponentProps<typeof DialogPrimitive.Root>
 
-export const DialogRoot = DialogPrimitive.Root
-export const DialogTrigger = DialogPrimitive.Trigger
+const DialogRoot = DialogPrimitive.Root
+const DialogTrigger = DialogPrimitive.Trigger
 
-export const DialogContent = ({
+const DialogContent = ({
   className,
   size = "md",
   fixed,
@@ -42,31 +42,25 @@ export const DialogContent = ({
   </DialogPrimitive.Portal>
 )
 
-export const DialogContentCard = ({ ...props }: ComponentProps<typeof DialogContent>) => (
+const DialogContentCard = ({ ...props }: ComponentProps<typeof DialogContent>) => (
   <Card className="rounded-none" asChild>
     <DialogContent {...props} />
   </Card>
 )
 
-export const DialogPanel = ({ ...props }: ComponentProps<typeof Card.Panel>) => (
-  <Card.Panel {...props} />
+const DialogPanel = ({ ...props }: ComponentProps<typeof Card.Panel>) => <Card.Panel {...props} />
+
+const DialogFooter = ({ direction = "rowReverse", ...props }: ComponentProps<typeof Card.Row>) => (
+  <Card.Row direction={direction} {...props} />
 )
 
-export const DialogFooter = ({
-  direction = "rowReverse",
-  ...props
-}: ComponentProps<typeof Card.Row>) => <Card.Row direction={direction} {...props} />
-
-export const DialogClose = ({
-  className,
-  ...props
-}: ComponentProps<typeof DialogPrimitive.Close>) => (
+const DialogClose = ({ className, ...props }: ComponentProps<typeof DialogPrimitive.Close>) => (
   <DialogPrimitive.Close className={cx("-my-1", className)} {...props}>
     <X />
   </DialogPrimitive.Close>
 )
 
-export const DialogCancel = ({
+const DialogCancel = ({
   children = "Cancel",
   ...props
 }: ComponentProps<typeof DialogPrimitive.Close>) => (
@@ -77,7 +71,7 @@ export const DialogCancel = ({
   </DialogPrimitive.Close>
 )
 
-export const Dialog = Object.assign(DialogRoot, {
+const Dialog = Object.assign(DialogRoot, {
   Trigger: DialogTrigger,
   Content: DialogContent,
   ContentCard: DialogContentCard,
@@ -86,3 +80,15 @@ export const Dialog = Object.assign(DialogRoot, {
   Close: DialogClose,
   Cancel: DialogCancel,
 })
+
+export {
+  DialogRoot,
+  DialogTrigger,
+  DialogContent,
+  DialogContentCard,
+  DialogPanel,
+  DialogFooter,
+  DialogClose,
+  DialogCancel,
+  Dialog,
+}

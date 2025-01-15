@@ -9,7 +9,7 @@ import { radioGroupItemVariants } from "./RadioGroup.variants"
 
 export type RadioGroupProps = ComponentProps<typeof RadioGroupPrimitive.Root>
 
-export const RadioGroupItem = ({
+const RadioGroupItem = ({
   error = false,
   children,
   className,
@@ -34,6 +34,8 @@ const RadioGroupRoot = ({ disabled = false, ...props }: RadioGroupProps) => (
   <RadioGroupPrimitive.Root disabled={disabled} {...props} />
 )
 
-export const RadioGroup = Object.assign(RadioGroupRoot, {
+const RadioGroup = Object.assign(RadioGroupRoot, {
   Item: RadioGroupItem,
 })
+
+export { RadioGroup, RadioGroupItem }

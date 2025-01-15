@@ -33,7 +33,7 @@ export type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "size" |
     isPending?: boolean
   }
 
-export const Button = ({
+const Button = ({
   children,
   className,
   asChild = false,
@@ -42,7 +42,7 @@ export const Button = ({
   isPending = false,
   theme = "primary",
   size = "md",
-  ...rest
+  ...props
 }: ButtonProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "button"
@@ -55,7 +55,7 @@ export const Button = ({
   }
 
   return (
-    <Component className={cx(buttonVariants({ theme, size, className }))} {...rest}>
+    <Component className={cx(buttonVariants({ theme, size, className }))} {...props}>
       <Slottable child={children} asChild={asChild}>
         {child => (
           <>
@@ -78,3 +78,5 @@ export const Button = ({
     </Component>
   )
 }
+
+export { Button }

@@ -10,15 +10,12 @@ import { shortcutVariants } from "./Shortcut.variants"
 export type ShortcutProps = ComponentProps<typeof Subheading> &
   VariantProps<typeof shortcutVariants>
 
-export const Shortcut = ({
-  className,
-  variant = "outline",
-  size = "sm",
-  ...rest
-}: ShortcutProps) => {
+const Shortcut = ({ className, variant = "outline", size = "sm", ...props }: ShortcutProps) => {
   return (
-    <Slot className={cx(shortcutVariants({ variant, className }))} {...rest}>
-      <Subheading size={size} {...rest} />
+    <Slot className={cx(shortcutVariants({ variant, className }))} {...props}>
+      <Subheading size={size} {...props} />
     </Slot>
   )
 }
+
+export { Shortcut }

@@ -13,12 +13,12 @@ import {
   selectViewportVariants,
 } from "./Select.variants"
 
-export const SelectRoot = SelectPrimitive.Root
-export const SelectGroup = SelectPrimitive.Group
-export const SelectValue = SelectPrimitive.Value
-export const SelectIcon = SelectPrimitive.Icon
+const SelectRoot = SelectPrimitive.Root
+const SelectGroup = SelectPrimitive.Group
+const SelectValue = SelectPrimitive.Value
+const SelectIcon = SelectPrimitive.Icon
 
-export const SelectTrigger = ({
+const SelectTrigger = ({
   className,
   mono,
   error,
@@ -37,7 +37,7 @@ export const SelectTrigger = ({
   </SelectPrimitive.Trigger>
 )
 
-export const SelectContent = ({
+const SelectContent = ({
   className,
   children,
   position = "popper",
@@ -68,17 +68,14 @@ export const SelectContent = ({
   </SelectPrimitive.Portal>
 )
 
-export const SelectLabel = ({
-  className,
-  ...props
-}: ComponentProps<typeof SelectPrimitive.Label>) => (
+const SelectLabel = ({ className, ...props }: ComponentProps<typeof SelectPrimitive.Label>) => (
   <SelectPrimitive.Label
     className={cx("py-1.5 pl-2 pr-8 text-xs font-medium lg:text-sm", className)}
     {...props}
   />
 )
 
-export const SelectItem = ({
+const SelectItem = ({
   className,
   children,
   ...props
@@ -92,7 +89,7 @@ export const SelectItem = ({
   </SelectPrimitive.Item>
 )
 
-export const SelectSeparator = ({
+const SelectSeparator = ({
   className,
   ...props
 }: ComponentProps<typeof SelectPrimitive.Separator>) => (
@@ -111,14 +108,9 @@ export type SelectProps = ComponentProps<typeof SelectPrimitive.Root> &
     )[]
   }
 
-export const Select = ({
-  options,
-  error,
-  placeholder = "Select an option...",
-  ...rest
-}: SelectProps) => {
+const Select = ({ options, error, placeholder = "Select an option...", ...props }: SelectProps) => {
   return (
-    <SelectPrimitive.Root {...rest}>
+    <SelectPrimitive.Root {...props}>
       <SelectTrigger error={error}>
         <SelectPrimitive.Value placeholder={placeholder} />
       </SelectTrigger>
@@ -132,4 +124,17 @@ export const Select = ({
       </SelectContent>
     </SelectPrimitive.Root>
   )
+}
+
+export {
+  SelectRoot,
+  SelectGroup,
+  SelectValue,
+  SelectIcon,
+  SelectTrigger,
+  SelectContent,
+  SelectLabel,
+  SelectItem,
+  SelectSeparator,
+  Select,
 }

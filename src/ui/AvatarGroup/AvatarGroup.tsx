@@ -32,7 +32,7 @@ export type AvatarGroupProps = AvatarGroupRootProps &
     previousOnTop?: boolean
   }
 
-export const AvatarGroupRoot = ({ children, className, size, ...props }: AvatarGroupRootProps) => {
+const AvatarGroupRoot = ({ children, className, size, ...props }: AvatarGroupRootProps) => {
   return (
     <div className={cx(avatarGroupVariants({ size, className }))} {...props}>
       {children}
@@ -47,12 +47,7 @@ type AvatarGroupLabelProps = ComponentProps<typeof Avatar> & {
   label?: ReactNode
 }
 
-export const AvatarGroupLabel = ({
-  children,
-  className,
-  label,
-  ...props
-}: AvatarGroupLabelProps) => {
+const AvatarGroupLabel = ({ children, className, label, ...props }: AvatarGroupLabelProps) => {
   return (
     <Avatar
       asChild={isReactElement(children)}
@@ -65,7 +60,7 @@ export const AvatarGroupLabel = ({
   )
 }
 
-export const AvatarGroupItem = ({ className, ...props }: AvatarProps) => {
+const AvatarGroupItem = ({ className, ...props }: AvatarProps) => {
   return <Avatar className={cx(avatarGroupItemVariants({ className }))} {...props} />
 }
 
@@ -100,8 +95,10 @@ const AvatarGroupBase = ({
   )
 }
 
-export const AvatarGroup = Object.assign(AvatarGroupBase, {
+const AvatarGroup = Object.assign(AvatarGroupBase, {
   Root: AvatarGroupRoot,
   Item: AvatarGroupItem,
   Label: AvatarGroupLabel,
 })
+
+export { AvatarGroupRoot, AvatarGroupLabel, AvatarGroupItem, AvatarGroup }

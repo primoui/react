@@ -28,13 +28,13 @@ export type ActionProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "prefix"
     suffix?: ReactNode | ReactNode[]
   }
 
-export const Action = ({
+const Action = ({
   children,
   className,
   asChild = false,
   prefix: propPrefix,
   suffix: propSuffix,
-  ...rest
+  ...props
 }: ActionProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "button"
@@ -43,7 +43,7 @@ export const Action = ({
   const suffix = propSuffix ? [propSuffix].flat() : []
 
   return (
-    <Component className={cx(actionVariants({ className }))} {...rest}>
+    <Component className={cx(actionVariants({ className }))} {...props}>
       <Slottable child={children} asChild={asChild}>
         {child => (
           <>
@@ -66,3 +66,5 @@ export const Action = ({
     </Component>
   )
 }
+
+export { Action }

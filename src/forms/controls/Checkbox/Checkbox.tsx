@@ -10,17 +10,12 @@ import { checkboxVariants } from "./Checkbox.variants"
 export type CheckboxProps = ComponentProps<typeof CheckboxPrimitive.Root> &
   VariantProps<typeof checkboxVariants>
 
-export const Checkbox = ({
-  className,
-  error = false,
-  disabled = false,
-  ...rest
-}: CheckboxProps) => {
+const Checkbox = ({ className, error = false, disabled = false, ...props }: CheckboxProps) => {
   return (
     <CheckboxPrimitive.Root
       className={cx(checkboxVariants({ error, className }))}
       disabled={disabled}
-      {...rest}
+      {...props}
     >
       <CheckboxPrimitive.Indicator asChild>
         <Check className="size-3.5 !stroke-2" />
@@ -28,3 +23,5 @@ export const Checkbox = ({
     </CheckboxPrimitive.Root>
   )
 }
+
+export { Checkbox }

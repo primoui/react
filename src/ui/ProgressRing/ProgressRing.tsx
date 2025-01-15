@@ -23,12 +23,12 @@ const cleanPercentage = (percent = 0) => {
   return isNegative ? 0 : isTooHigh ? 100 : percent
 }
 
-export const ProgressRing = ({
+const ProgressRing = ({
   className,
   percent = 0,
   size = "md",
   theme = "blue",
-  ...rest
+  ...props
 }: ProgressRingProps) => {
   const percentage = cleanPercentage(percent)
   const radius = 42
@@ -36,7 +36,7 @@ export const ProgressRing = ({
   const strokeDashoffset = ((100 - percentage) * circumference) / 100
 
   return (
-    <div className={cx(progressRingVariants({ size, className }))} {...rest}>
+    <div className={cx(progressRingVariants({ size, className }))} {...props}>
       <svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
         <title>Progress Ring - {percentage}% Complete</title>
         <circle
@@ -66,3 +66,5 @@ export const ProgressRing = ({
     </div>
   )
 }
+
+export { ProgressRing }

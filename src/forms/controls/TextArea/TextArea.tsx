@@ -9,13 +9,13 @@ import { inputVariants } from "../Input/Input.variants"
 export type TextAreaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
   VariantProps<typeof inputVariants>
 
-export const TextArea = ({
+const TextArea = ({
   className,
   style,
   error = false,
   mono = false,
   plain = false,
-  ...rest
+  ...props
 }: TextAreaProps) => {
   const { prefixWidth, suffixWidth } = useAffix()
 
@@ -23,7 +23,9 @@ export const TextArea = ({
     <textarea
       className={cx(inputVariants({ error, mono, plain, className }))}
       style={{ ...style, paddingLeft: prefixWidth, paddingRight: suffixWidth }}
-      {...rest}
+      {...props}
     />
   )
 }
+
+export { TextArea }

@@ -15,14 +15,11 @@ export type SubheadingProps = Omit<HTMLAttributes<HTMLParagraphElement>, "size">
     asChild?: boolean
   }
 
-export const Subheading = ({
-  className,
-  asChild = false,
-  size = "md",
-  ...rest
-}: SubheadingProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+const Subheading = ({ className, asChild = false, size = "md", ...props }: SubheadingProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Comp = useAsChild ? Slot : "p"
 
-  return <Comp className={cx(subheadingVariants({ size, className }))} {...rest} />
+  return <Comp className={cx(subheadingVariants({ size, className }))} {...props} />
 }
+
+export { Subheading }

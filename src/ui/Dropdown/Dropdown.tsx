@@ -12,33 +12,33 @@ import {
 
 export type DropdownProps = ComponentProps<typeof DropdownPrimitive.Root>
 
-export const DropdownRoot = DropdownPrimitive.Root
-export const DropdownTrigger = DropdownPrimitive.Trigger
-export const DropdownPortal = DropdownPrimitive.Portal
-export const DropdownContent = DropdownPrimitive.Content
-export const DropdownSub = DropdownPrimitive.Sub
-export const DropdownSubTrigger = DropdownPrimitive.SubTrigger
-export const DropdownSubContent = DropdownPrimitive.SubContent
+const DropdownRoot = DropdownPrimitive.Root
+const DropdownTrigger = DropdownPrimitive.Trigger
+const DropdownPortal = DropdownPrimitive.Portal
+const DropdownContent = DropdownPrimitive.Content
+const DropdownSub = DropdownPrimitive.Sub
+const DropdownSubTrigger = DropdownPrimitive.SubTrigger
+const DropdownSubContent = DropdownPrimitive.SubContent
 
-export const DropdownGroup = ({
+const DropdownGroup = ({
   className,
   ...props
 }: ComponentProps<typeof DropdownPrimitive.Group> & VariantProps<typeof dropdownGroupVariants>) => (
   <DropdownPrimitive.Group className={cx(dropdownGroupVariants({ className }))} {...props} />
 )
 
-export const DropdownItem = ({ ...props }: ComponentProps<typeof DropdownPrimitive.Item>) => (
+const DropdownItem = ({ ...props }: ComponentProps<typeof DropdownPrimitive.Item>) => (
   <DropdownPrimitive.Item asChild {...props} />
 )
 
-export const DropdownLabel = ({
+const DropdownLabel = ({
   className,
   ...props
 }: ComponentProps<typeof DropdownPrimitive.Label> & VariantProps<typeof dropdownLabelVariants>) => (
   <DropdownPrimitive.Label className={cx(dropdownLabelVariants({ className }))} {...props} />
 )
 
-export const DropdownSeparator = ({
+const DropdownSeparator = ({
   className,
   ...props
 }: ComponentProps<typeof DropdownPrimitive.Separator> &
@@ -49,7 +49,7 @@ export const DropdownSeparator = ({
   />
 )
 
-export const Dropdown = Object.assign(DropdownRoot, {
+const Dropdown = Object.assign(DropdownRoot, {
   Trigger: DropdownTrigger,
   Portal: DropdownPortal,
   Content: DropdownContent,
@@ -61,3 +61,18 @@ export const Dropdown = Object.assign(DropdownRoot, {
   Label: DropdownLabel,
   Separator: DropdownSeparator,
 })
+
+export {
+  DropdownRoot,
+  DropdownTrigger,
+  DropdownPortal,
+  DropdownContent,
+  DropdownSub,
+  DropdownSubTrigger,
+  DropdownSubContent,
+  DropdownGroup,
+  DropdownItem,
+  DropdownLabel,
+  DropdownSeparator,
+  Dropdown,
+}

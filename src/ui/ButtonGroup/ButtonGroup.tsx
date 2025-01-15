@@ -16,20 +16,23 @@ export type ButtonGroupProps = ButtonProps &
     buttons?: ButtonProps[]
   }
 
-export const ButtonGroup = ({
+const ButtonGroup = ({
   children,
   className,
   buttons,
   theme = "secondary",
   variant = "outline",
-  ...rest
+  ...props
 }: ButtonGroupProps) => {
   return (
     <div className={cx(buttonGroupVariants({ className }))}>
       {buttons?.map((button, i) => (
-        <Button key={`button-${i}`} theme={theme} variant={variant} {...button} {...rest} />
+        <Button key={`button-${i}`} theme={theme} variant={variant} {...button} {...props} />
       ))}
+
       {children}
     </div>
   )
 }
+
+export { ButtonGroup }

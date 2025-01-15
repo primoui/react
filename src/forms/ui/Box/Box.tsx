@@ -36,7 +36,7 @@ const BoxBase = ({ children, className, htmlFor, label, suffix, ...props }: BoxP
   )
 }
 
-export const BoxGroup = ({
+const BoxGroup = ({
   className,
   boxed,
   ...props
@@ -44,6 +44,8 @@ export const BoxGroup = ({
   return <div className={cx(boxGroupVariants({ boxed, className }))} {...props} />
 }
 
-export const Box = Object.assign(BoxBase, {
+const Box = Object.assign(BoxBase, {
   Group: BoxGroup,
 })
+
+export { Box, BoxGroup }

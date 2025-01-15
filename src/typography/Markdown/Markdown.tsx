@@ -10,14 +10,16 @@ export type MarkdownProps = Omit<ProseProps, "children"> & {
   options?: MarkdownToJSX.Options
 }
 
-export const Markdown = ({
+const Markdown = ({
   content,
   options = { wrapper: Prose, forceWrapper: true },
-  ...rest
+  ...props
 }: MarkdownProps) => {
   return (
-    <MarkdownParser options={options} {...rest}>
+    <MarkdownParser options={options} {...props}>
       {content}
     </MarkdownParser>
   )
 }
+
+export { Markdown }

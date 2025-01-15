@@ -15,16 +15,18 @@ export type ParagraphProps = Omit<HTMLAttributes<HTMLParagraphElement>, "size"> 
     asChild?: boolean
   }
 
-export const Paragraph = ({
+const Paragraph = ({
   className,
   asChild,
   size = "md",
   variant = "regular",
   wrap = "wrap",
-  ...rest
+  ...props
 }: ParagraphProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+  const useAsChild = asChild && isReactElement(props.children)
   const Comp = useAsChild ? Slot : "p"
 
-  return <Comp className={cx(paragraphVariants({ size, variant, wrap, className }))} {...rest} />
+  return <Comp className={cx(paragraphVariants({ size, variant, wrap, className }))} {...props} />
 }
+
+export { Paragraph }

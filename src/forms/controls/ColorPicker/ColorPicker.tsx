@@ -27,17 +27,17 @@ export type ColorPickerProps = Omit<HTMLAttributes<HTMLDivElement>, "onChange"> 
     onClear?: () => void
   }
 
-export const ColorPicker = ({
+const ColorPicker = ({
   children,
   className,
   label = "Pick color",
   color,
   onClear,
-  ...rest
+  ...props
 }: ColorPickerProps) => {
   return (
     <div className={cx(colorPickerVariants({ className }))}>
-      <Popover popover={<Sketch color={color} className="-mx-3 -my-1.5 !shadow-none" {...rest} />}>
+      <Popover popover={<Sketch color={color} className="-mx-3 -my-1.5 !shadow-none" {...props} />}>
         <button type="button" className={cx(inputVariants({ className: "w-auto" }))}>
           <div className={cx(colorPickerPreviewVariants())}>
             <Grid className="size-full opacity-25" />
@@ -58,3 +58,5 @@ export const ColorPicker = ({
     </div>
   )
 }
+
+export { ColorPicker }

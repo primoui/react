@@ -21,39 +21,35 @@ export type HeadingProps = Omit<HTMLAttributes<HTMLHeadingElement>, "size"> &
     asChild?: boolean
   }
 
-export const Heading = ({
-  className,
-  as,
-  asChild = false,
-  size = "h3",
-  ...props
-}: HeadingProps) => {
+const Heading = ({ className, as, asChild = false, size = "h3", ...props }: HeadingProps) => {
   const useAsChild = asChild && isReactElement(props.children)
   const Comp = useAsChild ? Slot : (as ?? size ?? "h2")
 
   return <Comp className={cx(headingVariants({ size, className }))} {...props} />
 }
 
-export const H1 = (props: HeadingProps) => {
+const H1 = (props: HeadingProps) => {
   return <Heading size="h1" {...props} />
 }
 
-export const H2 = (props: HeadingProps) => {
+const H2 = (props: HeadingProps) => {
   return <Heading size="h2" {...props} />
 }
 
-export const H3 = (props: HeadingProps) => {
+const H3 = (props: HeadingProps) => {
   return <Heading size="h3" {...props} />
 }
 
-export const H4 = (props: HeadingProps) => {
+const H4 = (props: HeadingProps) => {
   return <Heading size="h4" {...props} />
 }
 
-export const H5 = (props: HeadingProps) => {
+const H5 = (props: HeadingProps) => {
   return <Heading size="h5" {...props} />
 }
 
-export const H6 = (props: HeadingProps) => {
+const H6 = (props: HeadingProps) => {
   return <Heading size="h6" {...props} />
 }
+
+export { Heading, H1, H2, H3, H4, H5, H6 }

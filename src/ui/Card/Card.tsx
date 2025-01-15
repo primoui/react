@@ -17,7 +17,7 @@ export type CardProps = HTMLAttributes<HTMLDivElement> &
     asChild?: boolean
   }
 
-export const CardRoot = ({ asChild = false, className, ...props }: CardProps) => {
+const CardRoot = ({ asChild = false, className, ...props }: CardProps) => {
   const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
@@ -33,7 +33,7 @@ export type CardPanelProps = ComponentProps<"div"> &
     asChild?: boolean
   }
 
-export const CardPanel = ({
+const CardPanel = ({
   className,
   asChild,
   size,
@@ -53,7 +53,7 @@ export const CardPanel = ({
   )
 }
 
-export const CardSection = ({
+const CardSection = ({
   className,
   size,
   ...props
@@ -61,7 +61,7 @@ export const CardSection = ({
   return <CardPanel size={size} className={cx(sectionVariants({ className }))} {...props} />
 }
 
-export const CardRow = ({
+const CardRow = ({
   className,
   size,
   gap,
@@ -79,8 +79,10 @@ export const CardRow = ({
   )
 }
 
-export const Card = Object.assign(CardRoot, {
+const Card = Object.assign(CardRoot, {
   Panel: CardPanel,
   Section: CardSection,
   Row: CardRow,
 })
+
+export { CardRoot, CardPanel, CardSection, CardRow, Card }

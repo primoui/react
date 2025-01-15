@@ -10,7 +10,7 @@ export type AffixableProps = HTMLAttributes<HTMLElement> & {
   variants: ReturnType<typeof cva>
 }
 
-export const Affixable = ({ variants, ...props }: AffixableProps) => {
+const Affixable = ({ variants, ...props }: AffixableProps) => {
   const Component = isReactElement(props.children) ? Slot : "span"
 
   if (!props.children) {
@@ -19,3 +19,5 @@ export const Affixable = ({ variants, ...props }: AffixableProps) => {
 
   return <Component className={cx(variants({}))} {...props} />
 }
+
+export { Affixable }

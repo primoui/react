@@ -8,7 +8,7 @@ import { inputVariants } from "./Input.variants"
 
 export type InputProps = InputHTMLAttributes<HTMLInputElement> & VariantProps<typeof inputVariants>
 
-export const Input = ({
+const Input = ({
   className,
   style,
   error = false,
@@ -16,7 +16,7 @@ export const Input = ({
   plain = false,
   hoverable = false,
   type = "text",
-  ...rest
+  ...props
 }: InputProps) => {
   const { prefixWidth, suffixWidth } = useAffix()
 
@@ -25,7 +25,9 @@ export const Input = ({
       type={type}
       className={cx(inputVariants({ error, mono, plain, hoverable, className }))}
       style={{ ...style, paddingLeft: prefixWidth, paddingRight: suffixWidth }}
-      {...rest}
+      {...props}
     />
   )
 }
+
+export { Input }

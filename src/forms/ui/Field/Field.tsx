@@ -35,7 +35,7 @@ export type FieldProps = HTMLAttributes<HTMLDivElement> &
     isRequired?: boolean
   }
 
-export const Field = ({
+const Field = ({
   children,
   className,
   id,
@@ -65,3 +65,5 @@ export const Field = ({
     </div>
   )
 }
+
+export { Field }

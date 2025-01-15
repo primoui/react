@@ -13,17 +13,19 @@ export type StatusProps = HTMLAttributes<HTMLSpanElement> &
     label?: string
   }
 
-export const Status = ({
+const Status = ({
   children,
   className,
   label,
   theme = "gray",
   variant = "empty",
-  ...rest
+  ...props
 }: StatusProps) => {
   return (
-    <span className={cx(statusVariants({ theme, variant, className }))} {...rest}>
+    <span className={cx(statusVariants({ theme, variant, className }))} {...props}>
       {children ?? label}
     </span>
   )
 }
+
+export { Status }

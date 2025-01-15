@@ -39,11 +39,11 @@ export type ProgressBarBarProps = HTMLAttributes<HTMLDivElement> &
     percent: number
   }
 
-export const ProgressBarRoot = ({ className, ...props }: ProgressBarRootProps) => {
+const ProgressBarRoot = ({ className, ...props }: ProgressBarRootProps) => {
   return <div className={progressBarVariants({ className })} {...props} />
 }
 
-export const ProgressBarBar = ({ className, percent, theme, ...props }: ProgressBarBarProps) => {
+const ProgressBarBar = ({ className, percent, theme, ...props }: ProgressBarBarProps) => {
   const percentage = cleanPercentage(percent)
 
   return (
@@ -56,7 +56,7 @@ export const ProgressBarBar = ({ className, percent, theme, ...props }: Progress
   )
 }
 
-export const ProgressBarLabel = ({
+const ProgressBarLabel = ({
   className,
   size = "sm",
   variant = "medium",
@@ -72,7 +72,7 @@ export const ProgressBarLabel = ({
   )
 }
 
-export const ProgressBarHint = ({
+const ProgressBarHint = ({
   className,
   size = "xs",
   ...props
@@ -80,7 +80,7 @@ export const ProgressBarHint = ({
   return <Paragraph size={size} className={cx(progressBarHintVariants({ className }))} {...props} />
 }
 
-export const ProgressBarBase = ({
+const ProgressBarBase = ({
   children,
   percent = 0,
   label = "",
@@ -101,9 +101,18 @@ export const ProgressBarBase = ({
   )
 }
 
-export const ProgressBar = Object.assign(ProgressBarBase, {
+const ProgressBar = Object.assign(ProgressBarBase, {
   Root: ProgressBarRoot,
   Bar: ProgressBarBar,
   Label: ProgressBarLabel,
   Hint: ProgressBarHint,
 })
+
+export {
+  ProgressBarRoot,
+  ProgressBarBar,
+  ProgressBarLabel,
+  ProgressBarHint,
+  ProgressBarBase,
+  ProgressBar,
+}

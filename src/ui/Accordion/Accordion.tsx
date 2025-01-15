@@ -5,16 +5,16 @@ import type { ComponentProps } from "react"
 import { cx } from "~/shared/cva"
 import { accordionVariants } from "./Accordion.variants"
 
-export const AccordionRoot = AccordionPrimitive.Root as typeof AccordionPrimitive.Root & {
+const AccordionRoot = AccordionPrimitive.Root as typeof AccordionPrimitive.Root & {
   defaultProps: {
     collapsible: true
     type: "single"
   }
 }
-export const AccordionItem = AccordionPrimitive.Item
-export const AccordionTrigger = AccordionPrimitive.Trigger
+const AccordionItem = AccordionPrimitive.Item
+const AccordionTrigger = AccordionPrimitive.Trigger
 
-export const AccordionContent = ({
+const AccordionContent = ({
   className,
   ...props
 }: ComponentProps<typeof AccordionPrimitive.Content>) => (
@@ -24,8 +24,10 @@ export const AccordionContent = ({
   />
 )
 
-export const Accordion = Object.assign(AccordionRoot, {
+const Accordion = Object.assign(AccordionRoot, {
   Item: AccordionItem,
   Trigger: AccordionTrigger,
   Content: AccordionContent,
 })
+
+export { Accordion, AccordionContent, AccordionItem, AccordionRoot, AccordionTrigger }

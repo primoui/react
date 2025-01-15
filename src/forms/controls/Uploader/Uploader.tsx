@@ -34,7 +34,7 @@ export type UploaderProps = Omit<ComponentProps<typeof Stack>, "onChange"> & {
   onClear?: () => void
 }
 
-export const Uploader = ({
+const Uploader = ({
   children,
   className,
   label = "Upload",
@@ -42,7 +42,7 @@ export const Uploader = ({
   isPending = false,
   onChange,
   onClear,
-  ...rest
+  ...props
 }: UploaderProps) => {
   const uploadRef = useRef<HTMLInputElement | null>(null)
 
@@ -60,7 +60,7 @@ export const Uploader = ({
   }
 
   return (
-    <Stack {...rest}>
+    <Stack {...props}>
       {children}
 
       <input
@@ -95,3 +95,5 @@ export const Uploader = ({
     </Stack>
   )
 }
+
+export { Uploader }

@@ -15,15 +15,11 @@ export type ModalProps = HTMLAttributes<HTMLDivElement> &
     asChild?: boolean
   }
 
-export const Modal = ({
-  className,
-  asChild = false,
-  size = "md",
-  fixed = true,
-  ...rest
-}: ModalProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+const Modal = ({ className, asChild = false, size = "md", fixed = true, ...props }: ModalProps) => {
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
-  return <Component className={cx(modalVariants({ size, fixed, className }))} {...rest} />
+  return <Component className={cx(modalVariants({ size, fixed, className }))} {...props} />
 }
+
+export { Modal }

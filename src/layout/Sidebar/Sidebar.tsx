@@ -14,23 +14,23 @@ import {
 
 export type SidebarProps = HTMLAttributes<HTMLElement> & VariantProps<typeof sidebarVariants>
 
-export const SidebarBase = ({ className, size = "md", sticky = true, ...props }: SidebarProps) => {
+const SidebarBase = ({ className, size = "md", sticky = true, ...props }: SidebarProps) => {
   return <aside className={cx(sidebarVariants({ size, sticky, className }))} {...props} />
 }
 
-export const SidebarContent = ({ className, ...props }: HTMLAttributes<HTMLElement>) => {
+const SidebarContent = ({ className, ...props }: HTMLAttributes<HTMLElement>) => {
   return <nav className={cx(sidebarContentVariants({ className }))} {...props} />
 }
 
-export const SidebarMenu = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
+const SidebarMenu = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => {
   return <div className={cx(sidebarMenuVariants({ className }))} {...props} />
 }
 
-export const SidebarHeading = ({ className, size = "xs", ...props }: SubheadingProps) => {
+const SidebarHeading = ({ className, size = "xs", ...props }: SubheadingProps) => {
   return <Subheading size={size} className={cx(sidebarHeadingVariants({ className }))} {...props} />
 }
 
-export const SidebarSeparator = ({
+const SidebarSeparator = ({
   className,
   fullWidth,
   ...props
@@ -38,9 +38,11 @@ export const SidebarSeparator = ({
   return <hr className={cx(sidebarSeparatorVariants({ fullWidth, className }))} {...props} />
 }
 
-export const Sidebar = Object.assign(SidebarBase, {
+const Sidebar = Object.assign(SidebarBase, {
   Content: SidebarContent,
   Menu: SidebarMenu,
   Heading: SidebarHeading,
   Separator: SidebarSeparator,
 })
+
+export { Sidebar, SidebarBase, SidebarContent, SidebarMenu, SidebarHeading, SidebarSeparator }

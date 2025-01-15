@@ -75,14 +75,14 @@ export const Plan = ({
   description,
   features,
   isFeatured = false,
-  ...rest
+  ...props
 }: PlanProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "div"
 
   return (
     <Card asChild>
-      <Component className={cx(planVariants({ isFeatured, className }))} {...rest}>
+      <Component className={cx(planVariants({ isFeatured, className }))} {...props}>
         <div className="space-y-3">
           <H3>{name}</H3>
 

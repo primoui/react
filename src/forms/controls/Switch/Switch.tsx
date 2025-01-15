@@ -9,10 +9,12 @@ import { switchThumbVariants, switchVariants } from "./Switch.variants"
 export type SwitchProps = ComponentProps<typeof SwitchPrimitives.Root> &
   VariantProps<typeof switchVariants>
 
-export const Switch = ({ className, error = false, disabled = false, ...props }: SwitchProps) => {
+const Switch = ({ className, error = false, disabled = false, ...props }: SwitchProps) => {
   return (
     <SwitchPrimitives.Root className={cx(switchVariants({ error, className }))} {...props}>
       <SwitchPrimitives.Thumb className={cx(switchThumbVariants())} />
     </SwitchPrimitives.Root>
   )
 }
+
+export { Switch }

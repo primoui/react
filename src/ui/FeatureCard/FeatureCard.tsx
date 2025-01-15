@@ -33,43 +33,38 @@ export type FeatureCardProps = FeatureCardRootProps & {
   isCloseable?: boolean
 }
 
-export const FeatureCardRoot = ({
+const FeatureCardRoot = ({
   className,
   asChild,
   theme = "primary",
   variant = "soft",
-  ...rest
+  ...props
 }: FeatureCardRootProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
-  return <Component className={cx(featureCardVariants({ theme, variant, className }))} {...rest} />
+  return <Component className={cx(featureCardVariants({ theme, variant, className }))} {...props} />
 }
 
-export const FeatureCardCloser = ({
-  children,
-  className,
-  asChild,
-  ...rest
-}: FeatureCardCloserProps) => {
+const FeatureCardCloser = ({ children, className, asChild, ...props }: FeatureCardCloserProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "button"
 
   return (
-    <Component className={cx(featureCardCloserVariants({ className }))} {...rest}>
+    <Component className={cx(featureCardCloserVariants({ className }))} {...props}>
       {useAsChild ? children : <X />}
     </Component>
   )
 }
 
-export const FeatureCardBase = ({
+const FeatureCardBase = ({
   children,
   asChild,
   isCloseable = false,
-  ...rest
+  ...props
 }: FeatureCardProps) => {
   return (
-    <FeatureCardRoot asChild={asChild} {...rest}>
+    <FeatureCardRoot asChild={asChild} {...props}>
       <Slottable child={children} asChild={asChild}>
         {child => (
           <>
@@ -82,7 +77,9 @@ export const FeatureCardBase = ({
   )
 }
 
-export const FeatureCard = Object.assign(FeatureCardBase, {
+const FeatureCard = Object.assign(FeatureCardBase, {
   Root: FeatureCardRoot,
   Closer: FeatureCardCloser,
 })
+
+export { FeatureCardRoot, FeatureCardCloser, FeatureCardBase, FeatureCard }

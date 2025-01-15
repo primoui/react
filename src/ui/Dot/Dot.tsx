@@ -16,9 +16,11 @@ export type DotProps = Omit<HTMLAttributes<HTMLSpanElement>, "size"> &
     asChild?: boolean
   }
 
-export const Dot = ({ className, asChild = false, variant = "solid", ...props }: DotProps) => {
+const Dot = ({ className, asChild = false, variant = "solid", ...props }: DotProps) => {
   const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "span"
 
   return <Component className={cx(dotVariants({ variant, className }))} {...props} />
 }
+
+export { Dot }

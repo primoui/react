@@ -88,7 +88,7 @@ export type AlertProps = Omit<HTMLAttributes<HTMLDivElement>, "title" | "prefix"
     title?: ReactNode
   } & (ClosableProps | NotClosableProps)
 
-export const AlertBase = ({
+const AlertBase = ({
   className,
   suffix,
   prefix,
@@ -159,7 +159,7 @@ export const AlertBase = ({
   )
 }
 
-export const AlertRoot = ({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) => {
+const AlertRoot = ({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) => {
   return (
     <div className={cx(alertRootVariants({ className }))} role="alert" {...props}>
       {children}
@@ -167,7 +167,7 @@ export const AlertRoot = ({ className, children, ...props }: HTMLAttributes<HTML
   )
 }
 
-export const AlertTitle = ({
+const AlertTitle = ({
   className,
   theme,
   children,
@@ -182,7 +182,7 @@ export const AlertTitle = ({
   )
 }
 
-export const AlertDescription = ({
+const AlertDescription = ({
   className,
   children,
   ...props
@@ -196,7 +196,7 @@ export const AlertDescription = ({
   )
 }
 
-export const AlertCloseButton = ({ children, ...props }: ComponentProps<typeof Button>) => {
+const AlertCloseButton = ({ children, ...props }: ComponentProps<typeof Button>) => {
   const renderCloseIcon = (children: ReactNode) => {
     return isReactElement(children) ? children : <X aria-label="Close" />
   }
@@ -204,9 +204,11 @@ export const AlertCloseButton = ({ children, ...props }: ComponentProps<typeof B
   return <Action prefix={renderCloseIcon(children)} {...props} />
 }
 
-export const Alert = Object.assign(AlertBase, {
+const Alert = Object.assign(AlertBase, {
   Root: AlertRoot,
   CloseButton: AlertCloseButton,
   Description: AlertDescription,
   Title: AlertTitle,
 })
+
+export { AlertBase, AlertRoot, AlertTitle, AlertDescription, AlertCloseButton, Alert }

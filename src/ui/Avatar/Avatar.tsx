@@ -46,7 +46,7 @@ export type AvatarProps = Omit<ComponentProps<typeof AvatarPrimitive.Image>, "sr
     bottomStatus?: ReactNode
   }
 
-export const AvatarRoot = ({
+const AvatarRoot = ({
   className,
   variant,
   size,
@@ -61,14 +61,14 @@ export const AvatarRoot = ({
   )
 }
 
-export const AvatarImage = ({
+const AvatarImage = ({
   className,
   ...props
 }: ComponentProps<typeof AvatarPrimitive.Image> & VariantProps<typeof avatarImageVariants>) => {
   return <AvatarPrimitive.Image className={cx(avatarImageVariants({ className }))} {...props} />
 }
 
-export const AvatarFallback = ({
+const AvatarFallback = ({
   className,
   ...props
 }: ComponentProps<typeof AvatarPrimitive.Fallback> &
@@ -78,14 +78,14 @@ export const AvatarFallback = ({
   )
 }
 
-export const AvatarStatus = ({
+const AvatarStatus = ({
   className,
   position,
-  ...rest
+  ...props
 }: ComponentProps<"span"> & VariantProps<typeof avatarStatusVariants>) => {
-  const Comp = isReactElement(rest.children) ? Slot : "span"
+  const Comp = isReactElement(props.children) ? Slot : "span"
 
-  return <Comp className={cx(avatarStatusVariants({ position, className }))} {...rest} />
+  return <Comp className={cx(avatarStatusVariants({ position, className }))} {...props} />
 }
 
 const AvatarBase = ({
@@ -98,10 +98,10 @@ const AvatarBase = ({
   shape,
   src,
   alt,
-  ...rest
+  ...props
 }: AvatarProps) => {
   return (
-    <AvatarRoot variant={variant} size={size} shape={shape} {...rest}>
+    <AvatarRoot variant={variant} size={size} shape={shape} {...props}>
       {/* Show image if available */}
       {src && <AvatarImage alt={alt} src={src} />}
 
@@ -141,9 +141,11 @@ const AvatarBase = ({
   )
 }
 
-export const Avatar = Object.assign(AvatarBase, {
+const Avatar = Object.assign(AvatarBase, {
   Fallback: AvatarFallback,
   Image: AvatarImage,
   Status: AvatarStatus,
   Root: AvatarRoot,
 })
+
+export { Avatar, AvatarFallback, AvatarImage, AvatarRoot, AvatarStatus }

@@ -39,7 +39,7 @@ export type MenuItemProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "prefi
     isPending?: boolean
   }
 
-export const MenuItem = ({
+const MenuItem = ({
   children,
   className,
   asChild = false,
@@ -50,7 +50,7 @@ export const MenuItem = ({
   theme = "secondary",
   size = "md",
   linkable = false,
-  ...rest
+  ...props
 }: MenuItemProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "button"
@@ -66,7 +66,7 @@ export const MenuItem = ({
     <Component
       aria-current={isActive ? "page" : undefined}
       className={cx(menuItemVariants({ theme, size, linkable, className }))}
-      {...rest}
+      {...props}
     >
       <Slottable child={children} asChild={asChild}>
         {child => (
@@ -90,3 +90,5 @@ export const MenuItem = ({
     </Component>
   )
 }
+
+export { MenuItem }

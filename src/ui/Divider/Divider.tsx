@@ -14,7 +14,7 @@ export type DividerProps = HTMLAttributes<HTMLDivElement> &
     label?: ReactNode
   }
 
-export const Divider = ({ children, className, label = "or", ...props }: DividerProps) => {
+const Divider = ({ children, className, label = "or", ...props }: DividerProps) => {
   return (
     <div className={dividerVariants({ className })} {...props}>
       {children ?? (
@@ -25,3 +25,5 @@ export const Divider = ({ children, className, label = "or", ...props }: Divider
     </div>
   )
 }
+
+export { Divider }

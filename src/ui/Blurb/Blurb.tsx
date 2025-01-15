@@ -46,25 +46,25 @@ export type BlurbProps = BlurbRootProps & {
   size?: "sm" | "md" | "lg"
 }
 
-export const BlurbRoot = ({ className, asChild, ...props }: BlurbRootProps) => {
+const BlurbRoot = ({ className, asChild, ...props }: BlurbRootProps) => {
   const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
   return <Component className={cx(blurbVariants({ className }))} {...props} />
 }
 
-export const BlurbAvatar = ({ size = "lg", ...props }: AvatarProps) => {
+const BlurbAvatar = ({ size = "lg", ...props }: AvatarProps) => {
   return <Avatar size={size} {...props} />
 }
 
-export const BlurbContent = ({
+const BlurbContent = ({
   className,
   ...props
 }: ComponentProps<"div"> & VariantProps<typeof blurbContentVariants>) => {
   return <div className={cx(blurbContentVariants({ className }))} {...props} />
 }
 
-export const BlurbTitle = ({
+const BlurbTitle = ({
   className,
   size = "sm",
   ...props
@@ -83,7 +83,7 @@ export const BlurbTitle = ({
   )
 }
 
-export const BlurbDescription = ({
+const BlurbDescription = ({
   className,
   size = "xs",
   ...props
@@ -123,10 +123,12 @@ const BlurbBase = ({
   )
 }
 
-export const Blurb = Object.assign(BlurbBase, {
+const Blurb = Object.assign(BlurbBase, {
   Root: BlurbRoot,
   Avatar: BlurbAvatar,
   Content: BlurbContent,
   Title: BlurbTitle,
   Description: BlurbDescription,
 })
+
+export { Blurb, BlurbAvatar, BlurbContent, BlurbDescription, BlurbRoot, BlurbTitle }

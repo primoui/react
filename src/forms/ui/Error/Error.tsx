@@ -7,6 +7,8 @@ import { errorVariants } from "./Error.variants"
 
 export type ErrorProps = ParagraphProps
 
-export const Error = ({ className, ...props }: ErrorProps) => {
+const Error = ({ className, ...props }: ErrorProps) => {
   return <Paragraph size="xs" className={cx(errorVariants({ className }))} {...props} />
 }
+
+export { Error }

@@ -28,7 +28,7 @@ export type BadgeProps = Omit<HTMLAttributes<HTMLSpanElement>, "size" | "prefix"
     suffix?: ReactNode | ReactNode[]
   }
 
-export const Badge = ({
+const Badge = ({
   children,
   className,
   asChild = false,
@@ -37,7 +37,7 @@ export const Badge = ({
   theme = "gray",
   variant = "solid",
   size = "md",
-  ...rest
+  ...props
 }: BadgeProps) => {
   const useAsChild = asChild && isReactElement(children)
   const Component = useAsChild ? Slot : "span"
@@ -46,7 +46,7 @@ export const Badge = ({
   const suffix = propSuffix ? [propSuffix].flat() : []
 
   return (
-    <Component className={cx(badgeVariants({ theme, variant, size, className }))} {...rest}>
+    <Component className={cx(badgeVariants({ theme, variant, size, className }))} {...props}>
       <Slottable child={children} asChild={asChild}>
         {child => (
           <>
@@ -69,3 +69,5 @@ export const Badge = ({
     </Component>
   )
 }
+
+export { Badge }

@@ -30,42 +30,42 @@ export type HeaderProps = Omit<HeaderRootProps & HeadingProps, "title"> & {
   description?: string
 }
 
-export const HeaderRoot = ({
+const HeaderRoot = ({
   className,
   alignment = "left",
   gap,
   separated,
   sticky,
   asChild = false,
-  ...rest
+  ...props
 }: HeaderRootProps) => {
-  const useAsChild = asChild && isReactElement(rest.children)
+  const useAsChild = asChild && isReactElement(props.children)
   const Component = useAsChild ? Slot : "div"
 
   return (
     <Component
       className={cx(headerVariants({ alignment, gap, separated, sticky, className }))}
-      {...rest}
+      {...props}
     />
   )
 }
 
-export const HeaderTitle = ({
+const HeaderTitle = ({
   className,
   size = "h3",
-  ...rest
+  ...props
 }: HeadingProps & VariantProps<typeof headerTitleVariants>) => {
-  return <Heading size={size} className={cx(headerTitleVariants({ className }))} {...rest} />
+  return <Heading size={size} className={cx(headerTitleVariants({ className }))} {...props} />
 }
 
-export const HeaderDescription = ({
+const HeaderDescription = ({
   className,
   size = "sm",
-  ...rest
+  ...props
 }: MarkdownProps & VariantProps<typeof headerDescriptionVariants>) => {
   return (
     <div className="w-full">
-      <Markdown size={size} className={cx(headerDescriptionVariants({ className }))} {...rest} />
+      <Markdown size={size} className={cx(headerDescriptionVariants({ className }))} {...props} />
     </div>
   )
 }
@@ -78,10 +78,10 @@ const HeaderBase = ({
   alignment = "left",
   gap = "lg",
   separated = false,
-  ...rest
+  ...props
 }: HeaderProps) => {
   return (
-    <HeaderRoot alignment={alignment} gap={gap} separated={separated} {...rest}>
+    <HeaderRoot alignment={alignment} gap={gap} separated={separated} {...props}>
       {title && <HeaderTitle size={size}>{title}</HeaderTitle>}
       {children && <Stack className="-my-0.5">{children}</Stack>}
       {description && <HeaderDescription content={description} />}
@@ -89,8 +89,10 @@ const HeaderBase = ({
   )
 }
 
-export const Header = Object.assign(HeaderBase, {
+const Header = Object.assign(HeaderBase, {
   Root: HeaderRoot,
   Title: HeaderTitle,
   Description: HeaderDescription,
 })
+
+export { HeaderRoot, HeaderTitle, HeaderDescription, Header }

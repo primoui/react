@@ -11,12 +11,12 @@ export type PopoverProps = Omit<ComponentProps<typeof PopoverContent>, "popover"
   popover: ReactNode
 }
 
-export const PopoverRoot = PopoverPrimitive.Root
-export const PopoverTrigger = PopoverPrimitive.Trigger
-export const PopoverPortal = PopoverPrimitive.Portal
-export const PopoverAnchor = PopoverPrimitive.Anchor
+const PopoverRoot = PopoverPrimitive.Root
+const PopoverTrigger = PopoverPrimitive.Trigger
+const PopoverPortal = PopoverPrimitive.Portal
+const PopoverAnchor = PopoverPrimitive.Anchor
 
-export const PopoverContent = ({
+const PopoverContent = ({
   children,
   className,
   ...props
@@ -27,14 +27,14 @@ export const PopoverContent = ({
   </PopoverPrimitive.Content>
 )
 
-export const PopoverArrow = ({
+const PopoverArrow = ({
   className,
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Arrow> & VariantProps<typeof popoverArrowVariants>) => (
   <PopoverPrimitive.Arrow className={cx(popoverArrowVariants({ className }))} {...props} />
 )
 
-export const PopoverClose = ({
+const PopoverClose = ({
   className,
   ...props
 }: ComponentProps<typeof PopoverPrimitive.Close> & VariantProps<typeof popoverCloseVariants>) => (
@@ -43,14 +43,14 @@ export const PopoverClose = ({
   </PopoverPrimitive.Close>
 )
 
-export const PopoverBase = ({
+const PopoverBase = ({
   children,
   popover,
   align = "center",
   side = "bottom",
   collisionPadding = 5,
   sideOffset = 4,
-  ...rest
+  ...props
 }: PopoverProps) => {
   if (!popover) {
     return children
@@ -66,7 +66,7 @@ export const PopoverBase = ({
           side={side}
           collisionPadding={collisionPadding}
           sideOffset={sideOffset}
-          {...rest}
+          {...props}
         >
           {popover}
         </PopoverContent>
@@ -75,7 +75,7 @@ export const PopoverBase = ({
   )
 }
 
-export const Popover = Object.assign(PopoverBase, {
+const Popover = Object.assign(PopoverBase, {
   Root: PopoverRoot,
   Trigger: PopoverTrigger,
   Portal: PopoverPortal,
@@ -84,3 +84,15 @@ export const Popover = Object.assign(PopoverBase, {
   Arrow: PopoverArrow,
   Close: PopoverClose,
 })
+
+export {
+  PopoverRoot,
+  PopoverTrigger,
+  PopoverPortal,
+  PopoverAnchor,
+  PopoverContent,
+  PopoverArrow,
+  PopoverClose,
+  PopoverBase,
+  Popover,
+}

@@ -12,10 +12,10 @@ import { drawerVariants } from "./Drawer.variants"
 
 export type DrawerProps = ComponentProps<typeof DrawerPrimitive.Root>
 
-export const DrawerRoot = DrawerPrimitive.Root
-export const DrawerTrigger = DrawerPrimitive.Trigger
+const DrawerRoot = DrawerPrimitive.Root
+const DrawerTrigger = DrawerPrimitive.Trigger
 
-export const DrawerContent = ({
+const DrawerContent = ({
   className,
   size,
   direction,
@@ -34,31 +34,25 @@ export const DrawerContent = ({
   </DrawerPrimitive.Portal>
 )
 
-export const DrawerContentCard = ({ ...props }: ComponentProps<typeof DrawerContent>) => (
+const DrawerContentCard = ({ ...props }: ComponentProps<typeof DrawerContent>) => (
   <Card className="rounded-none" asChild>
     <DrawerContent {...props} />
   </Card>
 )
 
-export const DrawerPanel = ({ ...props }: ComponentProps<typeof Card.Panel>) => (
-  <Card.Panel {...props} />
+const DrawerPanel = ({ ...props }: ComponentProps<typeof Card.Panel>) => <Card.Panel {...props} />
+
+const DrawerFooter = ({ direction = "rowReverse", ...props }: ComponentProps<typeof Card.Row>) => (
+  <Card.Row direction={direction} {...props} />
 )
 
-export const DrawerFooter = ({
-  direction = "rowReverse",
-  ...props
-}: ComponentProps<typeof Card.Row>) => <Card.Row direction={direction} {...props} />
-
-export const DrawerClose = ({
-  className,
-  ...props
-}: ComponentProps<typeof DrawerPrimitive.Close>) => (
+const DrawerClose = ({ className, ...props }: ComponentProps<typeof DrawerPrimitive.Close>) => (
   <DrawerPrimitive.Close className={cx("-my-1", className)} {...props}>
     <X />
   </DrawerPrimitive.Close>
 )
 
-export const DrawerCancel = ({
+const DrawerCancel = ({
   children = "Cancel",
   ...props
 }: ComponentProps<typeof DrawerPrimitive.Close>) => (
@@ -69,7 +63,7 @@ export const DrawerCancel = ({
   </DrawerPrimitive.Close>
 )
 
-export const Drawer = Object.assign(DrawerRoot, {
+const Drawer = Object.assign(DrawerRoot, {
   Trigger: DrawerTrigger,
   Content: DrawerContent,
   ContentCard: DrawerContentCard,
@@ -78,3 +72,15 @@ export const Drawer = Object.assign(DrawerRoot, {
   Close: DrawerClose,
   Cancel: DrawerCancel,
 })
+
+export {
+  DrawerRoot,
+  DrawerTrigger,
+  DrawerContent,
+  DrawerContentCard,
+  DrawerPanel,
+  DrawerFooter,
+  DrawerClose,
+  DrawerCancel,
+  Drawer,
+}

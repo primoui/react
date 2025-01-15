@@ -8,7 +8,7 @@ import { screenSizeSeparatorVariants, screenSizeVariants } from "./ScreenSize.va
 export type ScreenSizeProps = Omit<HTMLAttributes<HTMLDivElement>, "size"> &
   VariantProps<typeof screenSizeVariants>
 
-export const ScreenSize = ({ className, position, ...props }: ScreenSizeProps) => {
+const ScreenSize = ({ className, position, ...props }: ScreenSizeProps) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
 
   useEffect(() => {
@@ -45,3 +45,5 @@ export const ScreenSize = ({ className, position, ...props }: ScreenSizeProps) =
     </div>
   )
 }
+
+export { ScreenSize }

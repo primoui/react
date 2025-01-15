@@ -8,31 +8,33 @@ import { tabsContentVariants, tabsListVariants, tabsTriggerVariants } from "./Ta
 
 export type TabsProps = ComponentProps<typeof TabsPrimitive.Root>
 
-export const TabsRoot = TabsPrimitive.Root
+const TabsRoot = TabsPrimitive.Root
 
-export const TabsList = ({
+const TabsList = ({
   className,
   ...props
 }: ComponentProps<typeof TabsPrimitive.List> & VariantProps<typeof tabsListVariants>) => {
   return <TabsPrimitive.List className={cx(tabsListVariants({ className }))} {...props} />
 }
 
-export const TabsTrigger = ({
+const TabsTrigger = ({
   className,
   ...props
 }: ComponentProps<typeof TabsPrimitive.Trigger> & VariantProps<typeof tabsTriggerVariants>) => (
   <TabsPrimitive.Trigger className={cx(tabsTriggerVariants({ className }))} {...props} />
 )
 
-export const TabsContent = ({
+const TabsContent = ({
   className,
   ...props
 }: ComponentProps<typeof TabsPrimitive.Content> & VariantProps<typeof tabsContentVariants>) => (
   <TabsPrimitive.Content className={cx(tabsContentVariants({ className }))} {...props} />
 )
 
-export const Tabs = Object.assign(TabsRoot, {
+const Tabs = Object.assign(TabsRoot, {
   List: TabsList,
   Trigger: TabsTrigger,
   Content: TabsContent,
 })
+
+export { TabsRoot, TabsList, TabsTrigger, TabsContent, Tabs }
