@@ -1,5 +1,6 @@
 import { withThemeByClassName } from "@storybook/addon-themes"
 import "../src/styles/tailwind.css"
+import "../src/styles/styles.css"
 
 const preview = {
   parameters: {

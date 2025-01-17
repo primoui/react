@@ -13,13 +13,21 @@
     "type": "git",
     "url": "https://github.com/piotrkulpinski/design-system.git"
   },
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "files": ["dist"],
+  "main": "./dist/index.umd.cjs",
+  "module": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "storybook dev -p 6006 --no-open",
     "test": "bun test",
     "clean": "rimraf ./dist",
-    "build": "bun run ./build.ts && tsc --emitDeclarationOnly",
+    "build": "vite build && tsc --emitDeclarationOnly",
     "prebuild": "bun run clean",
     "release": "auto shipit --no-changelog",
     "build-storybook": "storybook build --test -o dist/storybook",
@@ -27,7 +35,7 @@
     "format": "bun biome format --write ."
   },
   "dependencies": {
-    "@curiousleaf/utils": "^1.0.41",
+    "@curiousleaf/utils": "^1.1.1",
     "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-alert-dialog": "^1.1.4",
     "@radix-ui/react-avatar": "^1.1.2",
@@ -66,7 +74,7 @@
     "@storybook/theming": "^8.5.0",
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/bun": "^1.1.16",
+    "@types/bun": "^1.1.17",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",

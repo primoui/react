@@ -1,3 +1,5 @@
+import "./styles/styles.css"
+
 export * from "./shared/classes"
 export * from "./shared/cva"
 export * from "./shared/helpers"
