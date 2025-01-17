@@ -3,7 +3,7 @@ import { cva } from "~/shared/cva"
 
 export const tabsListVariants = cva({
   base: [
-    "relative flex items-center gap-x-6 gap-y-3 -mb-px overflow-auto overscroll-contain scroll-smooth scrollbar-none snap-x",
+    "relative flex items-center gap-x-6 gap-y-3 -mb-px overflow-auto overscroll-contain scroll-smooth snap-x",
     "before:absolute before:inset-x-0 before:bottom-0 before:h-px before:bg-gray-200",
   ],
 })

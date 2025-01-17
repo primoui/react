@@ -19,7 +19,7 @@ export const planFeatureVariants = cva({
 })
 
 export const planFeatureCheckVariants = cva({
-  base: "shrink-0 p-1 text-white rounded-smooth",
+  base: "shrink-0 p-1 text-white rounded-sm",
 
   variants: {
     type: {
