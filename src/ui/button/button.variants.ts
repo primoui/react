@@ -33,9 +33,6 @@ export const buttonVariants = cva({
       md: "text-xs gap-[0.75ch] py-1.5 px-3",
       lg: "text-sm gap-[1ch] py-2 px-4",
     },
-    isAffixOnly: {
-      true: "",
-    },
     isPending: {
       true: "[&>*:not(.animate-spin)]:text-transparent select-none",
     },
@@ -71,11 +68,6 @@ export const buttonVariants = cva({
     { theme: "fancy", variant: "outline", class: "bg-white hover:bg-purple-lighter" },
     { theme: "fancy", variant: "soft", class: "border-transparent bg-purple-lighter" },
     { theme: "fancy", variant: "ghost", class: "border-transparent hover:bg-purple-lighter" },
-
-    // Is affix only
-    { size: "sm", isAffixOnly: true, class: "px-1" },
-    { size: "md", isAffixOnly: true, class: "px-1.5" },
-    { size: "lg", isAffixOnly: true, class: "px-2" },
   ],
 
   defaultVariants: {

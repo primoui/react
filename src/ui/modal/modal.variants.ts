@@ -1,10 +1,11 @@
 import { cva } from "~/shared/cva"
 
 export const modalVariants = cva({
-  base: ["!fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-2rem)] overflow-y-auto"],
+  base: "!fixed left-1/2 -translate-x-1/2 z-50 w-[calc(100vw-2rem)] overflow-y-auto",
 
   variants: {
     size: {
+      xs: "max-w-xs",
       sm: "max-w-sm",
       md: "max-w-md",
       lg: "max-w-lg",
