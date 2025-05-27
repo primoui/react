@@ -1,4 +1,4 @@
-import { isTruthy } from "@curiousleaf/utils"
+import { isTruthy } from "@primoui/utils"
 import type { ReactElement, ReactNode } from "react"
 import { Children, isValidElement } from "react"
 

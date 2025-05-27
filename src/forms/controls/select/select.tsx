@@ -1,6 +1,6 @@
 "use client"
 
-import { isTruthy } from "@curiousleaf/utils"
+import { isTruthy } from "@primoui/utils"
 import * as SelectPrimitive from "@radix-ui/react-select"
 import { Check, ChevronDown, ChevronUp } from "lucide-react"
 import type { ComponentProps, ReactNode } from "react"

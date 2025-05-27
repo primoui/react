@@ -1,6 +1,6 @@
 "use client"
 
-import { formatIntervalAmount } from "@curiousleaf/utils"
+import { formatIntervalAmount } from "@primoui/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { Check, X } from "lucide-react"
 import type { HTMLAttributes, ReactNode } from "react"
